@@ -1,0 +1,17 @@
+﻿<Window x:Class="WhiteboardProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:WhiteboardProject.UC"
+        mc:Ignorable="d" WindowState="Maximized" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="#0a583e">
+        <Border CornerRadius="0,10,0,0"  VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left" BorderBrush="#dddddd" Background="#FFFFFF"
+                BorderThickness="1">
+            <uc:BottomLeftNavigationBar />
+        </Border>
+       
+    </Grid>
+</Window>

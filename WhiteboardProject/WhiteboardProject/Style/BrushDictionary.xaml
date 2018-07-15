@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WhiteboardProject.Style">
+    <LinearGradientBrush x:Key="ButtonBackgroundGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#FFFBFCFD"
+                      Offset="0" />
+        <GradientStop Color="#FFE9ECEE"
+                      Offset="0.73" />
+        <GradientStop Color="#FFD8DCDF"
+                      Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonDisabledBackgroundBrush"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#FFD4D4D5"
+                      Offset="0" />
+        <GradientStop Color="#FFC5C7C9"
+                      Offset="0.73" />
+        <GradientStop Color="#FFB7BABD"
+                      Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonBorderGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="#FF9DABB8"
+                      Offset="0" />
+        <GradientStop Color="#FF929EA9"
+                      Offset="1" />
+    </LinearGradientBrush>
+</ResourceDictionary>

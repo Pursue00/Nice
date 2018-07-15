@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WhiteboardProject.UC.BottomLeftNavigationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhiteboardProject.UC"
+             xmlns:src="clr-namespace:WhiteboardProject.Model"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Height="60">
+        <StackPanel Orientation="Horizontal">
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/收回.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <src:FishEyePanel>
+                <Button x:Name="btninteractive" Command="{Binding BtnCommand}" CommandParameter="interactive">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://siteoforigin:,,,/Image/互动教材.png" Stretch="Uniform"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="monitor">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://siteoforigin:,,,/Image/显示器.png" Stretch="Uniform"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://siteoforigin:,,,/Image/工具.png" Stretch="Uniform"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://siteoforigin:,,,/Image/信封.png" Stretch="Uniform"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button>
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://siteoforigin:,,,/Image/百科.png" Stretch="Uniform"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </src:FishEyePanel>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btninteractive}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityInteractive}" StaysOpen="False">
+                <local:PopupInteractive/>
+            </Popup>
+        </StackPanel>
+    </Grid>
+</UserControl>
