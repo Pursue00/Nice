@@ -6,9 +6,9 @@
         xmlns:uc="clr-namespace:WhiteboardProject.UC"
         xmlns:src="clr-namespace:WhiteboardProject.Model"
         xmlns:common="clr-namespace:WhiteboardProject.Common"
-        mc:Ignorable="d" WindowState="Normal" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#0a583e">
+    <Grid x:Name="gridTop" Background="#0a583e" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
         <uc:DrawingView/>
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
         <Border CornerRadius="0,10,0,0"  VerticalAlignment="Bottom" Height="80"

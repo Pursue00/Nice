@@ -24,7 +24,7 @@ namespace WhiteboardProject.UC
         #region Constructure
         public DrawingViewModel()
         {
-            Messenger.Default.Send("pack://application:,,,/Image/Brush/淡墨.png");
+            Messenger.Default.Send("pack://application:,,,/Image/Brush/重墨.png");
         }
         #endregion
     }

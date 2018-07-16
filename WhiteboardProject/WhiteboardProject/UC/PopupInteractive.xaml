@@ -49,7 +49,7 @@
                                 <ColumnDefinition Width="0.5*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <Button Style="{StaticResource ButtonStyle}">
+                                <Button >
                                     <Button.Template>
                                         <ControlTemplate>
                                             <StackPanel Orientation="Horizontal">

@@ -40,6 +40,7 @@ namespace WhiteboardProject.UC
             }
             else if (appMessage.MsgType==AppMsg.Hardpen)
             {
+                this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
                 DrawingAttributes drawingAttributes;
                 //创建 DrawingAttributes 类的一个实例  
 

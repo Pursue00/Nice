@@ -60,7 +60,8 @@ namespace WhiteboardProject.UC
                     EventHub.SysEvents.PubEvent(am);
                     break;
                 case "seal":
-                 
+                    am.MsgType = AppMsg.Seal;
+                    EventHub.SysEvents.PubEvent(am);
                     break;
                 case "return":
                   
