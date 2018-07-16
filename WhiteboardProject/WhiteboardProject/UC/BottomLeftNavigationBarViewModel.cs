@@ -19,12 +19,12 @@ namespace WhiteboardProject.UC
         public bool IsVisibilityInteractive
         {
             get { return _isVisibilityInteractive; }
-            set { _isVisibilityInteractive = value;NotifyChanged("IsVisibilityInteractive"); }
+            set { _isVisibilityInteractive = value;OnPropertyChanged(()=> IsVisibilityInteractive); }
         }
 
         #endregion
 
-        #region Property
+        #region Constructure
         public BottomLeftNavigationBarViewModel()
         {
             this.BtnCommand = new RelayCommand<object>(BtnCommandExcute);

@@ -53,8 +53,26 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>DLL\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.0.0.396, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.0.0.396\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Mef.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Mef.6.3.0\lib\net45\Prism.Mef.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,13 +91,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\SendMessageHelper\AppMessage.cs" />
+    <Compile Include="Common\SendMessageHelper\AppMsg.cs" />
+    <Compile Include="Common\SendMessageHelper\EventHub.cs" />
+    <Compile Include="Common\SendMessageHelper\NavCmd.cs" />
+    <Compile Include="Common\SendMessageHelper\ObjExtend.cs" />
+    <Compile Include="Common\荧光笔\Colorful.cs" />
+    <Compile Include="Common\荧光笔\ColorfulFollow.cs" />
+    <Compile Include="Common\荧光笔\Dot.cs" />
     <Compile Include="Model\BindingModelBase.cs" />
+    <Compile Include="Common\DrawingHelper\CustomDynamicRenderer.cs" />
+    <Compile Include="Common\DrawingHelper\CustomRenderingInkCanvas.cs" />
+    <Compile Include="Common\DrawingHelper\CustomStroke.cs" />
     <Compile Include="Model\FishEyePanel.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="UC\BottomLeftNavigationBar.xaml.cs">
       <DependentUpon>BottomLeftNavigationBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\BottomLeftNavigationBarViewModel.cs" />
+    <Compile Include="UC\BottomNavigationBar.xaml.cs">
+      <DependentUpon>BottomNavigationBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\BottomNavigationBarViewModel.cs" />
+    <Compile Include="UC\BottomRightNavigationBar.xaml.cs">
+      <DependentUpon>BottomRightNavigationBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\BottomRightNavigationBarViewModel.cs" />
+    <Compile Include="UC\DrawingView.xaml.cs">
+      <DependentUpon>DrawingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\DrawingViewModel.cs" />
     <Compile Include="UC\PopupInteractive.xaml.cs">
       <DependentUpon>PopupInteractive.xaml</DependentUpon>
     </Compile>
@@ -112,6 +153,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC\BottomNavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\BottomRightNavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\DrawingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\PopupInteractive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +188,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -213,6 +267,56 @@
     <None Include="Image\教学.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\橡皮擦.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\硬笔.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\返回.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\重做.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\印章.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\左上箭头.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\荧光笔.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\毛笔.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\加号.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\右箭头.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\左箭头.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\缩略图.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Brush\浓墨.png" />
+    <Resource Include="Image\Brush\淡墨.png" />
+    <Resource Include="Image\Brush\焦墨.png" />
+    <Resource Include="Image\Brush\重墨.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

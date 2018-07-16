@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="WhiteboardProject.UC.BottomNavigationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:WhiteboardProject.Model"
+             xmlns:local="clr-namespace:WhiteboardProject.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="64"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <src:FishEyePanel>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="arrow">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/左上箭头.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+                <Button x:Name="HardPen" HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Command="{Binding BtnCommand}" CommandParameter="hardpen">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/硬笔.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="eraser">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/橡皮擦.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="writingbrush">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/毛笔.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="highlighter">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/荧光笔.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="seal">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/印章.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="return">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/返回.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/重做.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            </src:FishEyePanel>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=HardPen}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
+                <local:PopupInteractive/>
+            </Popup>
+        </StackPanel>
+    </Grid>
+</UserControl>
