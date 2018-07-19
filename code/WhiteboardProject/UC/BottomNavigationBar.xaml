@@ -84,7 +84,7 @@
             </src:FishEyePanel>
             <Popup Placement="Top" PlacementTarget="{Binding ElementName=HardPen}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
-                <local:PopupInteractive/>
+                <local:PopupWindow/>
             </Popup>
         </StackPanel>
     </Grid>

@@ -9,7 +9,8 @@
                 <ResourceDictionary Source="Style/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="Style/BaseDictionary.xaml"/>
                 <ResourceDictionary Source="Style/BrushDictionary.xaml"/>
-                <ResourceDictionary Source="Style/SliderStyle.xaml"/>
+                <ResourceDictionary Source="Style/SliderStyleDictionary.xaml"/>
+               
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
