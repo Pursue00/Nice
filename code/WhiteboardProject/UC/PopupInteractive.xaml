@@ -8,154 +8,134 @@
              d:DesignHeight="700" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="Button">
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="52"/>
             <Setter Property="Margin" Value="10,10,0,0"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="tbStyle">
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="TextAlignment"  Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="65,0,0,0"/>
         </Style>
     </UserControl.Resources>
-    <Grid Height="700" Width="300">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="16"/>
-        </Grid.RowDefinitions>
-        <Border CornerRadius="10" Background="#ffffff">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="105"/>
-                </Grid.RowDefinitions>
-                <Grid>
-                    <Button HorizontalAlignment="Right" VerticalAlignment="Center">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Image Source="pack://siteoforigin:,,,/Image/登录.png" Stretch="Uniform"/>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Border BorderBrush="#dddddd" BorderThickness="0,1,0,1" >
+    <Grid Height="500" Width="300">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/多边形1.png" Stretch="Fill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel>
-                                <Button >
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/显示器.png" Stretch="Uniform"/>
-                                                <TextBlock Text="文件" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/导入.png" Stretch="Uniform"/>
-                                                <TextBlock Text="导入" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/导出.png" Stretch="Uniform"/>
-                                                <TextBlock Text="导出" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/打印.png" Stretch="Uniform"/>
-                                                <TextBlock Text="打印" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/设置.png" Stretch="Uniform"/>
-                                                <TextBlock Text="设置" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/帮助.png" Stretch="Uniform"/>
-                                                <TextBlock Text="帮助" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/模式.png"  Stretch="Uniform"/>
-                                                <TextBlock Text="模式" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <Button>
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="pack://siteoforigin:,,,/Image/退出.png" Stretch="Uniform"/>
-                                                <TextBlock Text="退出" Style="{StaticResource tbStyle}"/>
-                                            </StackPanel>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </StackPanel>
-                            <Grid Grid.Column="1"></Grid>
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/文件.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="文件" Style="{StaticResource tbStyle}"/>
                         </Grid>
-                    </Border>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Button HorizontalAlignment="Left" VerticalAlignment="Top"  Width="120" Height="150">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <Image Source="pack://siteoforigin:,,,/Image/教学.png" Width="64" Height="64" Stretch="Uniform"/>
-                                    <TextBlock Text="互动教学" Style="{StaticResource tbStyle}"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </Grid>
-            </Grid>
-        </Border>
-        <Path Data="M48.75,116.75 L40.5,124 57.25,124 z" Grid.Row="1"
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导入.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="导入" Style="{StaticResource tbStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导出.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="导出" Style="{StaticResource tbStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/打印.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="打印" Style="{StaticResource tbStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/设置.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="设置" Style="{StaticResource tbStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/模式.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="模式" Style="{StaticResource tbStyle}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Grid x:Name="BtnGrid">
+                            <Grid.Background>
+                                <ImageBrush x:Name="imageSource" ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3拷贝.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/退出.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
+                            <TextBlock Text="退出" Style="{StaticResource tbStyle}"/>
+                        </Grid>
+
+                        <!--<ControlTemplate.Triggers>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="BtnGrid" Property="Background" Value="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3.png"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>-->
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <Grid Grid.Column="1"></Grid>
+        <!--<Path Data="M48.75,116.75 L40.5,124 57.25,124 z" Grid.Row="1"
                           Fill="#ffffff" Height="8.25"  Stretch="Fill" Margin="50,0,0,0"
                           Stroke="#ffffff" Width="17.75" HorizontalAlignment="Left" 
                           VerticalAlignment="Bottom">
             <Path.RenderTransform>
                 <RotateTransform Angle="180"/>
             </Path.RenderTransform>
-        </Path>
+        </Path>-->
     </Grid>
    
 </UserControl>

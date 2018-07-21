@@ -130,6 +130,18 @@
     <Compile Include="UC\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\形状\PopupShape.xaml.cs">
+      <DependentUpon>PopupShape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\橡皮擦\PopupEraser.xaml.cs">
+      <DependentUpon>PopupEraser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\漫游\PopupRoaming.xaml.cs">
+      <DependentUpon>PopupRoaming.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\画笔\PopupBrush.xaml.cs">
+      <DependentUpon>PopupBrush.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -183,6 +195,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\PopupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\形状\PopupShape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\橡皮擦\PopupEraser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\漫游\PopupRoaming.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\画笔\PopupBrush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -493,6 +521,164 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Image\画笔界面切图\画笔界面切图\多边形548.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\圆角矩形3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\文字.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\画笔.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\画笔拷贝.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\组1拷贝.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\返回.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\返回拷贝2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\中间\飞行漫游.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\右边\圆角矩形2拷贝2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\右边\添加.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\右边\翻页右.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\右边\翻页左.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\右边\页面.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\左边\圆角矩形2拷贝2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\左边\桌面.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\左边\系统.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\左边\菜单.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\图标\左边\资源.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\收缩栏-收回.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\矩形1拷贝.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\主界面切图\主界面切图\色值：006c40.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\主题.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\倒计时.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\分类底色.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\圆角矩形599.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\学科.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\工具箱.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\系统图标展开切图\系统图标展开切图\标题底色.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\模式.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\文件.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\圆角矩形3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\圆角矩形3拷贝.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\多边形1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\多边形2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导入.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导入\图片.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导入\文件.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导出.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导出\pdf.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导出\PPT.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导出\Word.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\导出\图片.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\打印.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\文件\保存.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\文件\另存.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\文件\打开.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\文件\新建.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\模式\备课.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\模式\授课.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\模式\桌面.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\设置.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\退出.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

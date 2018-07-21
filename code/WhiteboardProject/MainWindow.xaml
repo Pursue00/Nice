@@ -8,23 +8,12 @@
         xmlns:common="clr-namespace:WhiteboardProject.Common"
         mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="gridTop" Background="#0a583e" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
+    <Grid x:Name="gridTop" Background="#006c40" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
         <uc:DrawingView/>
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
-        <Border CornerRadius="0,10,0,0"  VerticalAlignment="Bottom" Height="80"
-                HorizontalAlignment="Left" BorderBrush="#dddddd" Background="#FFFFFF" Margin="0,0,0,2"
-                BorderThickness="1">
-            <uc:BottomLeftNavigationBar />
-        </Border>
-        <Border VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,2"
-                Background="#FFFFFF" Height="80"
-                BorderThickness="1">
-            <uc:BottomNavigationBar/>
-        </Border>
-        <Border VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,2"
-                Background="#FFFFFF" Height="80" CornerRadius="10,0,0,0"
-                BorderThickness="1">
-            <uc:BottomRightNavigationBar/>
-        </Border>
+        <uc:BottomLeftNavigationBar VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left"/>
+        <uc:BottomNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <uc:BottomRightNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

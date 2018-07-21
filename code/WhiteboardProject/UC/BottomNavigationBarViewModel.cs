@@ -16,6 +16,9 @@ namespace WhiteboardProject.UC
 
         #region Property
         private bool _isVisibilityHardpen;
+        /// <summary>
+        /// 画笔
+        /// </summary>
 
         public bool IsVisibilityHardpen
         {
@@ -23,6 +26,47 @@ namespace WhiteboardProject.UC
             set { _isVisibilityHardpen = value; OnPropertyChanged(()=> IsVisibilityHardpen); }
         }
 
+        private bool _isVisibilityEraser;
+        /// <summary>
+        /// 橡皮擦
+        /// </summary>
+
+        public bool IsVisibilityEraser
+        {
+            get { return _isVisibilityEraser; }
+            set { _isVisibilityEraser = value; OnPropertyChanged(() => IsVisibilityEraser); }
+        }
+
+        private bool _isVisibilityShape;
+        /// <summary>
+        /// 形状
+        /// </summary>
+
+        public bool IsVisibilityShape
+        {
+            get { return _isVisibilityShape; }
+            set { _isVisibilityShape = value; OnPropertyChanged(() => IsVisibilityShape); }
+        }
+
+        
+        private bool _isVisibilityRoaming;
+        /// <summary>
+        /// 漫游
+        /// </summary>
+
+        public bool IsVisibilityRoaming
+        {
+            get { return _isVisibilityRoaming; }
+            set { _isVisibilityRoaming = value; OnPropertyChanged(() => IsVisibilityRoaming); }
+        }
+
+        //private bool _isVisibilityHardpen;
+
+        //public bool IsVisibilityHardpen
+        //{
+        //    get { return _isVisibilityHardpen; }
+        //    set { _isVisibilityHardpen = value; OnPropertyChanged(() => IsVisibilityHardpen); }
+        //}
         #endregion
 
         #region Constructure
@@ -47,12 +91,12 @@ namespace WhiteboardProject.UC
                     EventHub.SysEvents.PubEvent(am);
                     break;
                 case "eraser":
-                   
+                    this.IsVisibilityEraser = true;
                     am.MsgType = AppMsg.Eraser;
                     EventHub.SysEvents.PubEvent(am);
                     break;
                 case "writingbrush":
-                  
+                    this.IsVisibilityRoaming = true;
                     break;
                 case "highlighter":
                  
@@ -60,6 +104,7 @@ namespace WhiteboardProject.UC
                     EventHub.SysEvents.PubEvent(am);
                     break;
                 case "seal":
+
                     am.MsgType = AppMsg.Seal;
                     EventHub.SysEvents.PubEvent(am);
                     break;

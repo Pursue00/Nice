@@ -9,35 +9,37 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="Button">
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="64"/>
-            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="Width" Value="62"/>
+            <Setter Property="Height" Value="62"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <src:FishEyePanel>
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/圆角矩形3.png" Stretch="Fill"/>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Center">
             <Button HorizontalAlignment="Right" VerticalAlignment="Center"
                     Command="{Binding BtnCommand}" CommandParameter="arrow">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/左上箭头.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/画笔拷贝.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-                <Button x:Name="HardPen" HorizontalAlignment="Right" VerticalAlignment="Center"
+            <Button x:Name="HardPen" HorizontalAlignment="Right" VerticalAlignment="Center"
                         Command="{Binding BtnCommand}" CommandParameter="hardpen">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/硬笔.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/画笔.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+            <Button x:Name="Eraser" HorizontalAlignment="Right" VerticalAlignment="Center"
                     Command="{Binding BtnCommand}" CommandParameter="eraser">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/橡皮擦.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/组1拷贝.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -45,7 +47,7 @@
                     Command="{Binding BtnCommand}" CommandParameter="writingbrush">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/毛笔.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/飞行漫游.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -53,15 +55,7 @@
                     Command="{Binding BtnCommand}" CommandParameter="highlighter">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/荧光笔.png" Stretch="Uniform"/>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
-                    Command="{Binding BtnCommand}" CommandParameter="seal">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/印章.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/文字.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -69,7 +63,7 @@
                     Command="{Binding BtnCommand}" CommandParameter="return">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/返回.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/返回拷贝2.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -77,14 +71,17 @@
                     Command="{Binding BtnCommand}" CommandParameter="reset">
                 <Button.Template>
                     <ControlTemplate>
-                        <Image Source="pack://siteoforigin:,,,/Image/重做.png" Stretch="Uniform"/>
+                        <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/返回.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            </src:FishEyePanel>
             <Popup Placement="Top" PlacementTarget="{Binding ElementName=HardPen}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
-                <local:PopupWindow/>
+                <local:PopupBrush/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=Eraser}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityEraser}" StaysOpen="False">
+                <local:PopupEraser/>
             </Popup>
         </StackPanel>
     </Grid>
