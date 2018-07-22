@@ -16,6 +16,7 @@ namespace WhiteboardProject.Model
         public string _selectedColor;
         protected override void OnDraw(DrawingContext drawingContext, StylusPointCollection stylusPoints, Geometry geometry, Brush fillBrush)
         {
+            if (_selectedColor == null) return;
             ImageSource imageSource = new BitmapImage(new Uri(_selectedColor));
             Point point = new Point(double.NegativeInfinity, double.NegativeInfinity);
             double num = this.StrokeWidth + 20.0;

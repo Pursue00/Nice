@@ -25,7 +25,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <Slider Style="{StaticResource SliderStyle1}" Value="10"/>
+                    <Slider Style="{StaticResource SliderStyle}" Value="10"/>
                 </Grid>
                 <Grid Grid.Row="1"></Grid>
             </Grid>

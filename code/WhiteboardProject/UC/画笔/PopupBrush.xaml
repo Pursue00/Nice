@@ -3,18 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uc="clr-namespace:WhiteboardProject.UC"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="64"/>
-            <Setter Property="Height" Value="128"/>
-            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
         </Style>
     </UserControl.Resources>
     <Grid Width="650" Height="400">
         <Grid.Background>
-            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形721.png" Stretch="Fill"/>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/画笔界面切图/画笔界面切图/多边形548.png" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -31,8 +32,8 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.7*"/>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="170"/>
             </Grid.ColumnDefinitions>
             <Grid>
                 <Grid.RowDefinitions>
@@ -40,14 +41,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <Slider Style="{StaticResource SliderStyle1}" Value="10" HorizontalAlignment="Stretch"  VerticalAlignment="Center"/>
+                    <Slider Style="{StaticResource SliderStyle}" Value="10" Maximum="100" Minimum="1" Margin="25"
+                            HorizontalAlignment="Stretch"  VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="20,5,0,0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Left"  Margin="40,5,0,0">
                         <StackPanel.Background>
                             <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/画笔界面切图/画笔界面切图/圆角矩形523.png" Stretch="Fill"/>
                         </StackPanel.Background>
-                        <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                        <Button Command="{Binding BtnCommand}" CommandParameter="brush">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/画笔.png" Stretch="Uniform"/>
@@ -55,7 +57,7 @@
                             </Button.Template>
                         </Button>
                         <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="writingbrush">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/毛笔.png" Stretch="Uniform"/>
@@ -63,7 +65,7 @@
                             </Button.Template>
                         </Button>
                         <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="softpen">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/软笔.png" Stretch="Uniform"/>
@@ -71,7 +73,7 @@
                             </Button.Template>
                         </Button>
                         <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="sealpen">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/印章笔.png" Stretch="Uniform"/>
@@ -79,18 +81,19 @@
                             </Button.Template>
                         </Button>
                         <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="highlighter">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/荧光笔.png" Stretch="Uniform"/>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                       
                     </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="1"></Grid>
+            <Grid Grid.Column="1">
+                <uc:ColorSelector/>
+            </Grid>
         </Grid>
         <!--<Path Data="M48.75,116.75 L40.5,124 57.25,124 z" Grid.Row="1"
                           Fill="#ffffff" Height="8.25"  Stretch="Fill" Margin="50,0,0,0"

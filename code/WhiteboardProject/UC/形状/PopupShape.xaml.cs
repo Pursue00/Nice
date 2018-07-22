@@ -20,9 +20,12 @@ namespace WhiteboardProject.UC
     /// </summary>
     public partial class PopupShape : UserControl
     {
+        PopupShapeViewModel vm;
         public PopupShape()
         {
             InitializeComponent();
+            vm = new PopupShapeViewModel();
+            this.DataContext = vm;
         }
     }
 }

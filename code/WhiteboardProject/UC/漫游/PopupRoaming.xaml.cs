@@ -20,9 +20,12 @@ namespace WhiteboardProject.UC
     /// </summary>
     public partial class PopupRoaming : UserControl
     {
+        PopupRoamingViewModel vm;
         public PopupRoaming()
         {
             InitializeComponent();
+            vm = new PopupRoamingViewModel();
+            this.DataContext = vm;
         }
     }
 }

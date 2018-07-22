@@ -10,8 +10,13 @@ namespace WhiteboardProject.Common
     {
         Highlighter,//荧光笔
         Eraser,//橡皮擦
-        Hardpen,//硬笔
+        Hardpen,//画笔
         WritingBrush,//毛笔
         Seal,//印章
+        Softpen,//软笔
+        SelectErase,//选择擦除
+        PointErase,//点擦除
+        ClearErase,//清空擦除
+        GestureErase,//手势擦除
     }
 }

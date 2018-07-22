@@ -82,37 +82,22 @@ namespace WhiteboardProject.UC
             AppMessage am = new AppMessage();
             switch (arg)
             {
-                case "arrow":
-                   
-                    break;
                 case "hardpen":
                     this.IsVisibilityHardpen = true;
-                    am.MsgType = AppMsg.Hardpen;
-                    EventHub.SysEvents.PubEvent(am);
+                    //am.MsgType = AppMsg.Hardpen;
+                    //EventHub.SysEvents.PubEvent(am);
                     break;
                 case "eraser":
                     this.IsVisibilityEraser = true;
-                    am.MsgType = AppMsg.Eraser;
-                    EventHub.SysEvents.PubEvent(am);
                     break;
                 case "writingbrush":
                     this.IsVisibilityRoaming = true;
                     break;
-                case "highlighter":
-                 
-                    am.MsgType = AppMsg.Highlighter;
-                    EventHub.SysEvents.PubEvent(am);
+                case "shape":
+                    this.IsVisibilityShape = true;
                     break;
-                case "seal":
-
-                    am.MsgType = AppMsg.Seal;
-                    EventHub.SysEvents.PubEvent(am);
-                    break;
-                case "return":
-                  
-                    break;
-                case "reset":
-                
+                case "roaming":
+                    this.IsVisibilityRoaming = true;
                     break;
             }
         }

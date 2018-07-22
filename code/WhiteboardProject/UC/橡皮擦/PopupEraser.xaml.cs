@@ -20,9 +20,12 @@ namespace WhiteboardProject.UC
     /// </summary>
     public partial class PopupEraser : UserControl
     {
+        PopupEraserViewModel vm;
         public PopupEraser()
         {
             InitializeComponent();
+            vm = new PopupEraserViewModel();
+            this.DataContext = vm;
         }
     }
 }

@@ -12,29 +12,30 @@
             <Setter Property="Margin" Value="10"/>
         </Style>
     </UserControl.Resources>
-    <Grid Width="450" Height="250">
+    <Grid Width="450" Height="265">
         <Grid.Background>
-            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形721.png" Stretch="Fill"/>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/画笔界面切图/画笔界面切图/多边形548.png" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="118"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形521拷贝.png" Stretch="Fill"/>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形521拷贝.png" 
+                            Stretch="Fill"/>
             </Grid.Background>
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Text="橡皮擦" Foreground="White" FontSize="18"/>
             <Image HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="Uniform" Width="20" Height="20" Margin="0,0,5,0"
                    Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/叉.png"/>
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="0,35,0,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Center" Margin="0,55,0,0">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形523.png" Stretch="Uniform"/>
                 </StackPanel.Background>
                 <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="point">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/组20.png" Stretch="Fill"/>
@@ -42,7 +43,7 @@
                     </Button.Template>
                 </Button>
                 <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="select">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/选择擦除.png" Stretch="Fill"/>
@@ -50,7 +51,7 @@
                     </Button.Template>
                 </Button>
                 <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="clear">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/清空.png" Stretch="Fill"/>
@@ -58,7 +59,7 @@
                     </Button.Template>
                 </Button>
                 <Button
-                    Command="{Binding BtnCommand}" CommandParameter="reset">
+                    Command="{Binding BtnCommand}" CommandParameter="gesture">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/手势擦除.png" Stretch="Fill"/>

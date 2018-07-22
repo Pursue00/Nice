@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 namespace WhiteboardProject.UC
 {
     /// <summary>
-    /// PopupBrush.xaml 的交互逻辑
+    /// ColorSelector.xaml 的交互逻辑
     /// </summary>
-    public partial class PopupBrush : UserControl
+    public partial class ColorSelector : UserControl
     {
-        PopupBrushViewModel vm;
-        public PopupBrush()
+        ColorSelectorViewModel vm;
+        public ColorSelector()
         {
             InitializeComponent();
-            vm = new PopupBrushViewModel();
+            vm = new ColorSelectorViewModel();
             this.DataContext = vm;
         }
     }

@@ -11,9 +11,8 @@
     <Grid x:Name="gridTop" Background="#006c40" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
         <uc:DrawingView/>
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
-        <uc:BottomLeftNavigationBar VerticalAlignment="Bottom" 
-                HorizontalAlignment="Left"/>
-        <uc:BottomNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <uc:BottomLeftNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <uc:BottomNavigationBar x:Name="bnb" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
         <uc:BottomRightNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

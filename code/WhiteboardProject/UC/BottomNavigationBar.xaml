@@ -11,14 +11,14 @@
         <Style TargetType="Button">
             <Setter Property="Width" Value="62"/>
             <Setter Property="Height" Value="62"/>
-            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="Margin" Value="20,0,0,45"/>
         </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/圆角矩形3.png" Stretch="Fill"/>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/圆角矩形3.png" Stretch="Uniform"/>
         </Grid.Background>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"  HorizontalAlignment="Center">
             <Button HorizontalAlignment="Right" VerticalAlignment="Center"
                     Command="{Binding BtnCommand}" CommandParameter="arrow">
                 <Button.Template>
@@ -27,7 +27,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="HardPen" HorizontalAlignment="Right" VerticalAlignment="Center"
+            <Button x:Name="btnhardPen" HorizontalAlignment="Center"  VerticalAlignment="Center"
                         Command="{Binding BtnCommand}" CommandParameter="hardpen">
                 <Button.Template>
                     <ControlTemplate>
@@ -35,7 +35,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="Eraser" HorizontalAlignment="Right" VerticalAlignment="Center"
+            <Button x:Name="btneraser" HorizontalAlignment="Right" VerticalAlignment="Center"
                     Command="{Binding BtnCommand}" CommandParameter="eraser">
                 <Button.Template>
                     <ControlTemplate>
@@ -43,16 +43,16 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
-                    Command="{Binding BtnCommand}" CommandParameter="writingbrush">
+            <Button x:Name="btnroaming" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="roaming">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/飞行漫游.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Center"
-                    Command="{Binding BtnCommand}" CommandParameter="highlighter">
+            <Button x:Name="btnshape" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Command="{Binding BtnCommand}" CommandParameter="shape">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/中间/文字.png" Stretch="Uniform"/>
@@ -75,13 +75,21 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Popup Placement="Top" PlacementTarget="{Binding ElementName=HardPen}" AllowsTransparency="True"
+            <Popup Placement="Top"  PlacementTarget="{Binding ElementName=btnhardPen}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
                 <local:PopupBrush/>
             </Popup>
-            <Popup Placement="Top" PlacementTarget="{Binding ElementName=Eraser}" AllowsTransparency="True"
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btneraser}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityEraser}" StaysOpen="False">
                 <local:PopupEraser/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnshape}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityShape}" StaysOpen="False">
+                <local:PopupShape/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnroaming}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityRoaming}" StaysOpen="False">
+                <local:PopupRoaming/>
             </Popup>
         </StackPanel>
     </Grid>

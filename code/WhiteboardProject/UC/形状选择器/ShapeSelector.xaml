@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="WhiteboardProject.UC.ShapeSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhiteboardProject.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <UniformGrid>
+            <UniformGrid.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/形状界面/形状界面/圆角矩形523.png" Stretch="Fill"/>
+            </UniformGrid.Background>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组6.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组7.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组8.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组9.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组10.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组11.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组12.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组13.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组14.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组15.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组16.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组17.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组18.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组19.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组20.png" Stretch="Fill"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </UniformGrid>
+    </Grid>
+</UserControl>

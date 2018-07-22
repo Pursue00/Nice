@@ -133,15 +133,27 @@
     <Compile Include="UC\形状\PopupShape.xaml.cs">
       <DependentUpon>PopupShape.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\形状\PopupShapeViewModel.cs" />
+    <Compile Include="UC\形状选择器\ShapeSelector.xaml.cs">
+      <DependentUpon>ShapeSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\形状选择器\ShapeSelectorViewModel.cs" />
     <Compile Include="UC\橡皮擦\PopupEraser.xaml.cs">
       <DependentUpon>PopupEraser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\橡皮擦\PopupEraserViewModel.cs" />
     <Compile Include="UC\漫游\PopupRoaming.xaml.cs">
       <DependentUpon>PopupRoaming.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\漫游\PopupRoamingViewModel.cs" />
     <Compile Include="UC\画笔\PopupBrush.xaml.cs">
       <DependentUpon>PopupBrush.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\画笔\PopupBrushViewModel.cs" />
+    <Compile Include="UC\颜色选择器\ColorSelector.xaml.cs">
+      <DependentUpon>ColorSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\颜色选择器\ColorSelectorViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -202,6 +214,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC\形状选择器\ShapeSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\橡皮擦\PopupEraser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\画笔\PopupBrush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\颜色选择器\ColorSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -433,7 +453,7 @@
     <None Include="Image\形状界面\形状界面\组9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Image\形状界面\形状界面\调色板_palette3.png">
+    <None Include="Image\形状界面\形状界面\调色板.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Image\橡皮擦界面切图\橡皮擦界面切图\叉.png">

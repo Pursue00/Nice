@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -35,7 +36,10 @@ namespace WhiteboardProject
         }
 
         private bool isSeal;
+        private int childCount;
+        Panel uIElementCollection;
         #endregion
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +55,7 @@ namespace WhiteboardProject
             {
                 IsVisibilityColorfulFollow = Visibility.Visible;
 
+
             }
             else if (appMessage.MsgType == AppMsg.Hardpen)
             {
@@ -61,15 +66,22 @@ namespace WhiteboardProject
                 isSeal = true;
                 IsVisibilityColorfulFollow = Visibility.Collapsed;
             }
-            else if (appMessage.MsgType==AppMsg.Eraser)
+            else if (appMessage.MsgType == AppMsg.ClearErase)
             {
-                for (int i = 0; i < this.gridTop.Children.Count; i++)
+                for (int i = 0; i < this.uIElementCollection.Children.Count; i++)
                 {
-                    Rectangle rectangle = this.gridTop.Children[i] as Rectangle;
+                    Polygon rectangle = this.uIElementCollection.Children[i] as Polygon;
                     if (rectangle != null)
                         this.gridTop.Children.Remove(rectangle);
                 }
-               
+            }
+            else if (appMessage.MsgType == AppMsg.Softpen)
+            {
+
+            }
+            else if (appMessage.MsgType==AppMsg.WritingBrush)
+            {
+                Messenger.Default.Send("pack://application:,,,/Image/Brush/重墨.png");
             }
         }
 
@@ -99,18 +111,35 @@ namespace WhiteboardProject
         {
             if (isSeal)
             {
+                Point bottom = e.MouseDevice.GetPosition(bnb);
+                if (bottom.Y >= -20) return;
                 Point p = e.MouseDevice.GetPosition(this);  //获取鼠标相对位置
 
-                Rectangle rectangle = new Rectangle();
-                rectangle.Width = 100;
-                rectangle.Height = 50;
-                rectangle.Fill = Brushes.Red;
-                rectangle.HorizontalAlignment = HorizontalAlignment.Left;
-                rectangle.VerticalAlignment = VerticalAlignment.Top;
-                rectangle.Margin = new Thickness(p.X, p.Y, 0, 0);
-                this.gridTop.Children.Add(rectangle);
+                Polygon ply = new Polygon();
+
+                ply.Fill = Brushes.Orange;
+
+                ply.Stroke = Brushes.Black;
+
+                ply.StrokeThickness = 1;
+
+                ply.Points = new PointCollection();
+
+                for (int i = 0; i < 5; i++)
+                {
+                    double angle = i * 4 * Math.PI / 5;
+                    Point pt = new Point(50 * Math.Sin(angle),
+                        -50 * Math.Cos(angle));
+                    ply.Points.Add(pt);
+                }
+          
+                ply.HorizontalAlignment = HorizontalAlignment.Left;
+                ply.VerticalAlignment = VerticalAlignment.Top;
+                ply.Margin = new Thickness(p.X, p.Y, 0, 0);
+                this.gridTop.Children.Add(ply);
+                this.uIElementCollection = this.gridTop;
             }
-           
+
         }
 
         private void canvas_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

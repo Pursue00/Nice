@@ -22,7 +22,7 @@ namespace WhiteboardProject.Model
 
         protected override void DrawCore(DrawingContext drawingContext, DrawingAttributes drawingAttributes)
         {
-
+            if (_selectedColor == null) return;
             ImageSource imageSource = new BitmapImage(new Uri(_selectedColor));
             Point point = new Point(double.NegativeInfinity, double.NegativeInfinity);
             double num = this.StrokeWidth + 20.0;
@@ -33,6 +33,7 @@ namespace WhiteboardProject.Model
             double strokeWidth = this.StrokeWidth;
             double x = 0.0;
             double y = 0.0;
+            if (this.s == null) return;
             for (int i = 0; i < this.s.Count; i++)
             {
                 point2 = (Point)this.s[i];
