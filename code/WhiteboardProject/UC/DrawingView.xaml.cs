@@ -34,7 +34,7 @@ namespace WhiteboardProject.UC
 
         private void OnRecMsg(AppMessage appMessage)
         {
-            
+
             //else if (appMessage.MsgType == AppMsg.Hardpen)
             //{
             //    this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
@@ -93,6 +93,7 @@ namespace WhiteboardProject.UC
             else if (appMessage.MsgType == AppMsg.WritingBrush)
             {
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                InkCanvas.DefaultDrawingAttributes.Color = Colors.SpringGreen;
             }
             else if (appMessage.MsgType == AppMsg.SelectErase)
             {
@@ -106,7 +107,40 @@ namespace WhiteboardProject.UC
             {
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.Select;
             }
-
+            else if (appMessage.MsgType == AppMsg.ShapeChanged)
+            {
+                switch ((Common.Shape)appMessage.Tag)
+                {
+                    case Common.Shape.rectangle:
+                        break;
+                    case Common.Shape.Round:
+                        break;
+                    case Common.Shape.oval:
+                        break;
+                    case Common.Shape.triangle:
+                        break;
+                    case Common.Shape.trapezoid:
+                        break;
+                    case Common.Shape.square:
+                        break;
+                    case Common.Shape.pentagon:
+                        break;
+                    case Common.Shape.hexagon:
+                        break;
+                    case Common.Shape.linesegment:
+                        break;
+                    case Common.Shape.arrow:
+                        break;
+                    case Common.Shape.dottedline:
+                        break;
+                    case Common.Shape.polyline:
+                        break;
+                    case Common.Shape.pointdownward:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

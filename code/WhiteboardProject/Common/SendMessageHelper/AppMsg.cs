@@ -18,5 +18,23 @@ namespace WhiteboardProject.Common
         PointErase,//点擦除
         ClearErase,//清空擦除
         GestureErase,//手势擦除
+        ShapeChanged,//图形改变
+    }
+
+    public enum Shape
+    {
+        rectangle,//长方形
+        Round,//圆形
+        oval,//椭圆
+        triangle,//三角形
+        trapezoid,//梯形
+        square,//正方形
+        pentagon,//正五边形
+        hexagon,//正六边形
+        linesegment,//线段
+        arrow,//方向箭头
+        dottedline,//虚线段
+        polyline,//折线段
+        pointdownward,//向下指的图形
     }
 }

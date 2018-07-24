@@ -81,7 +81,7 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType==AppMsg.WritingBrush)
             {
-                Messenger.Default.Send("pack://application:,,,/Image/Brush/重墨.png");
+                //Messenger.Default.Send("pack://application:,,,/Image/Brush/重墨.png");
             }
         }
 

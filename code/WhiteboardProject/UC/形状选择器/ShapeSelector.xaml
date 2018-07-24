@@ -17,91 +17,91 @@
             <UniformGrid.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/形状界面/形状界面/圆角矩形523.png" Stretch="Fill"/>
             </UniformGrid.Background>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="rectangle">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组6.png" Stretch="Uniform"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="round">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组7.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="oval">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组8.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="parallelogram">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组9.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="triangle">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组10.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="trapezoid">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组11.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="square">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组12.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="pentagon">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组13.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="hexagon">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组14.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="linesegment">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组15.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="arrow">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组16.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="dottedline">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组17.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="polyline">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组18.png" Stretch="Fill"/>
