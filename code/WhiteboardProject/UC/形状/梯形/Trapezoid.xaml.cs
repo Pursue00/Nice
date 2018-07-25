@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,21 +16,13 @@ using System.Windows.Shapes;
 namespace WhiteboardProject.UC
 {
     /// <summary>
-    /// PopupBrush.xaml 的交互逻辑
+    /// Trapezoid.xaml 的交互逻辑
     /// </summary>
-    public partial class PopupBrush : UserControl
+    public partial class Trapezoid : UserControl
     {
-        PopupBrushViewModel vm;
-        public PopupBrush()
+        public Trapezoid()
         {
             InitializeComponent();
-            vm = new PopupBrushViewModel();
-            this.DataContext = vm;
-        }
-
-        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Messenger.Default.Send(this.slider.Value);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace WhiteboardProject.UC
     public partial class DrawingView : UserControl
     {
         DrawingViewModel vm;
+        private string colorType = "黑色";
         public DrawingView()
         {
             InitializeComponent();
@@ -84,16 +86,17 @@ namespace WhiteboardProject.UC
             if (appMessage.MsgType == AppMsg.Highlighter || appMessage.MsgType == AppMsg.Softpen ||
                 appMessage.MsgType == AppMsg.Seal || appMessage.MsgType == AppMsg.Hardpen)
             {
-                this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
+
             }
             else if (appMessage.MsgType == AppMsg.Softpen)
             {
-                this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
+                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层4.png");
             }
             else if (appMessage.MsgType == AppMsg.WritingBrush)
             {
-                this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
-                InkCanvas.DefaultDrawingAttributes.Color = Colors.SpringGreen;
+                //this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                //InkCanvas.DefaultDrawingAttributes.Color = Colors.SpringGreen;
+                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层1.png");
             }
             else if (appMessage.MsgType == AppMsg.SelectErase)
             {
@@ -140,6 +143,10 @@ namespace WhiteboardProject.UC
                     default:
                         break;
                 }
+            }
+            else if (appMessage.MsgType == AppMsg.ColorChanged)
+            {
+                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + appMessage.Tag + "/图层1.png");
             }
         }
     }

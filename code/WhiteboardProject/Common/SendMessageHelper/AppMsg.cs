@@ -19,6 +19,7 @@ namespace WhiteboardProject.Common
         ClearErase,//清空擦除
         GestureErase,//手势擦除
         ShapeChanged,//图形改变
+        ColorChanged,//颜色改变
     }
 
     public enum Shape

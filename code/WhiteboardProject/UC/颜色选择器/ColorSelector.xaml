@@ -17,7 +17,7 @@
             <UniformGrid.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/画笔界面切图/画笔界面切图/圆角矩形523拷贝3.png" Stretch="Fill"/>
             </UniformGrid.Background>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="红色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#e7271a">
@@ -26,7 +26,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="黄色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#f5bf23">
@@ -35,7 +35,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="蓝色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#3768b2">
@@ -62,7 +62,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="橙色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#e48038">
@@ -80,7 +80,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="紫色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#a24193">

@@ -41,7 +41,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <Slider Style="{StaticResource SliderStyle}" Value="10" Maximum="100" Minimum="1" Margin="25"
+                    <Slider x:Name="slider" ValueChanged="slider_ValueChanged" Style="{StaticResource SliderStyle}" Value="10" Maximum="100" Minimum="1" Margin="25"
                             HorizontalAlignment="Stretch"  VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -49,7 +49,7 @@
                         <StackPanel.Background>
                             <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/画笔界面切图/画笔界面切图/圆角矩形523.png" Stretch="Fill"/>
                         </StackPanel.Background>
-                        <Button Command="{Binding BtnCommand}" CommandParameter="brush">
+                        <Button Command="{Binding BtnCommand}" CommandParameter="brush" Visibility="Collapsed">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/画笔.png" Stretch="Uniform"/>

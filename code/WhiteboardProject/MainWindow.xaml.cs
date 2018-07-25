@@ -54,8 +54,6 @@ namespace WhiteboardProject
             if (appMessage.MsgType == AppMsg.Highlighter)
             {
                 IsVisibilityColorfulFollow = Visibility.Visible;
-
-
             }
             else if (appMessage.MsgType == AppMsg.Hardpen)
             {
@@ -77,11 +75,11 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.Softpen)
             {
-
+                
             }
             else if (appMessage.MsgType==AppMsg.WritingBrush)
             {
-                //Messenger.Default.Send("pack://application:,,,/Image/Brush/重墨.png");
+                
             }
         }
 
