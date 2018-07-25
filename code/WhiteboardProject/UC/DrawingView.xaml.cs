@@ -25,6 +25,7 @@ namespace WhiteboardProject.UC
     {
         DrawingViewModel vm;
         private string colorType = "黑色";
+        private string brushType = string.Empty;
         public DrawingView()
         {
             InitializeComponent();
@@ -83,20 +84,20 @@ namespace WhiteboardProject.UC
 
             //    drawingAttributes.IgnorePressure = true;
             //}
-            if (appMessage.MsgType == AppMsg.Highlighter || appMessage.MsgType == AppMsg.Softpen ||
-                appMessage.MsgType == AppMsg.Seal || appMessage.MsgType == AppMsg.Hardpen)
+            if (appMessage.MsgType == AppMsg.Highlighter||appMessage.MsgType == AppMsg.Seal )
             {
-
+                this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
             }
             else if (appMessage.MsgType == AppMsg.Softpen)
             {
-                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层4.png");
+                this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层3.png");
             }
             else if (appMessage.MsgType == AppMsg.WritingBrush)
             {
-                //this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+                this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
                 //InkCanvas.DefaultDrawingAttributes.Color = Colors.SpringGreen;
-                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层1.png");
+                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层4.png");
             }
             else if (appMessage.MsgType == AppMsg.SelectErase)
             {

@@ -35,7 +35,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="蓝色">
+            <Button Command="{Binding BtnCommand}" CommandParameter="深蓝">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#3768b2">
@@ -44,7 +44,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="绿色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#26a639">
@@ -53,7 +53,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="蓝色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#40bccb">
@@ -71,7 +71,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="青紫">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#59338f">
@@ -89,7 +89,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="粉色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#303491">
@@ -98,7 +98,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="棕色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#35b342">
@@ -107,7 +107,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="咖啡">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#897e6e">
@@ -116,7 +116,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="灰色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#7b7b7b">
@@ -125,7 +125,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="白色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#ffffff" BorderThickness="1" BorderBrush="#dddddd">
@@ -134,7 +134,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="黑色">
                 <Button.Template>
                     <ControlTemplate>
                         <Border CornerRadius="10" Background="#000000">

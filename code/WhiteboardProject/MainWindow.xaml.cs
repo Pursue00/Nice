@@ -75,11 +75,11 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.Softpen)
             {
-                
+                IsVisibilityColorfulFollow = Visibility.Collapsed;
             }
             else if (appMessage.MsgType==AppMsg.WritingBrush)
             {
-                
+                IsVisibilityColorfulFollow = Visibility.Collapsed;
             }
         }
 

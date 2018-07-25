@@ -92,7 +92,11 @@
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">
-                <uc:ColorSelector/>
+                <uc:ColorSelector Visibility="{Binding IsVisibilityColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
+                    RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}"/>
+                <uc:SealShape Visibility="{Binding DataContext.IsVisibilityShape,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
+                    
+                    RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}"/>
             </Grid>
         </Grid>
         <!--<Path Data="M48.75,116.75 L40.5,124 57.25,124 z" Grid.Row="1"

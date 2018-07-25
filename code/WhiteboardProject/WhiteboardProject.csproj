@@ -130,6 +130,10 @@
     <Compile Include="UC\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC\印章形状\SealShape.xaml.cs">
+      <DependentUpon>SealShape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\印章形状\SealShapeViewModel.cs" />
     <Compile Include="UC\形状\PopupShape.xaml.cs">
       <DependentUpon>PopupShape.xaml</DependentUpon>
     </Compile>
@@ -213,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\PopupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\印章形状\SealShape.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -711,166 +719,97 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Image\Brush\咖啡\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\咖啡\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\咖啡\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\咖啡\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\棕色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\棕色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\棕色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\棕色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\橙色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\橙色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\橙色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\橙色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\深蓝\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\深蓝\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\深蓝\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\深蓝\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\灰色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\灰色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\灰色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\灰色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\白色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\白色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\白色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\白色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\粉色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\粉色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\粉色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\粉色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\紫色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\紫色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\紫色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\紫色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\红色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\红色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\红色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\红色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\绿色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\绿色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\绿色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\绿色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\蓝色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\蓝色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\蓝色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\蓝色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\青紫\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\青紫\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\青紫\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\青紫\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\黄色\图层1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\黄色\图层2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\黄色\图层3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Image\Brush\黄色\图层4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Image\Brush\咖啡\图层1.png" />
+    <Resource Include="Image\Brush\咖啡\图层2.png" />
+    <Resource Include="Image\Brush\咖啡\图层3.png" />
+    <Resource Include="Image\Brush\咖啡\图层4.png" />
+    <Resource Include="Image\Brush\棕色\图层1.png" />
+    <Resource Include="Image\Brush\棕色\图层2.png" />
+    <Resource Include="Image\Brush\棕色\图层3.png" />
+    <Resource Include="Image\Brush\棕色\图层4.png" />
+    <Resource Include="Image\Brush\橙色\图层1.png" />
+    <Resource Include="Image\Brush\橙色\图层2.png" />
+    <Resource Include="Image\Brush\橙色\图层3.png" />
+    <Resource Include="Image\Brush\橙色\图层4.png" />
+    <Resource Include="Image\Brush\深蓝\图层1.png" />
+    <Resource Include="Image\Brush\深蓝\图层2.png" />
+    <Resource Include="Image\Brush\深蓝\图层3.png" />
+    <Resource Include="Image\Brush\深蓝\图层4.png" />
+    <Resource Include="Image\Brush\灰色\图层1.png" />
+    <Resource Include="Image\Brush\灰色\图层2.png" />
+    <Resource Include="Image\Brush\灰色\图层3.png" />
+    <Resource Include="Image\Brush\灰色\图层4.png" />
+    <Resource Include="Image\Brush\白色\图层1.png" />
+    <Resource Include="Image\Brush\白色\图层2.png" />
+    <Resource Include="Image\Brush\白色\图层3.png" />
+    <Resource Include="Image\Brush\白色\图层4.png" />
+    <Resource Include="Image\Brush\粉色\图层1.png" />
+    <Resource Include="Image\Brush\粉色\图层2.png" />
+    <Resource Include="Image\Brush\粉色\图层3.png" />
+    <Resource Include="Image\Brush\粉色\图层4.png" />
+    <Resource Include="Image\Brush\紫色\图层1.png" />
+    <Resource Include="Image\Brush\紫色\图层2.png" />
+    <Resource Include="Image\Brush\紫色\图层3.png" />
+    <Resource Include="Image\Brush\紫色\图层4.png" />
+    <Resource Include="Image\Brush\红色\图层1.png" />
+    <Resource Include="Image\Brush\红色\图层2.png" />
+    <Resource Include="Image\Brush\红色\图层3.png" />
+    <Resource Include="Image\Brush\红色\图层4.png" />
+    <Resource Include="Image\Brush\绿色\图层1.png" />
+    <Resource Include="Image\Brush\绿色\图层2.png" />
+    <Resource Include="Image\Brush\绿色\图层3.png" />
+    <Resource Include="Image\Brush\绿色\图层4.png" />
+    <Resource Include="Image\Brush\蓝色\图层1.png" />
+    <Resource Include="Image\Brush\蓝色\图层2.png" />
+    <Resource Include="Image\Brush\蓝色\图层3.png" />
+    <Resource Include="Image\Brush\蓝色\图层4.png" />
+    <Resource Include="Image\Brush\青紫\图层1.png" />
+    <Resource Include="Image\Brush\青紫\图层2.png" />
+    <Resource Include="Image\Brush\青紫\图层3.png" />
+    <Resource Include="Image\Brush\青紫\图层4.png" />
+    <Resource Include="Image\Brush\黄色\图层1.png" />
+    <Resource Include="Image\Brush\黄色\图层2.png" />
+    <Resource Include="Image\Brush\黄色\图层3.png" />
+    <Resource Include="Image\Brush\黄色\图层4.png" />
     <Resource Include="Image\Brush\黑色\图层1.png" />
     <Resource Include="Image\Brush\黑色\图层2.png" />
     <Resource Include="Image\Brush\黑色\图层3.png" />
     <Resource Include="Image\Brush\黑色\图层4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\印章图形\爱心.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\印章图形\笑脸.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\印章图形\树叶.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\印章图形\太阳.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\印章图形\星星.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\印章图形\背景.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\印章图形\添加.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Image\菜单栏收缩\PPT助手.png" />
+    <Resource Include="Image\菜单栏收缩\书写.png" />
+    <Resource Include="Image\菜单栏收缩\书写识别.png" />
+    <Resource Include="Image\菜单栏收缩\保存.png" />
+    <Resource Include="Image\菜单栏收缩\圆角矩形5.png" />
+    <Resource Include="Image\菜单栏收缩\截屏.png" />
+    <Resource Include="Image\菜单栏收缩\收缩.png" />
+    <Resource Include="Image\菜单栏收缩\框.png" />
+    <Resource Include="Image\菜单栏收缩\橡皮擦.png" />
+    <Resource Include="Image\菜单栏收缩\粗细.png" />
+    <Resource Include="Image\菜单栏收缩\返回.png" />
+    <Resource Include="Image\菜单栏收缩\颜色.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
