@@ -38,4 +38,13 @@ namespace WhiteboardProject.Common
         polyline,//折线段
         pointdownward,//向下指的图形
     }
-}
+
+    public enum SealShapeEnum
+    {
+        Love,//爱心
+        MapleLeaf,//枫叶
+        Smiley,//笑脸
+        Sun,//太阳
+        Star,//星星
+    }
+    }

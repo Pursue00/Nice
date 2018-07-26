@@ -74,8 +74,6 @@ namespace WhiteboardProject.UC
                 case "sealpen":
                     this.IsVisibilityColor = Visibility.Collapsed;
                     this.IsVisibilityShape = Visibility.Visible;
-                    am.MsgType = AppMsg.Seal;
-                    EventHub.SysEvents.PubEvent(am);
                     break;
                 //荧光笔
                 case "highlighter":

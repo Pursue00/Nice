@@ -93,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\GlobalUIConfig.cs" />
     <Compile Include="Common\SendMessageHelper\AppMessage.cs" />
     <Compile Include="Common\SendMessageHelper\AppMsg.cs" />
     <Compile Include="Common\SendMessageHelper\EventHub.cs" />
@@ -134,10 +135,29 @@
       <DependentUpon>SealShape.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\印章形状\SealShapeViewModel.cs" />
+    <Compile Include="UC\形状\Love.xaml.cs">
+      <DependentUpon>Love.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\形状\MapleLeaf.xaml.cs">
+      <DependentUpon>MapleLeaf.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\形状\PopupShape.xaml.cs">
       <DependentUpon>PopupShape.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\形状\PopupShapeViewModel.cs" />
+    <Compile Include="UC\形状\Smile.xaml.cs">
+      <DependentUpon>Smile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\形状\Star.xaml.cs">
+      <DependentUpon>Star.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\形状\Sun.xaml.cs">
+      <DependentUpon>Sun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\形状\UcShape.xaml.cs">
+      <DependentUpon>UcShape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC\形状\UcShapeViewModel.cs" />
     <Compile Include="UC\形状\梯形\Trapezoid.xaml.cs">
       <DependentUpon>Trapezoid.xaml</DependentUpon>
     </Compile>
@@ -224,7 +244,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC\形状\Love.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\形状\MapleLeaf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC\形状\PopupShape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\形状\Smile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\形状\Star.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\形状\Sun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\形状\UcShape.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

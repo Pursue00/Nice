@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="WhiteboardProject.UC.Star"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhiteboardProject.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Canvas x:Name="五角星1" >
+        <Canvas x:Name="Layer_3" Height="113.375" Canvas.Left="264.663" Canvas.Top="239.502" Width="119.061">
+            <Path Data="F1M23.006,113.374L31.201,71.942 0,43.478 41.936,38.47 59.365,0 77.087,38.337 119.061,43.024 88.077,71.726 96.591,113.094 59.719,92.494z" Fill="#FFFFDE5D" Height="113.374" Canvas.Left="0" Canvas.Top="0.001" Width="119.061"/>
+            <Path Data="F1M59.529,13.208L0,0 31.201,28.464z" Fill="#FFE5B92E" Height="28.464" Canvas.Left="0.001" Canvas.Top="43.479" Width="59.529"/>
+            <Path Data="F1M36.523,0L0,56.688 36.712,35.809 73.585,56.407z" Fill="#FFE5B92E" Height="56.688" Canvas.Left="23.007" Canvas.Top="56.687" Width="73.585"/>
+            <Path Data="F1M0,13.662L59.531,0 28.548,28.701z" Fill="#FFE5B92E" Height="28.701" Canvas.Left="59.53" Canvas.Top="43.025" Width="59.531"/>
+            <Path Data="F1M0,0L0.164,56.687 17.722,38.337z" Fill="#FFE5B92E" Height="56.687" Canvas.Left="59.366" Canvas.Top="0" Width="17.722"/>
+        </Canvas>
+    </Canvas>
+</UserControl>

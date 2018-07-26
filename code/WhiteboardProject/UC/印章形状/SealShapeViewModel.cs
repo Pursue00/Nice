@@ -26,13 +26,9 @@ namespace WhiteboardProject.UC
         public void BtnCommandExcute(object arg)
         {
             AppMessage am = new AppMessage();
-            switch (arg)
-            {
-                case "star":
-                    am.MsgType = AppMsg.Seal;
-                    EventHub.SysEvents.PubEvent(am);
-                    break;
-            }
+            am.MsgType = AppMsg.Seal;
+            am.Tag = (SealShapeEnum)Enum.Parse(typeof(SealShapeEnum), arg.ToString());
+            EventHub.SysEvents.PubEvent(am);
         }
         #endregion
     }

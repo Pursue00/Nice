@@ -20,15 +20,11 @@
             <Setter Property="Margin" Value="65,0,0,0"/>
         </Style>
     </UserControl.Resources>
-    <Grid Height="500" Width="300">
+    <Grid Height="500" Width="500">
         <Grid.Background>
             <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/多边形1.png" Stretch="Fill"/>
         </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.5*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel>
+        <UniformGrid Columns="3">
             <Button>
                 <Button.Template>
                     <ControlTemplate>
@@ -117,25 +113,10 @@
                             <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/退出.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,0,10"/>
                             <TextBlock Text="退出" Style="{StaticResource tbStyle}"/>
                         </Grid>
-
-                        <!--<ControlTemplate.Triggers>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter TargetName="BtnGrid" Property="Background" Value="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/圆角矩形3.png"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>-->
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-        </StackPanel>
-        <Grid Grid.Column="1"></Grid>
-        <!--<Path Data="M48.75,116.75 L40.5,124 57.25,124 z" Grid.Row="1"
-                          Fill="#ffffff" Height="8.25"  Stretch="Fill" Margin="50,0,0,0"
-                          Stroke="#ffffff" Width="17.75" HorizontalAlignment="Left" 
-                          VerticalAlignment="Bottom">
-            <Path.RenderTransform>
-                <RotateTransform Angle="180"/>
-            </Path.RenderTransform>
-        </Path>-->
+        </UniformGrid>
     </Grid>
    
 </UserControl>
