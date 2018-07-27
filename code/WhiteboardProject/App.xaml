@@ -10,7 +10,8 @@
                 <ResourceDictionary Source="Style/BaseDictionary.xaml"/>
                 <ResourceDictionary Source="Style/BrushDictionary.xaml"/>
                 <ResourceDictionary Source="Style/SliderStyleDictionary.xaml"/>
-               
+                <ResourceDictionary Source="Style/TextBlockStyle.xaml"/>
+                <ResourceDictionary Source="Style/WindowStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WhiteboardProject.Common;
 
 namespace WhiteboardProject.UC
 {
@@ -32,6 +33,13 @@ namespace WhiteboardProject.UC
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Messenger.Default.Send(this.slider.Value);
+        }
+
+        private void imageClose_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            AppMessage appMessage = new AppMessage();
+            appMessage.MsgType = AppMsg.CloseCommand;
+            EventHub.SysEvents.PubEvent(appMessage);
         }
     }
 }

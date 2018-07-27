@@ -84,7 +84,7 @@ namespace WhiteboardProject.UC
 
             //    drawingAttributes.IgnorePressure = true;
             //}
-            if (appMessage.MsgType == AppMsg.Highlighter||appMessage.MsgType == AppMsg.Seal )
+            if (appMessage.MsgType == AppMsg.Highlighter || appMessage.MsgType == AppMsg.Seal)
             {
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
             }
@@ -111,44 +111,12 @@ namespace WhiteboardProject.UC
             {
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.Select;
             }
-            else if (appMessage.MsgType == AppMsg.ShapeChanged)
-            {
-                switch ((Common.Shape)appMessage.Tag)
-                {
-                    case Common.Shape.rectangle:
-                        break;
-                    case Common.Shape.Round:
-                        break;
-                    case Common.Shape.oval:
-                        break;
-                    case Common.Shape.triangle:
-                        break;
-                    case Common.Shape.trapezoid:
-                        break;
-                    case Common.Shape.square:
-                        break;
-                    case Common.Shape.pentagon:
-                        break;
-                    case Common.Shape.hexagon:
-                        break;
-                    case Common.Shape.linesegment:
-                        break;
-                    case Common.Shape.arrow:
-                        break;
-                    case Common.Shape.dottedline:
-                        break;
-                    case Common.Shape.polyline:
-                        break;
-                    case Common.Shape.pointdownward:
-                        break;
-                    default:
-                        break;
-                }
-            }
             else if (appMessage.MsgType == AppMsg.ColorChanged)
             {
                 Messenger.Default.Send("pack://application:,,,/Image/Brush/" + appMessage.Tag + "/图层1.png");
             }
         }
+
     }
 }
+

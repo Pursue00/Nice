@@ -24,7 +24,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="love">
+            <Button Command="{Binding BtnCommand}" CommandParameter="Love">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/印章图形/爱心.png" Stretch="Uniform"/>
@@ -52,7 +52,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="plus">
+            <Button>
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/印章图形/添加.png" Stretch="Uniform"/>

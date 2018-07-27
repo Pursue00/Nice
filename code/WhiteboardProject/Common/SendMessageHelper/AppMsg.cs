@@ -20,12 +20,13 @@ namespace WhiteboardProject.Common
         GestureErase,//手势擦除
         ShapeChanged,//图形改变
         ColorChanged,//颜色改变
+        CloseCommand//关闭消息
     }
 
     public enum Shape
     {
         rectangle,//长方形
-        Round,//圆形
+        round,//圆形
         oval,//椭圆
         triangle,//三角形
         trapezoid,//梯形
@@ -37,6 +38,7 @@ namespace WhiteboardProject.Common
         dottedline,//虚线段
         polyline,//折线段
         pointdownward,//向下指的图形
+        bucket,//颜料桶
     }
 
     public enum SealShapeEnum

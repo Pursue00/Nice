@@ -60,23 +60,29 @@ namespace WhiteboardProject.UC
             set { _isVisibilityRoaming = value; OnPropertyChanged(() => IsVisibilityRoaming); }
         }
 
-        //private bool _isVisibilityHardpen;
-
-        //public bool IsVisibilityHardpen
-        //{
-        //    get { return _isVisibilityHardpen; }
-        //    set { _isVisibilityHardpen = value; OnPropertyChanged(() => IsVisibilityHardpen); }
-        //}
         #endregion
 
         #region Constructure
         public BottomNavigationBarViewModel()
         {
             this.BtnCommand = new RelayCommand<object>(BtnCommandExcute);
+            EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
         }
         #endregion
 
         #region Public Method
+
+        private void OnRecMsg(AppMessage appMessage)
+        {
+            if (appMessage.MsgType == AppMsg.CloseCommand)
+            {
+                IsVisibilityHardpen = false;
+                IsVisibilityRoaming = false;
+                IsVisibilityShape = false;
+                IsVisibilityEraser = false;
+            }
+        }
+
         public void BtnCommandExcute(object arg)
         {
             AppMessage am = new AppMessage();

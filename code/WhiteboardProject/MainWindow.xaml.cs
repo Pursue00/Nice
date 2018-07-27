@@ -39,9 +39,11 @@ namespace WhiteboardProject
      
 
         private bool isSeal;
-        private int childCount;
+        private string strokeColor;
         Panel uIElementCollection;
         SealShapeEnum shape;
+        string  shapeEnum;
+       
         #endregion
 
         public MainWindow()
@@ -73,18 +75,29 @@ namespace WhiteboardProject
             {
                 for (int i = 0; i < this.uIElementCollection.Children.Count; i++)
                 {
-                    Polygon rectangle = this.uIElementCollection.Children[i] as Polygon;
+                    UserControl rectangle = this.uIElementCollection.Children[i] as UserControl;
                     if (rectangle != null)
-                        this.gridTop.Children.Remove(rectangle);
+                    {
+                        if (rectangle.Tag == null) continue;
+                        if (rectangle.Tag.ToString() == "Shape")
+                            this.gridTop.Children.Remove(rectangle);
+                    }
+
                 }
             }
             else if (appMessage.MsgType == AppMsg.Softpen)
             {
                 IsVisibilityColorfulFollow = Visibility.Collapsed;
             }
-            else if (appMessage.MsgType==AppMsg.WritingBrush)
+            else if (appMessage.MsgType == AppMsg.WritingBrush)
             {
                 IsVisibilityColorfulFollow = Visibility.Collapsed;
+            }
+            else if (appMessage.MsgType == AppMsg.ShapeChanged)
+            {
+                isSeal = false;
+                shapeEnum =appMessage.Tell;
+
             }
         }
 
@@ -112,16 +125,16 @@ namespace WhiteboardProject
 
         private void gridTop_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Point bottom = e.MouseDevice.GetPosition(bnb);
+            if (bottom.Y >= -20) return;
+            Point p = e.MouseDevice.GetPosition(this);  //获取鼠标相对位置
             if (isSeal)
             {
-                Point bottom = e.MouseDevice.GetPosition(bnb);
-                if (bottom.Y >= -20) return;
-                Point p = e.MouseDevice.GetPosition(this);  //获取鼠标相对位置
-
                 switch (shape)
                 {
                     case SealShapeEnum.Love:
-                        Love  love = new Love();
+                        Love love = new Love();
+                        love.Tag = "Shape";
                         love.HorizontalAlignment = HorizontalAlignment.Left;
                         love.VerticalAlignment = VerticalAlignment.Top;
                         love.Margin = new Thickness(p.X, p.Y, 0, 0);
@@ -129,6 +142,7 @@ namespace WhiteboardProject
                         break;
                     case SealShapeEnum.MapleLeaf:
                         MapleLeaf mapleLeaf = new MapleLeaf();
+                        mapleLeaf.Tag = "Shape";
                         mapleLeaf.HorizontalAlignment = HorizontalAlignment.Left;
                         mapleLeaf.VerticalAlignment = VerticalAlignment.Top;
                         mapleLeaf.Margin = new Thickness(p.X, p.Y, 0, 0);
@@ -136,6 +150,7 @@ namespace WhiteboardProject
                         break;
                     case SealShapeEnum.Smiley:
                         Smile smile = new Smile();
+                        smile.Tag = "Shape";
                         smile.HorizontalAlignment = HorizontalAlignment.Left;
                         smile.VerticalAlignment = VerticalAlignment.Top;
                         smile.Margin = new Thickness(p.X, p.Y, 0, 0);
@@ -143,6 +158,7 @@ namespace WhiteboardProject
                         break;
                     case SealShapeEnum.Sun:
                         Sun sun = new Sun();
+                        sun.Tag = "Shape";
                         sun.HorizontalAlignment = HorizontalAlignment.Left;
                         sun.VerticalAlignment = VerticalAlignment.Top;
                         sun.Margin = new Thickness(p.X, p.Y, 0, 0);
@@ -150,6 +166,7 @@ namespace WhiteboardProject
                         break;
                     case SealShapeEnum.Star:
                         Star star = new Star();
+                        star.Tag = "Shape";
                         star.HorizontalAlignment = HorizontalAlignment.Left;
                         star.VerticalAlignment = VerticalAlignment.Top;
                         star.Margin = new Thickness(p.X, p.Y, 0, 0);
@@ -159,33 +176,22 @@ namespace WhiteboardProject
                     default:
                         break;
                 }
-              
-
-                //Polygon ply = new Polygon();
-
-                //ply.Fill = Brushes.Orange;
-
-                //ply.Stroke = Brushes.Black;
-
-                //ply.StrokeThickness = 1;
-
-                //ply.Points = new PointCollection();
-
-                //for (int i = 0; i < 5; i++)
-                //{
-                //    double angle = i * 4 * Math.PI / 5;
-                //    Point pt = new Point(50 * Math.Sin(angle),
-                //        -50 * Math.Cos(angle));
-                //    ply.Points.Add(pt);
-                //}
-          
-                //ply.HorizontalAlignment = HorizontalAlignment.Left;
-                //ply.VerticalAlignment = VerticalAlignment.Top;
-                //ply.Margin = new Thickness(p.X, p.Y, 0, 0);
-                //this.gridTop.Children.Add(ply);
-                //this.uIElementCollection = this.gridTop;
             }
+            else
+            {
+                UcShape ucShape = new UcShape();
+                var vm = ucShape.DataContext as UcShapeViewModel;
+                ucShape.Tag = "Shape";
+                ucShape.HorizontalAlignment = HorizontalAlignment.Left;
+                ucShape.VerticalAlignment = VerticalAlignment.Top;
+                ucShape.Margin = new Thickness(p.X, p.Y, 0, 0);
+                this.gridTop.Children.Add(ucShape);
+                vm.PathData = GlobalUIConfig.IndicatorDescription[shapeEnum];
+                vm.StrokeColor = strokeColor;
 
+
+            }
+            this.uIElementCollection = this.gridTop;
         }
 
         #region 绘制印章图形

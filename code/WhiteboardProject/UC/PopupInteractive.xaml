@@ -103,7 +103,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button>
+            <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
                 <Button.Template>
                     <ControlTemplate>
                         <Grid x:Name="BtnGrid">

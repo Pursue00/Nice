@@ -108,14 +108,14 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="bucket">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组19.png" Stretch="Fill"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="reset">
+            <Button Command="{Binding BtnCommand}" CommandParameter="bucket">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组20.png" Stretch="Fill"/>

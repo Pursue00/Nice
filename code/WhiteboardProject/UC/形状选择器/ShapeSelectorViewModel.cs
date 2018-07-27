@@ -26,7 +26,7 @@ namespace WhiteboardProject.UC
         {
             AppMessage am = new AppMessage();
             am.MsgType = AppMsg.ShapeChanged;
-            am.Tag = arg;
+            am.Tell = arg.ToString();
             EventHub.SysEvents.PubEvent(am);
         }
         #endregion

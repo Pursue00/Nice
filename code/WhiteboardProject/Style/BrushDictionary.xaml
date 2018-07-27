@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:WhiteboardProject.Style">
+                    xmlns:local="clr-namespace:WhiteboardProject.Style"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <LinearGradientBrush x:Key="ButtonBackgroundGradientBrush"
                          StartPoint="0,0"
                          EndPoint="0,1">
@@ -29,4 +30,36 @@
         <GradientStop Color="#FF929EA9"
                       Offset="1" />
     </LinearGradientBrush>
+    <SolidColorBrush x:Key="us-BorderDefault" Color="#23272c"/>
+    <!--文本前景色-->
+    <Color x:Key="us-TextForegroundColor">#c9d0d7</Color>
+    <!---按钮brush定义，可以先定义一组颜色值-->
+    <!--Background:背景色、Hover:鼠标经过、Pressed:鼠标按下、Text代表前景色、Disabled代表禁用状态-->
+    <SolidColorBrush x:Key="us-ButtonText" Color="#c9d0d7" />
+    <SolidColorBrush x:Key="us-ButtonBackgroundHover" Color="#2388da"/>
+    <Color x:Key="us-ButtonTextHover">#FFFFFF</Color>
+    <SolidColorBrush x:Key="us-ButtonBackgroundPressed" Color="#2388da" />
+    <SolidColorBrush x:Key="us-ButtonTextPressed" Color="#FFFFFF" />
+
+    <!--文本前景色  brush（使用：按钮）-->
+    <!--<SolidColorBrush x:Key="us-DataForeground"  Color="{DynamicResource us-TextForegroundColor}"/>
+    <SolidColorBrush x:Key="us-TextForeground" Color="{DynamicResource us-TextForegroundColor}"/>-->
+    <SolidColorBrush x:Key="us-DefaultForeground" Color="#c9d0d7"/>
+    <SolidColorBrush x:Key="us-ButtonDisabledText" Color="#999999" />
+
+    <!--默认字体-->
+    <FontFamily x:Key="DefaultFontFamily">Microsoft YaHei UI</FontFamily>
+    <!--默认字体大小-->
+    <sys:Double x:Key="DefaultFontSize">12</sys:Double>
+    <!--默认行高-->
+    <sys:Double x:Key="DefaultRowHeight">30</sys:Double>
+    <!--默认按钮高度-->
+    <sys:Double x:Key="DefaultButtonHeight">25</sys:Double>
+    <!--默认数据高度-->
+    <sys:Double x:Key="DefaultDataHeight">30</sys:Double>
+    <!--默认禁用状态透明度-->
+    <sys:Double x:Key="DefaultDisableOpacity">.6</sys:Double>
+    <!--默认水印透明度-->
+    <sys:Double x:Key="DefaultWatermarkOpacity">0.5</sys:Double>
+    
 </ResourceDictionary>

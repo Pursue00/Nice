@@ -18,12 +18,20 @@ namespace WhiteboardProject.UC
             set { _PathData = value; OnPropertyChanged(()=> PathData); }
         }
 
+        private string _StrokeColor;
+
+        public string StrokeColor
+        {
+            get { return _StrokeColor; }
+            set { _StrokeColor = value;OnPropertyChanged(()=> StrokeColor); }
+        }
+
         #endregion
 
         #region Constructure
         public UcShapeViewModel()
         {
-           
+            StrokeColor = "#FF75C5EF";
         }
         #endregion
     }

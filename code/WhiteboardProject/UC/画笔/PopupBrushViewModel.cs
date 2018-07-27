@@ -13,6 +13,7 @@ namespace WhiteboardProject.UC
     {
         #region Fileds
         public RelayCommand<object> BtnCommand { get; private set; }
+   
         #endregion
 
         #region Property

@@ -93,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\BlankWindow.cs" />
     <Compile Include="Common\GlobalUIConfig.cs" />
     <Compile Include="Common\SendMessageHelper\AppMessage.cs" />
     <Compile Include="Common\SendMessageHelper\AppMsg.cs" />
@@ -215,6 +216,14 @@
     <Page Include="Style\SliderStyleDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\TextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\BottomLeftNavigationBar.xaml">
       <SubType>Designer</SubType>
