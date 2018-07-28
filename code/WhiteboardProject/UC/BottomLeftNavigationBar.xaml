@@ -34,7 +34,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Command="{Binding BtnCommand}" CommandParameter="monitor" >
+            <Button x:Name="btnSystem" Command="{Binding BtnCommand}" CommandParameter="system" >
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/左边/系统.png" Stretch="Uniform"/>
@@ -68,6 +68,10 @@
             <Popup Placement="Top" PlacementTarget="{Binding ElementName=btninteractive}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityInteractive}" StaysOpen="False">
                 <local:PopupInteractive/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnSystem}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilitySystem}" StaysOpen="False">
+                <local:PopopStytem/>
             </Popup>
         </StackPanel>
     </Grid>

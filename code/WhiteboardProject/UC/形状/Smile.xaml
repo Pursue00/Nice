@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Canvas x:Name="笑脸1" HorizontalAlignment="Center"  Height="48" UseLayoutRounding="False" VerticalAlignment="Center"  Width="48">
-            <Canvas x:Name="Layer_4" Height="198.393" Canvas.Left="79.482" Canvas.Top="89.014" Width="198.396">
+        <Canvas x:Name="笑脸1" HorizontalAlignment="Left"  Height="48" UseLayoutRounding="False" VerticalAlignment="Top"  Width="48">
+            <Canvas x:Name="Layer_4" Height="198.393" Canvas.Left="0" Canvas.Top="0" Width="198.396">
                 <Path Data="F1M0,99.2C0,153.972 44.396,198.393 99.197,198.393 153.975,198.393 198.396,153.972 198.396,99.2 198.396,44.407 153.975,0 99.197,0 44.396,0 0,44.407 0,99.2" Height="198.393" Canvas.Left="0" Canvas.Top="0" Width="198.396">
                     <Path.Fill>
                         <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusY="0.5" RadiusX="-0.5">

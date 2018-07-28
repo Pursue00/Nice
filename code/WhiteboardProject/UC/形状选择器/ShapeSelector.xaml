@@ -17,7 +17,7 @@
             <UniformGrid.Background>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/形状界面/形状界面/圆角矩形523.png" Stretch="Fill"/>
             </UniformGrid.Background>
-            <Button Command="{Binding BtnCommand}" CommandParameter="rectangle">
+            <Button Command="{Binding DataContext.BtnCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" CommandParameter="rectangle">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/形状界面/形状界面/组6.png" Stretch="Uniform"/>

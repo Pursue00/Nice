@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="WhiteboardProject.UC.PopopStytem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WhiteboardProject.UC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="tbStyle">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Microsoft Yahei"/>
+            <Setter Property="TextAlignment"  Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Image" x:Key="imageStyle">
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Height="450" Width="280">
+        <Grid.Background>
+            <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/多边形1.png" Stretch="Fill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形521拷贝.png" 
+                            Stretch="Fill"/>
+            </Grid.Background>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="百宝箱" Style="{StaticResource tbStyle}" Foreground="#ffffff"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <Image Source="pack://siteoforigin:,,,/Image/系统图标展开切图/系统图标展开切图/主题.png" Style="{StaticResource imageStyle}"/>
+                                <TextBlock Text="主题" Style="{StaticResource tbStyle}"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <Image Source="pack://siteoforigin:,,,/Image/系统图标展开切图/系统图标展开切图/学科.png" Style="{StaticResource imageStyle}"/>
+                                <TextBlock Text="学科" Style="{StaticResource tbStyle}"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <Image Source="pack://siteoforigin:,,,/Image/系统图标展开切图/系统图标展开切图/工具箱.png" Style="{StaticResource imageStyle}"/>
+                                <TextBlock Text="工具" Style="{StaticResource tbStyle}"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -125,6 +125,9 @@
       <DependentUpon>DrawingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\DrawingViewModel.cs" />
+    <Compile Include="UC\PopupStytem.xaml.cs">
+      <DependentUpon>PopupStytem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC\PopupInteractive.xaml.cs">
       <DependentUpon>PopupInteractive.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC\DrawingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC\PopupStytem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -863,6 +870,14 @@
     <Resource Include="Image\菜单栏收缩\粗细.png" />
     <Resource Include="Image\菜单栏收缩\返回.png" />
     <Resource Include="Image\菜单栏收缩\颜色.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\PPT助手.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Image\菜单展开页面切图\菜单展开页面切图\书写识别.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

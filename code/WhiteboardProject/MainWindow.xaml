@@ -9,7 +9,7 @@
         mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="gridTop" Background="#006c40" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
-        <uc:DrawingView/>
+        <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
         <uc:BottomLeftNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
         <uc:BottomNavigationBar x:Name="bnb" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-30"/>

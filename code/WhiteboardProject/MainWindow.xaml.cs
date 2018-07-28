@@ -39,6 +39,7 @@ namespace WhiteboardProject
      
 
         private bool isSeal;
+        private bool isShape;
         private string strokeColor;
         Panel uIElementCollection;
         SealShapeEnum shape;
@@ -57,6 +58,7 @@ namespace WhiteboardProject
         private void OnRecMsg(AppMessage appMessage)
         {
             isSeal = false;
+            isShape = false;
             if (appMessage.MsgType == AppMsg.Highlighter)
             {
                 IsVisibilityColorfulFollow = Visibility.Visible;
@@ -95,9 +97,13 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.ShapeChanged)
             {
-                isSeal = false;
-                shapeEnum =appMessage.Tell;
-
+                isShape = true;
+                shapeEnum = appMessage.Tell;
+            }
+            else if (appMessage.MsgType == AppMsg.ColorChanged)
+            {
+                
+                strokeColor = GlobalUIConfig.ColorDescription[appMessage.Tag.ToString()];
             }
         }
 
@@ -123,7 +129,15 @@ namespace WhiteboardProject
             
         }
 
-        private void gridTop_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        #region 绘制印章图形
+        private void GetStar()
+        {
+
+        }
+        #endregion
+       
+
+        private void DrawingView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point bottom = e.MouseDevice.GetPosition(bnb);
             if (bottom.Y >= -20) return;
@@ -177,32 +191,25 @@ namespace WhiteboardProject
                         break;
                 }
             }
-            else
+            if (isShape)
             {
                 UcShape ucShape = new UcShape();
                 var vm = ucShape.DataContext as UcShapeViewModel;
+                vm.PathData = GlobalUIConfig.IndicatorDescription[shapeEnum];
+                if (!String.IsNullOrEmpty(strokeColor))
+                    vm.StrokeColor = strokeColor;
                 ucShape.Tag = "Shape";
                 ucShape.HorizontalAlignment = HorizontalAlignment.Left;
                 ucShape.VerticalAlignment = VerticalAlignment.Top;
                 ucShape.Margin = new Thickness(p.X, p.Y, 0, 0);
                 this.gridTop.Children.Add(ucShape);
-                vm.PathData = GlobalUIConfig.IndicatorDescription[shapeEnum];
-                vm.StrokeColor = strokeColor;
-
-
             }
             this.uIElementCollection = this.gridTop;
         }
 
-        #region 绘制印章图形
-        private void GetStar()
+        private void gridTop_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-        }
-        #endregion
-        private void canvas_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
+            e.Handled = false;
         }
     }
 }

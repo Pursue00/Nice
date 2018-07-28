@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Path x:Name="path" Data="{Binding PathData}" 
-                  Fill="{Binding StrokeColor}" Height="30" Width="31"/>
+       
+        <Path x:Name="path" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Data="{Binding DataContext.PathData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" 
+                  Fill="{Binding DataContext.StrokeColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" Height="60" Width="61"/>
     </Grid>
 </UserControl>

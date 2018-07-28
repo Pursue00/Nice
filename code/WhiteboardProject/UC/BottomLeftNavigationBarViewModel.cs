@@ -22,6 +22,14 @@ namespace WhiteboardProject.UC
             set { _isVisibilityInteractive = value;OnPropertyChanged(()=> IsVisibilityInteractive); }
         }
 
+        private bool _isVisibilitySystem;
+
+        public bool IsVisibilitySystem
+        {
+            get { return _isVisibilitySystem; }
+            set { _isVisibilitySystem = value;OnPropertyChanged(()=> IsVisibilitySystem); }
+        }
+
         #endregion
 
         #region Constructure
@@ -38,6 +46,9 @@ namespace WhiteboardProject.UC
             {
                 case "interactive":
                     this.IsVisibilityInteractive = true;
+                    break;
+                case "system":
+                    this.IsVisibilitySystem = true;
                     break;
             }
         }
