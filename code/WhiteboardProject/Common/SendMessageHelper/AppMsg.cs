@@ -20,7 +20,9 @@ namespace WhiteboardProject.Common
         GestureErase,//手势擦除
         ShapeChanged,//图形改变
         ColorChanged,//颜色改变
-        CloseCommand//关闭消息
+        CloseCommand,//关闭消息
+        SliderValueChanged,//漫游缩放值
+
     }
 
     public enum Shape

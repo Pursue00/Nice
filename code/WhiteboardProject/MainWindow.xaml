@@ -6,11 +6,59 @@
         xmlns:uc="clr-namespace:WhiteboardProject.UC"
         xmlns:src="clr-namespace:WhiteboardProject.Model"
         xmlns:common="clr-namespace:WhiteboardProject.Common"
-        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
+        mc:Ignorable="d" WindowState="Normal"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="62"/>
+            <Setter Property="Height" Value="62"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </Window.Resources>
     <Grid x:Name="gridTop" Background="#006c40" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
-        <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
+        
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+                <uc:DrawingView.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
+                </uc:DrawingView.LayoutTransform>
+            </uc:DrawingView>
+        </ScrollViewer>-->
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas RenderTransformOrigin="0.5,0.5">
+                <Canvas.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
+                </Canvas.LayoutTransform>
+                <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+                    <uc:DrawingView.LayoutTransform>
+                        <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
+                    </uc:DrawingView.LayoutTransform>
+                </uc:DrawingView>
+            </Canvas>
+        </ScrollViewer>-->
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+                <uc:DrawingView.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" 
+                                    ScaleY="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" />
+                </uc:DrawingView.LayoutTransform>
+            </uc:DrawingView>
+        </ScrollViewer>
+        <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
+        <Expander  ExpandDirection="Right" Visibility="Collapsed" Style="{DynamicResource ExpanderStyle1}" IsExpanded="False">
+            <DockPanel>
+                <uc:PopupInteractive  x:Name="popInteractive"/>
+            </DockPanel>
+        </Expander>
+       
+        <!--<Button x:Name="btnshrink" Click="btnshrink_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/收缩栏-收回.png" Stretch="Uniform"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>-->
         <uc:BottomLeftNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
         <uc:BottomNavigationBar x:Name="bnb" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
         <uc:BottomRightNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Right"/>

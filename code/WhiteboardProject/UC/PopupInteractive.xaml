@@ -46,7 +46,7 @@
                 <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
             <UniformGrid Columns="3" Grid.Row="0">
-                <Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="file">
                     <Button.Template>
                         <ControlTemplate>
                             <StackPanel Orientation="Vertical">
@@ -73,7 +73,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="export">
                     <Button.Template>
                         <ControlTemplate>
                             <StackPanel>
@@ -133,7 +133,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                <Button Command="{Binding BtnCommand}" CommandParameter="exit">
                     <Button.Template>
                         <ControlTemplate>
                             <StackPanel>
@@ -145,48 +145,92 @@
                 </Button>
             </UniformGrid>
             <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,2,0,0" >
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,10,0,0">
-                    <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel>
-                                    <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/文件/新建.png" Style="{StaticResource imageStyle}"/>
-                                    <TextBlock Text="新建" Style="{StaticResource tbStyle}"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel>
-                                    <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图//文件/打开.png" Style="{StaticResource imageStyle}"/>
-                                    <TextBlock Text="打开" Style="{StaticResource tbStyle}"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel>
-                                    <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图//文件/保存.png" Style="{StaticResource imageStyle}"/>
-                                    <TextBlock Text="保存" Style="{StaticResource tbStyle}"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel>
-                                    <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图//文件/另存.png" Style="{StaticResource imageStyle}"/>
-                                    <TextBlock Text="另存" Style="{StaticResource tbStyle}"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
+                <Grid>
+                    <StackPanel Visibility="{Binding IsVisibilityFile}" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                        <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/文件/新建.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="新建" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图//文件/打开.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="打开" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图//文件/保存.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="保存" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图//文件/另存.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="另存" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding IsVisibilityExport}" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                        <Button Command="{Binding BtnCommand}" CommandParameter="pdf">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导出/pdf.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="PDF" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="pptx">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导出/PPT.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="PPT" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="word">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导出/Word.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="Word" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="picture">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导出/图片.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="图片" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </Border>
            
         </Grid>

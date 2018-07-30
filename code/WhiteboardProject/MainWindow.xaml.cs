@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -36,7 +37,17 @@ namespace WhiteboardProject
             }
         }
 
-     
+        private double sliderValue;
+
+        public double SliderValue
+        {
+            get { return sliderValue; }
+            set { sliderValue = value;
+                OnPropertyChanged(()=> SliderValue);
+            }
+        }
+
+
 
         private bool isSeal;
         private bool isShape;
@@ -44,15 +55,23 @@ namespace WhiteboardProject
         Panel uIElementCollection;
         SealShapeEnum shape;
         string  shapeEnum;
-       
+        private DoubleAnimation c_daListAnimation;
+        public bool c_bState = true;//记录菜单栏状态 false隐藏 true显示
+        private bool isdrag = false;
         #endregion
 
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
+            this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            c_daListAnimation = new DoubleAnimation();
         }
 
         private void OnRecMsg(AppMessage appMessage)
@@ -102,8 +121,11 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.ColorChanged)
             {
-                
                 strokeColor = GlobalUIConfig.ColorDescription[appMessage.Tag.ToString()];
+            }
+            else if (appMessage.MsgType == AppMsg.SliderValueChanged)
+            {
+                this.SliderValue = Convert.ToDouble(appMessage.Tag);
             }
         }
 
@@ -139,6 +161,7 @@ namespace WhiteboardProject
 
         private void DrawingView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            this.isdrag = true;
             Point bottom = e.MouseDevice.GetPosition(bnb);
             if (bottom.Y >= -20) return;
             Point p = e.MouseDevice.GetPosition(this);  //获取鼠标相对位置
@@ -211,5 +234,26 @@ namespace WhiteboardProject
         {
             e.Handled = false;
         }
+
+        private void btnshrink_Click(object sender, RoutedEventArgs e)
+        {
+            if (c_bState)
+            {
+
+                c_bState = false;
+                c_daListAnimation.From = 0;
+                c_daListAnimation.To = -154;
+                popInteractive.Width = 200;
+            }
+            else
+            {
+                c_bState = true;
+                c_daListAnimation.From = -154;
+                c_daListAnimation.To = 0;
+                popInteractive.Width =0;
+            }
+        }
+
+       
     }
 }

@@ -58,7 +58,67 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button
+                        <RadioButton Command="{Binding BtnCommand}" CommandParameter="writingbrush">
+                            <RadioButton.Template>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Image x:Name="image" Width="64" Height="200" Margin="10,0,0,0" Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/毛笔.png" Stretch="Uniform"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="true">
+                                            <Setter Property="Height" Value="210" TargetName="image"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="false">
+                                            <Setter Property="Height" Value="200" TargetName="image"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                        </RadioButton>
+                        <RadioButton Command="{Binding BtnCommand}" CommandParameter="softpen">
+                            <RadioButton.Template>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Image x:Name="image" Width="64" Height="200" Margin="10,0,0,0" Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/软笔.png" Stretch="Uniform"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="true">
+                                            <Setter Property="Height" Value="210" TargetName="image"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="false">
+                                            <Setter Property="Height" Value="200" TargetName="image"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                        </RadioButton>
+                        <RadioButton  Command="{Binding BtnCommand}" CommandParameter="sealpen">
+                            <RadioButton.Template>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Image x:Name="image" Width="64" Height="200" Margin="10,0,0,0" Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/印章笔.png" Stretch="Uniform"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="true">
+                                            <Setter Property="Height" Value="210" TargetName="image"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="false">
+                                            <Setter Property="Height" Value="200" TargetName="image"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                        </RadioButton>
+                        <RadioButton Command="{Binding BtnCommand}" CommandParameter="highlighter">
+                            <RadioButton.Template>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Image x:Name="image" Width="64" Height="200" Margin="10,0,0,0" Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/荧光笔.png" Stretch="Uniform"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsChecked" Value="true">
+                                            <Setter Property="Height" Value="210" TargetName="image"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="false">
+                                            <Setter Property="Height" Value="200" TargetName="image"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                        </RadioButton>
+                        <!--<Button
                     Command="{Binding BtnCommand}" CommandParameter="writingbrush">
                             <Button.Template>
                                 <ControlTemplate>
@@ -89,7 +149,7 @@
                                     <Image Source="pack://siteoforigin:,,,/Image/画笔切图/画笔切图/荧光笔.png" Stretch="Uniform"/>
                                 </ControlTemplate>
                             </Button.Template>
-                        </Button>
+                        </Button>-->
                     </StackPanel>
                 </Grid>
             </Grid>

@@ -35,5 +35,13 @@ namespace WhiteboardProject.UC
             appMessage.MsgType = AppMsg.CloseCommand;
             EventHub.SysEvents.PubEvent(appMessage);
         }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            AppMessage appMessage = new AppMessage();
+            appMessage.MsgType = AppMsg.SliderValueChanged;
+            appMessage.Tag = this.slider.Value;
+            EventHub.SysEvents.PubEvent(appMessage);
+        }
     }
 }
