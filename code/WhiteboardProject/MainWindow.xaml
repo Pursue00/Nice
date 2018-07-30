@@ -24,32 +24,26 @@
                 </uc:DrawingView.LayoutTransform>
             </uc:DrawingView>
         </ScrollViewer>-->
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Canvas RenderTransformOrigin="0.5,0.5">
-                <Canvas.LayoutTransform>
-                    <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
-                </Canvas.LayoutTransform>
-                <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
-                    <uc:DrawingView.LayoutTransform>
-                        <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
-                    </uc:DrawingView.LayoutTransform>
-                </uc:DrawingView>
-            </Canvas>
-        </ScrollViewer>-->
+        
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+                <uc:DrawingView.LayoutTransform>
+                    <ScaleTransform ScaleX="100" ScaleY="100"/>
+                </uc:DrawingView.LayoutTransform>
+            </uc:DrawingView>
+        </ScrollViewer>
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" 
                                     ScaleY="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" />
                 </uc:DrawingView.LayoutTransform>
             </uc:DrawingView>
-        </ScrollViewer>
+        </ScrollViewer>-->
         <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
-        <Expander  ExpandDirection="Right" Visibility="Collapsed" Style="{DynamicResource ExpanderStyle1}" IsExpanded="False">
-            <DockPanel>
-                <uc:PopupInteractive  x:Name="popInteractive"/>
-            </DockPanel>
+        <Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
+            <uc:PopupInteractive  x:Name="popInteractive" HorizontalAlignment="Left" VerticalAlignment="Center" />
         </Expander>
        
         <!--<Button x:Name="btnshrink" Click="btnshrink_Click" HorizontalAlignment="Left" VerticalAlignment="Center">

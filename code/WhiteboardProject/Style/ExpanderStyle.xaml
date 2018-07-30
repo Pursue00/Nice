@@ -18,26 +18,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Padding="{TemplateBinding Padding}">
-                        <Grid Background="Transparent" SnapsToDevicePixels="False">
+                        <Grid  SnapsToDevicePixels="False">
 
-                            <Grid>
-                                <Grid.LayoutTransform>
-                                    <TransformGroup>
-                                        <TransformGroup.Children>
-                                            <TransformCollection>
-                                                <RotateTransform Angle="90"/>
-                                            </TransformCollection>
-                                        </TransformGroup.Children>
-                                    </TransformGroup>
-                                </Grid.LayoutTransform>
-                                <Rectangle x:Name="circle" Fill="{StaticResource Expander.Static.Circle.Fill}" HorizontalAlignment="Center" Height="19" Stroke="{StaticResource Expander.Static.Circle.Stroke}" VerticalAlignment="Center" Width="30"/>
-                                <Path x:Name="arrow" Data="M 1,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center" SnapsToDevicePixels="false" Stroke="{StaticResource Expander.Static.Arrow.Stroke}" StrokeThickness="2" VerticalAlignment="Center"/>
-                            </Grid>
+                            <Grid.Background>
+                                <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/收缩栏-收回.png" Stretch="Uniform"/>
+                            </Grid.Background>
                             <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
 
                         </Grid>
                     </Border>
-                    <ControlTemplate.Triggers>
+                    <!--<ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="Data" TargetName="arrow" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
                         </Trigger>
@@ -54,7 +44,7 @@
                             <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Fill}"/>
                             <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Disabled.Arrow.Stroke}"/>
                         </Trigger>
-                    </ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -65,9 +55,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Padding="{TemplateBinding Padding}">
-                        <Grid Background="Transparent" SnapsToDevicePixels="False">
-
-                            <Grid>
+                        <Grid  SnapsToDevicePixels="False">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/收缩栏-收回.png" Stretch="Uniform"/>
+                            </Grid.Background>
+                            <!--<Grid>
                                 <Grid.LayoutTransform>
                                     <TransformGroup>
                                         <TransformGroup.Children>
@@ -79,12 +71,11 @@
                                 </Grid.LayoutTransform>
                                 <Rectangle x:Name="circle" Fill="{StaticResource Expander.Static.Circle.Fill}" HorizontalAlignment="Center" Height="19" Stroke="{StaticResource Expander.Static.Circle.Stroke}" VerticalAlignment="Center" Width="30"/>
                                 <Path x:Name="arrow" Data="M 1,4.5  L 4.5,1  L 8,4.5" HorizontalAlignment="Center" SnapsToDevicePixels="false" Stroke="{StaticResource Expander.Static.Arrow.Stroke}" StrokeThickness="2" VerticalAlignment="Center"/>
-                            </Grid>
+                            </Grid>-->
                             <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" Grid.Row="1" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
-
                         </Grid>
                     </Border>
-                    <ControlTemplate.Triggers>
+                    <!--<ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
                             <Setter Property="Data" TargetName="arrow" Value="M 1,1.5 L 4.5,5 L 8,1.5"/>
                         </Trigger>
@@ -102,7 +93,7 @@
                             <Setter Property="Fill" TargetName="circle" Value="{StaticResource Expander.Disabled.Circle.Fill}"/>
                             <Setter Property="Stroke" TargetName="arrow" Value="{StaticResource Expander.Disabled.Arrow.Stroke}"/>
                         </Trigger>
-                    </ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
