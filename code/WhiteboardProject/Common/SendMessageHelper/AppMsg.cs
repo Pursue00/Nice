@@ -23,6 +23,7 @@ namespace WhiteboardProject.Common
         CloseCommand,//关闭消息
         SliderValueChanged,//漫游缩放值
         BottomLeftNavigation,//左下角消息通知
+        ExportFile,//导出
     }
 
     public enum Shape

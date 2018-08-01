@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,6 +121,36 @@ namespace WhiteboardProject.UC
             {
                 if(isBrush)
                 Messenger.Default.Send("pack://application:,,,/Image/Brush/" + appMessage.Tag + "/图层1.png");
+            }
+        }
+
+        private void HandWriting()
+        {
+            MemoryStream ms = new MemoryStream();
+            this.InkCanvas.Strokes.Save(ms);//canvas为InkCanvas
+            Microsoft.Ink.Ink ink = new Microsoft.Ink.Ink();
+            ink.Load(ms.ToArray());
+            string[] resultArray = null;//存放识别的结果
+            using (Microsoft.Ink.RecognizerContext myRecoContext = new Microsoft.Ink.RecognizerContext())
+            {
+                Microsoft.Ink.RecognitionStatus status;//识别的结果状态，可用于判断是否识别成功
+                Microsoft.Ink.RecognitionResult recoResult;
+                myRecoContext.Strokes = ink.Strokes;
+                try
+                {
+                    recoResult = myRecoContext.Recognize(out status);
+                    Microsoft.Ink.RecognitionAlternates als = recoResult.GetAlternatesFromSelection();
+                    int resultCount = als.Count;
+                    resultArray = new string[resultCount];
+                    for (int i = 0; i < resultCount; i++)
+                    {
+                        resultArray[i] = als[i].ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
             }
         }
 

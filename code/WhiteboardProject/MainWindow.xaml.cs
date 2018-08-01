@@ -1,7 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using Spire.Pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -10,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -60,7 +65,8 @@ namespace WhiteboardProject
         private bool isdrag = false;
         private bool isExpand = false;
         #endregion
-
+        BackgroundWorker bw = new BackgroundWorker();
+        private string srcFile, destFile;
         public MainWindow()
         {
             InitializeComponent();
@@ -137,16 +143,16 @@ namespace WhiteboardProject
                         var popupInteractive = new PopupInteractive();
                         popupInteractive.HorizontalAlignment = HorizontalAlignment.Left;
                         popupInteractive.VerticalAlignment = VerticalAlignment.Bottom;
-                        popupInteractive.Margin = new Thickness(0,0,0,15);
+                        popupInteractive.Margin = new Thickness(0, 0, 0, 15);
                         OutLayer.Child = popupInteractive;
-                        
+
                         break;
                     case "system":
                         var popupSystem = new PopopStytem();
                         popupSystem.HorizontalAlignment = HorizontalAlignment.Left;
                         popupSystem.VerticalAlignment = VerticalAlignment.Bottom;
                         OutLayer.Child = popupSystem;
-                        
+
                         break;
                 }
                 OutLayer.Margin = new Thickness(-500, 0, 0, 0);
@@ -160,6 +166,103 @@ namespace WhiteboardProject
 
                 OutLayer.BeginAnimation(Border.MarginProperty, moveLeft);
             }
+            else if (appMessage.MsgType == AppMsg.ExportFile)
+            {
+                string localFilePath, fileNameExt, newFileName, FilePath, filter, picturePath;
+                filter = appMessage.Tag.ToString();
+                System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+                //设置文件类型   
+                saveFileDialog1.Filter = " " + filter + " files(*." + filter + ")|*." + filter + "|All files(*.*)|*.*";
+                //设置默认文件类型显示顺序   
+                saveFileDialog1.FilterIndex = 1;
+                //保存对话框是否记忆上次打开的目录   
+                saveFileDialog1.RestoreDirectory = true;
+                //点了保存按钮进入   
+                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    //获得文件路径   
+                    localFilePath = saveFileDialog1.FileName.ToString();
+                    if (localFilePath.EndsWith("pdf"))
+                        picturePath = localFilePath.Replace("pdf", "png");
+                    else if (localFilePath.EndsWith("pptx"))
+                        picturePath = localFilePath.Replace("pptx", "png");
+                    else if (localFilePath.EndsWith("word"))
+                        picturePath = localFilePath.Replace("word", "png");
+                    else
+                        picturePath = localFilePath;
+                    //获取文件名，不带路径   
+                    fileNameExt = localFilePath.Substring(localFilePath.LastIndexOf("\\") + 1);
+                    //获取文件路径，不带文件名   
+                    //string FilePath = localFilePath.Substring(0, localFilePath.LastIndexOf("\\"));   
+                    //给文件名前加上时间   
+                    newFileName = DateTime.Now.ToString("yyyyMMdd") + fileNameExt;
+                    //System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();//输出文件 
+
+                    RenderTargetBitmap rtb = new RenderTargetBitmap(Convert.ToInt32(drawingView.ActualWidth), Convert.ToInt32(drawingView.ActualHeight), 96, 96, PixelFormats.Pbgra32);
+                    rtb.Render(drawingView);
+                    //fs输出带文字或图片的文件，就看需求了 
+                    PngBitmapEncoder png = new PngBitmapEncoder();
+                    png.Frames.Add(BitmapFrame.Create(rtb));
+                    using (Stream fs = File.Create(picturePath))
+                    {
+                        png.Save(fs);
+                    }
+
+                    switch (appMessage.Tag.ToString())
+                    {
+                        //case "picture":
+                           
+                        //    break;
+                        case "pdf":
+                            //image to pdf
+                          
+                            bw.RunWorkerAsync(new string[2] { picturePath, localFilePath });
+                            bw.DoWork += bw_DoWork;
+                            bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
+                            break;
+                        case "pptx":
+                            break;
+                       
+                        case "word":
+                            //pdf to word
+                            Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
+                            pdf.LoadFromFile(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CefSharp.pdf"));
+                            string output = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.doc");
+                            pdf.SaveToFile(output, FileFormat.DOC);
+                            System.Diagnostics.Process.Start(output);
+                            break;
+                    }
+                }
+            }
+        }
+
+        
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                string source = (e.Argument as string[])[0];
+                string destinaton = (e.Argument as string[])[1];
+
+                PdfSharp.Pdf.PdfDocument doc = new PdfSharp.Pdf.PdfDocument();
+                doc.Pages.Add(new PdfPage());
+                XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
+                XImage img = XImage.FromFile(source);
+
+                xgr.DrawImage(img, 0, 0);
+                doc.Save(destinaton);
+                doc.Close();
+                //success = true;
+            }
+            catch (Exception ex)
+            {
+                // MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

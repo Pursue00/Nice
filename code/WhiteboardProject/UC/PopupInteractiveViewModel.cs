@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WhiteboardProject.Common;
 using WhiteboardProject.Model;
 
 namespace WhiteboardProject.UC
@@ -62,6 +63,7 @@ namespace WhiteboardProject.UC
         #region Public Method
         public void BtnCommandExcute(object arg)
         {
+            AppMessage appMessage = new AppMessage();
             switch (arg.ToString())
             {
                 case "exit":
@@ -76,24 +78,12 @@ namespace WhiteboardProject.UC
                     this.IsVisibilityFile = Visibility.Collapsed;
                     break;
                 case "pdf":
-                    //image to pdf
-                    bw.RunWorkerAsync(new string[2] { srcFile, destFile });
-                    bw.DoWork += bw_DoWork;
-                    bw.RunWorkerCompleted += bw_RunWorkerCompleted;
-                    break;
                 case "pptx":
-                    break;
                 case "picture":
-                    break;
                 case "word":
-                    //pdf to word
-                    Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
-                    pdf.LoadFromFile(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CefSharp.pdf"));
-                    string output = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.doc");
-                    pdf.SaveToFile(output, FileFormat.DOC);
-                    System.Diagnostics.Process.Start(output);
-
-
+                    appMessage.MsgType = AppMsg.ExportFile;
+                    appMessage.Tag = arg;
+                    EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
                     break;
             }
         }
