@@ -75,22 +75,23 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Popup Placement="Top"  PlacementTarget="{Binding ElementName=btnhardPen}" AllowsTransparency="True"
-                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
-                <local:PopupBrush/>
-            </Popup>
-            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btneraser}" AllowsTransparency="True"
-                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityEraser}" StaysOpen="False">
-                <local:PopupEraser/>
-            </Popup>
-            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnshape}" AllowsTransparency="True"
-                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityShape}" StaysOpen="False">
-                <local:PopupShape/>
-            </Popup>
-            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnroaming}" AllowsTransparency="True"
-                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityRoaming}" StaysOpen="False">
-                <local:PopupRoaming/>
-            </Popup>
+            
         </StackPanel>
+        <Popup Placement="Top"  PlacementTarget="{Binding ElementName=btnhardPen}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
+            <local:PopupBrush/>
+        </Popup>
+        <Popup Placement="Top" PlacementTarget="{Binding ElementName=btneraser}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityEraser}" StaysOpen="False">
+            <local:PopupEraser/>
+        </Popup>
+        <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnshape}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityShape}" StaysOpen="False">
+            <local:PopupShape/>
+        </Popup>
+        <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnroaming}" AllowsTransparency="True"
+                   PopupAnimation="Fade" IsOpen="{Binding IsVisibilityRoaming}" StaysOpen="False">
+            <local:PopupRoaming/>
+        </Popup>
     </Grid>
 </UserControl>

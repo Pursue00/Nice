@@ -58,6 +58,7 @@ namespace WhiteboardProject
         private DoubleAnimation c_daListAnimation;
         public bool c_bState = true;//记录菜单栏状态 false隐藏 true显示
         private bool isdrag = false;
+        private bool isExpand = false;
         #endregion
 
         public MainWindow()
@@ -127,6 +128,38 @@ namespace WhiteboardProject
             {
                 this.SliderValue = Convert.ToDouble(appMessage.Tag);
             }
+            else if (appMessage.MsgType == AppMsg.BottomLeftNavigation)
+            {
+                isExpand = true;
+                switch (appMessage.Tag.ToString())
+                {
+                    case "interactive":
+                        var popupInteractive = new PopupInteractive();
+                        popupInteractive.HorizontalAlignment = HorizontalAlignment.Left;
+                        popupInteractive.VerticalAlignment = VerticalAlignment.Bottom;
+                        popupInteractive.Margin = new Thickness(0,0,0,15);
+                        OutLayer.Child = popupInteractive;
+                        
+                        break;
+                    case "system":
+                        var popupSystem = new PopopStytem();
+                        popupSystem.HorizontalAlignment = HorizontalAlignment.Left;
+                        popupSystem.VerticalAlignment = VerticalAlignment.Bottom;
+                        OutLayer.Child = popupSystem;
+                        
+                        break;
+                }
+                OutLayer.Margin = new Thickness(-500, 0, 0, 0);
+                OutLayer.Visibility = Visibility.Visible;
+                var moveLeft = new ThicknessAnimation
+                {
+                    From = new Thickness(-500, 0, 0, 0),
+                    To = new Thickness(0, 0, 0, 0),
+                    Duration = TimeSpan.FromSeconds(0.3)
+                };
+
+                OutLayer.BeginAnimation(Border.MarginProperty, moveLeft);
+            }
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -161,6 +194,21 @@ namespace WhiteboardProject
 
         private void DrawingView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (isExpand)
+            {
+                ThicknessAnimation moveRight = new ThicknessAnimation
+                {
+                    From = new Thickness(0, 0, 0, 0),
+                    To = new Thickness(-500, 0, 0, 0),
+                    Duration = TimeSpan.FromSeconds(0.3)
+                };
+                moveRight.Completed -= OnMoveRightCompleted;
+                moveRight.Completed += OnMoveRightCompleted;
+
+                OutLayer.BeginAnimation(MarginProperty, moveRight);
+
+            }
+
             this.isdrag = true;
             Point bottom = e.MouseDevice.GetPosition(bnb);
             if (bottom.Y >= -20) return;
@@ -232,28 +280,34 @@ namespace WhiteboardProject
 
         private void gridTop_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            e.Handled = false;
+           
+          
         }
 
+        private void OnMoveRightCompleted(object sender, EventArgs e)
+        {
+            OutLayer.Visibility = Visibility.Collapsed;
+            OutLayer.Child = null;
+            isExpand = false;
+        }
         private void btnshrink_Click(object sender, RoutedEventArgs e)
         {
-            if (c_bState)
-            {
+            //if (c_bState)
+            //{
 
-                c_bState = false;
-                c_daListAnimation.From = 0;
-                c_daListAnimation.To = -154;
-                popInteractive.Width = 200;
-            }
-            else
-            {
-                c_bState = true;
-                c_daListAnimation.From = -154;
-                c_daListAnimation.To = 0;
-                popInteractive.Width =0;
-            }
+            //    c_bState = false;
+            //    c_daListAnimation.From = 0;
+            //    c_daListAnimation.To = -154;
+            //    popInteractive.Width = 200;
+            //}
+            //else
+            //{
+            //    c_bState = true;
+            //    c_daListAnimation.From = -154;
+            //    c_daListAnimation.To = 0;
+            //    popInteractive.Width =0;
+            //}
         }
 
-       
     }
 }

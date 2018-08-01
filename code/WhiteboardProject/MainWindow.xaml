@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:WhiteboardProject.UC"
         xmlns:src="clr-namespace:WhiteboardProject.Model"
         xmlns:common="clr-namespace:WhiteboardProject.Common"
-        mc:Ignorable="d" WindowState="Normal"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
@@ -15,7 +15,7 @@
             <Setter Property="Margin" Value="0"/>
         </Style>
     </Window.Resources>
-    <Grid x:Name="gridTop" Background="#006c40" PreviewMouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
+    <Grid x:Name="gridTop" Background="#006c40" MouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
         
         <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
@@ -26,13 +26,14 @@
         </ScrollViewer>-->
         
         <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+        <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <uc:DrawingView MouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
                     <ScaleTransform ScaleX="100" ScaleY="100"/>
                 </uc:DrawingView.LayoutTransform>
             </uc:DrawingView>
-        </ScrollViewer>
+        </ScrollViewer>-->
         <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
@@ -42,9 +43,12 @@
             </uc:DrawingView>
         </ScrollViewer>-->
         <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
-        <Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
+        <Border x:Name="OutLayer"  HorizontalAlignment="Left" VerticalAlignment="Bottom"   d:IsHidden="True" Visibility="Collapsed">
+            
+        </Border>
+        <!--<Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
             <uc:PopupInteractive  x:Name="popInteractive" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        </Expander>
+        </Expander>-->
        
         <!--<Button x:Name="btnshrink" Click="btnshrink_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button.Template>

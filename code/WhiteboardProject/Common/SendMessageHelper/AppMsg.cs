@@ -22,7 +22,7 @@ namespace WhiteboardProject.Common
         ColorChanged,//颜色改变
         CloseCommand,//关闭消息
         SliderValueChanged,//漫游缩放值
-
+        BottomLeftNavigation,//左下角消息通知
     }
 
     public enum Shape

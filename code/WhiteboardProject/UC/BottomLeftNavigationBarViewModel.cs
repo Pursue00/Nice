@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WhiteboardProject.Common;
 using WhiteboardProject.Model;
 
 namespace WhiteboardProject.UC
@@ -42,15 +43,19 @@ namespace WhiteboardProject.UC
         #region Public Method
         public void BtnCommandExcute(object arg)
         {
-            switch (arg)
-            {
-                case "interactive":
-                    this.IsVisibilityInteractive = true;
-                    break;
-                case "system":
-                    this.IsVisibilitySystem = true;
-                    break;
-            }
+            AppMessage appMessage = new AppMessage();
+            appMessage.Tag = arg;
+            appMessage.MsgType = AppMsg.BottomLeftNavigation;
+            EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
+            //switch (arg)
+            //{
+            //    case "interactive":
+            //        this.IsVisibilityInteractive = true;
+            //        break;
+            //    case "system":
+            //        this.IsVisibilitySystem = true;
+            //        break;
+            //}
         }
         #endregion
     }
