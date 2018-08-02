@@ -25,7 +25,7 @@
             <Setter Property="Height" Value="48"/>
         </Style>
     </UserControl.Resources>
-    <Grid Height="450" Width="280">
+    <Grid Height="Auto"  Width="280">
         <Grid.Background>
             <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/多边形1.png" Stretch="Fill"/>
         </Grid.Background>

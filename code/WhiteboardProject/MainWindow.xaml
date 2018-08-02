@@ -16,25 +16,21 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="gridTop" Background="#006c40" MouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
-        
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
-                <uc:DrawingView.LayoutTransform>
-                    <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
-                </uc:DrawingView.LayoutTransform>
-            </uc:DrawingView>
-        </ScrollViewer>-->
-        
-        <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
-        <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
+            <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
+            <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView MouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
                     <ScaleTransform ScaleX="100" ScaleY="100"/>
                 </uc:DrawingView.LayoutTransform>
             </uc:DrawingView>
         </ScrollViewer>-->
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" 
@@ -42,23 +38,34 @@
                 </uc:DrawingView.LayoutTransform>
             </uc:DrawingView>
         </ScrollViewer>-->
-        <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
-        <Border x:Name="OutLayer"  HorizontalAlignment="Left" VerticalAlignment="Bottom"   d:IsHidden="True" Visibility="Collapsed">
-            
-        </Border>
-        <!--<Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
+            <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
+            <Border x:Name="OutLayer"  HorizontalAlignment="Left" VerticalAlignment="Stretch"  d:IsHidden="True" Visibility="Collapsed">
+
+            </Border>
+            <!--<Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
             <uc:PopupInteractive  x:Name="popInteractive" HorizontalAlignment="Left" VerticalAlignment="Center" />
         </Expander>-->
-       
-        <!--<Button x:Name="btnshrink" Click="btnshrink_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+            <!--<Button x:Name="btnshrink" Click="btnshrink_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/收缩栏-收回.png" Stretch="Uniform"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>-->
-        <uc:BottomLeftNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-        <uc:BottomNavigationBar x:Name="bnb" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
-        <uc:BottomRightNavigationBar VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+
+        </Grid>
+        <DockPanel Grid.Row="1">
+            <uc:BottomLeftNavigationBar DockPanel.Dock="Left"/>
+            <uc:BottomNavigationBar x:Name="bnb" DockPanel.Dock="Bottom" Margin="0,0,0,-30"/>
+            <uc:BottomRightNavigationBar DockPanel.Dock="Right"/>
+        </DockPanel>
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+                <uc:DrawingView.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
+                </uc:DrawingView.LayoutTransform>
+            </uc:DrawingView>
+        </ScrollViewer>-->
     </Grid>
 </Window>

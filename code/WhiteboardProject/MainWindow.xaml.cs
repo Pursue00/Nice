@@ -70,6 +70,9 @@ namespace WhiteboardProject
         public MainWindow()
         {
             InitializeComponent();
+            gridTop.PreviewMouseMove += canvas_MouseMove;
+            gridTop.PreviewMouseLeftButtonUp += canvas_MouseUp;
+            gridTop.PreviewMouseLeftButtonDown += canvas_MouseDown;
             this.DataContext = this;
             this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
@@ -411,6 +414,68 @@ namespace WhiteboardProject
             //    popInteractive.Width =0;
             //}
         }
+        private System.Windows.Shapes.Path elip = new System.Windows.Shapes.Path();
+        private Point anchorPoint;
+        #region 绘画集合图形
+        private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //capture the mouse on the canvas
+            //(this also helps us keep track of whether or not we're drawing)
+            gridTop.CaptureMouse();
 
+            //Path pathFromCode = XamlReader.Load($"<Path xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><Path.Data>{'M15,0 L60,0 75,30 0,30 z'}</Path.Data></Path>") as Path;
+
+            anchorPoint = e.MouseDevice.GetPosition(gridTop);
+            elip = new System.Windows.Shapes.Path
+            {
+                Data = Geometry.Parse("M15,0 L60,0 75,30 0,30 z"),
+                Stroke = Brushes.Black,
+                StrokeThickness = 2
+            };
+            gridTop.Children.Add(elip);
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            //if we are not drawing, we don't need to do anything when the mouse moves
+            if (!gridTop.IsMouseCaptured)
+                return;
+
+            Point location = e.MouseDevice.GetPosition(gridTop);
+
+            double minX = Math.Min(location.X, anchorPoint.X);
+            double minY = Math.Min(location.Y, anchorPoint.Y);
+            double maxX = Math.Max(location.X, anchorPoint.X);
+            double maxY = Math.Max(location.Y, anchorPoint.Y);
+            elip.HorizontalAlignment = HorizontalAlignment.Left;
+            elip.VerticalAlignment = VerticalAlignment.Top;
+            elip.Margin = new Thickness(minX, minY, 0, 0);
+            //Canvas.SetTop(elip, minY);
+            //Canvas.SetLeft(elip, minX);
+
+            double height = maxY - minY;
+            double width = maxX - minX;
+            //Canvas.SetTop(thumb1, minY + 2);
+            //Canvas.SetLeft(thumb1, minX);
+
+            //Canvas.SetTop(thumb2, minY - Math.Abs(height));
+            //Canvas.SetLeft(thumb2, minX);
+
+            //Canvas.SetTop(thumb3, minY);
+            //Canvas.SetLeft(thumb3, minX + Math.Abs(width));
+
+            //Canvas.SetTop(thumb4, minY);
+            //Canvas.SetLeft(thumb4, minX + Math.Abs(width));
+
+            elip.Height = Math.Abs(minY - Math.Abs(height));
+            elip.Width = Math.Abs(width);
+        }
+
+        private void canvas_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            // we are now no longer drawing
+            gridTop.ReleaseMouseCapture();
+        }
+        #endregion
     }
 }
