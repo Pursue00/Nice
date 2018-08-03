@@ -124,6 +124,23 @@ namespace WhiteboardProject.UC
             }
         }
 
+        void SaveStrokes()
+        {
+            using (FileStream fs = new FileStream("inkstrokes.isf", FileMode.Create))
+            {
+                this.InkCanvas.Strokes.Save(fs);
+                fs.Close();
+            }
+        }
+
+        void LoadStrokes()
+        {
+            FileStream fs = new FileStream("", FileMode.Open, FileAccess.Read);
+            StrokeCollection strokes = new StrokeCollection(fs);
+            this.InkCanvas.Strokes = strokes;
+            fs.Close();
+        }
+
         private void HandWriting()
         {
             MemoryStream ms = new MemoryStream();

@@ -70,9 +70,9 @@ namespace WhiteboardProject
         public MainWindow()
         {
             InitializeComponent();
-            gridTop.PreviewMouseMove += canvas_MouseMove;
-            gridTop.PreviewMouseLeftButtonUp += canvas_MouseUp;
-            gridTop.PreviewMouseLeftButtonDown += canvas_MouseDown;
+            //gridTop.PreviewMouseMove += canvas_MouseMove;
+            //gridTop.PreviewMouseLeftButtonUp += canvas_MouseUp;
+            //gridTop.PreviewMouseLeftButtonDown += canvas_MouseDown;
             this.DataContext = this;
             this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
@@ -104,17 +104,19 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.ClearErase)
             {
-                for (int i = 0; i < this.uIElementCollection.Children.Count; i++)
-                {
-                    UserControl rectangle = this.uIElementCollection.Children[i] as UserControl;
-                    if (rectangle != null)
-                    {
-                        if (rectangle.Tag == null) continue;
-                        if (rectangle.Tag.ToString() == "Shape")
-                            this.gridTop.Children.Remove(rectangle);
-                    }
+                this.gridCanvas.Children.Clear();
+                //for (int i = 0; i < this.uIElementCollection.Children.Count; i++)
+                //{
+                //    UserControl rectangle = this.uIElementCollection.Children[i] as UserControl;
+                //    if (rectangle != null)
+                //    {
+                //        if (rectangle.Tag == null) continue;
+                //        if (rectangle.Tag.ToString() == "Shape")
+                //            this.gridTop.Children.Remove(rectangle);
+                //    }
 
-                }
+                //}
+
             }
             else if (appMessage.MsgType == AppMsg.Softpen)
             {
@@ -373,15 +375,16 @@ namespace WhiteboardProject
                 UcShape ucShape = new UcShape();
                 var vm = ucShape.DataContext as UcShapeViewModel;
                 vm.PathData = GlobalUIConfig.IndicatorDescription[shapeEnum];
+             
                 if (!String.IsNullOrEmpty(strokeColor))
                     vm.StrokeColor = strokeColor;
                 ucShape.Tag = "Shape";
                 ucShape.HorizontalAlignment = HorizontalAlignment.Left;
                 ucShape.VerticalAlignment = VerticalAlignment.Top;
-                ucShape.Margin = new Thickness(p.X, p.Y, 0, 0);
-                this.gridTop.Children.Add(ucShape);
+                ucShape.Margin = new Thickness(p.X + 40, p.Y + 40, 0, 0);
+                this.gridCanvas.Children.Add(ucShape);
             }
-            this.uIElementCollection = this.gridTop;
+            //this.uIElementCollection = this.gridTop;
         }
 
         private void gridTop_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -18,9 +18,9 @@
     <Grid x:Name="gridTop" Background="#006c40" MouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid x:Name="gridCanvas">
             <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
             <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
             <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -39,7 +39,7 @@
             </uc:DrawingView>
         </ScrollViewer>-->
             <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
-            <Border x:Name="OutLayer"  HorizontalAlignment="Left" VerticalAlignment="Stretch"  d:IsHidden="True" Visibility="Collapsed">
+            <Border x:Name="OutLayer"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  d:IsHidden="True" Visibility="Collapsed">
 
             </Border>
             <!--<Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
@@ -55,11 +55,16 @@
         </Button>-->
 
         </Grid>
-        <DockPanel Grid.Row="1">
+        <Grid Grid.Row="1">
+            <uc:BottomLeftNavigationBar HorizontalAlignment="Left"/>
+            <uc:BottomNavigationBar x:Name="bnb" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
+            <uc:BottomRightNavigationBar HorizontalAlignment="Right"/>
+        </Grid>
+        <!--<DockPanel Grid.Row="1">
             <uc:BottomLeftNavigationBar DockPanel.Dock="Left"/>
             <uc:BottomNavigationBar x:Name="bnb" DockPanel.Dock="Bottom" Margin="0,0,0,-30"/>
             <uc:BottomRightNavigationBar DockPanel.Dock="Right"/>
-        </DockPanel>
+        </DockPanel>-->
         <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>

@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Style/TextBlockStyle.xaml"/>
                 <ResourceDictionary Source="Style/WindowStyle.xaml"/>
                 <ResourceDictionary Source="Style/ExpanderStyle.xaml"/>
+                <ResourceDictionary Source="Resources/DesignerItem.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

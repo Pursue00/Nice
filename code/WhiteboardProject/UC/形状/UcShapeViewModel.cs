@@ -26,6 +26,22 @@ namespace WhiteboardProject.UC
             set { _StrokeColor = value;OnPropertyChanged(()=> StrokeColor); }
         }
 
+        private double top;
+
+        public double Top
+        {
+            get { return top; }
+            set { top = value; OnPropertyChanged(()=>top); }
+        }
+
+        private double left;
+
+        public double Left
+        {
+            get { return left; }
+            set { left = value; OnPropertyChanged(()=>left); }
+        }
+
         #endregion
 
         #region Constructure
