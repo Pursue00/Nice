@@ -52,7 +52,14 @@
             AncestorLevel=1}}"  Stretch="Fill" Stroke="{Binding DataContext.StrokeColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
             RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},
             AncestorLevel=1}}"  IsHitTestVisible="False"
-                 />
+                 >
+                   
+                </Path>
+                <ContentControl.ContextMenu >
+                    <ContextMenu MenuItem.Click="ContextMenu_Click">
+                        <MenuItem x:Name="menuItem" Header="隐藏缩放" IsCheckable="False" ></MenuItem>
+                    </ContextMenu>
+                </ContentControl.ContextMenu>
             </ContentControl>
 
         </Canvas>

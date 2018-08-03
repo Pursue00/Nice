@@ -70,9 +70,9 @@ namespace WhiteboardProject
         public MainWindow()
         {
             InitializeComponent();
-            //gridTop.PreviewMouseMove += canvas_MouseMove;
-            //gridTop.PreviewMouseLeftButtonUp += canvas_MouseUp;
-            //gridTop.PreviewMouseLeftButtonDown += canvas_MouseDown;
+            //gridCanvas.PreviewMouseMove += canvas_MouseMove;
+            //gridCanvas.PreviewMouseLeftButtonUp += canvas_MouseUp;
+            //gridCanvas.PreviewMouseLeftButtonDown += canvas_MouseDown;
             this.DataContext = this;
             this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
@@ -112,7 +112,7 @@ namespace WhiteboardProject
                 //    {
                 //        if (rectangle.Tag == null) continue;
                 //        if (rectangle.Tag.ToString() == "Shape")
-                //            this.gridTop.Children.Remove(rectangle);
+                //            this.gridCanvas.Children.Remove(rectangle);
                 //    }
 
                 //}
@@ -330,41 +330,41 @@ namespace WhiteboardProject
                         love.Tag = "Shape";
                         love.HorizontalAlignment = HorizontalAlignment.Left;
                         love.VerticalAlignment = VerticalAlignment.Top;
-                        love.Margin = new Thickness(p.X, p.Y, 0, 0);
-                        this.gridTop.Children.Add(love);
+                        love.Margin = new Thickness(p.X - 105, p.Y - 90, 0, 0);
+                        this.gridCanvas.Children.Add(love);
                         break;
                     case SealShapeEnum.MapleLeaf:
                         MapleLeaf mapleLeaf = new MapleLeaf();
                         mapleLeaf.Tag = "Shape";
                         mapleLeaf.HorizontalAlignment = HorizontalAlignment.Left;
                         mapleLeaf.VerticalAlignment = VerticalAlignment.Top;
-                        mapleLeaf.Margin = new Thickness(p.X, p.Y, 0, 0);
-                        this.gridTop.Children.Add(mapleLeaf);
+                        mapleLeaf.Margin = new Thickness(p.X - 80, p.Y - 117, 0, 0);
+                        this.gridCanvas.Children.Add(mapleLeaf);
                         break;
                     case SealShapeEnum.Smiley:
                         Smile smile = new Smile();
                         smile.Tag = "Shape";
                         smile.HorizontalAlignment = HorizontalAlignment.Left;
                         smile.VerticalAlignment = VerticalAlignment.Top;
-                        smile.Margin = new Thickness(p.X, p.Y, 0, 0);
-                        this.gridTop.Children.Add(smile);
+                        smile.Margin = new Thickness(p.X - 100, p.Y - 100, 0, 0);
+                        this.gridCanvas.Children.Add(smile);
                         break;
                     case SealShapeEnum.Sun:
                         Sun sun = new Sun();
                         sun.Tag = "Shape";
                         sun.HorizontalAlignment = HorizontalAlignment.Left;
                         sun.VerticalAlignment = VerticalAlignment.Top;
-                        sun.Margin = new Thickness(p.X, p.Y, 0, 0);
-                        this.gridTop.Children.Add(sun);
+                        sun.Margin = new Thickness(p.X - 85, p.Y - 85, 0, 0);
+                        this.gridCanvas.Children.Add(sun);
                         break;
                     case SealShapeEnum.Star:
                         Star star = new Star();
                         star.Tag = "Shape";
                         star.HorizontalAlignment = HorizontalAlignment.Left;
                         star.VerticalAlignment = VerticalAlignment.Top;
-                        star.Margin = new Thickness(p.X, p.Y, 0, 0);
-                        this.gridTop.Children.Add(star);
-                        //this.uIElementCollection = this.gridTop;
+                        star.Margin = new Thickness(p.X - 55.4, p.Y - 55, 0, 0);
+                        this.gridCanvas.Children.Add(star);
+                        //this.uIElementCollection = this.gridCanvas;
                         break;
                     default:
                         break;
@@ -381,10 +381,10 @@ namespace WhiteboardProject
                 ucShape.Tag = "Shape";
                 ucShape.HorizontalAlignment = HorizontalAlignment.Left;
                 ucShape.VerticalAlignment = VerticalAlignment.Top;
-                ucShape.Margin = new Thickness(p.X + 40, p.Y + 40, 0, 0);
+                ucShape.Margin = new Thickness(p.X - 40, p.Y - 40, 0, 0);
                 this.gridCanvas.Children.Add(ucShape);
             }
-            //this.uIElementCollection = this.gridTop;
+            //this.uIElementCollection = this.gridCanvas;
         }
 
         private void gridTop_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -424,27 +424,27 @@ namespace WhiteboardProject
         {
             //capture the mouse on the canvas
             //(this also helps us keep track of whether or not we're drawing)
-            gridTop.CaptureMouse();
+            gridCanvas.CaptureMouse();
 
             //Path pathFromCode = XamlReader.Load($"<Path xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><Path.Data>{'M15,0 L60,0 75,30 0,30 z'}</Path.Data></Path>") as Path;
 
-            anchorPoint = e.MouseDevice.GetPosition(gridTop);
+            anchorPoint = e.MouseDevice.GetPosition(gridCanvas);
             elip = new System.Windows.Shapes.Path
             {
                 Data = Geometry.Parse("M15,0 L60,0 75,30 0,30 z"),
                 Stroke = Brushes.Black,
                 StrokeThickness = 2
             };
-            gridTop.Children.Add(elip);
+            gridCanvas.Children.Add(elip);
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
             //if we are not drawing, we don't need to do anything when the mouse moves
-            if (!gridTop.IsMouseCaptured)
+            if (!gridCanvas.IsMouseCaptured)
                 return;
 
-            Point location = e.MouseDevice.GetPosition(gridTop);
+            Point location = e.MouseDevice.GetPosition(gridCanvas);
 
             double minX = Math.Min(location.X, anchorPoint.X);
             double minY = Math.Min(location.Y, anchorPoint.Y);
@@ -477,7 +477,7 @@ namespace WhiteboardProject
         private void canvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             // we are now no longer drawing
-            gridTop.ReleaseMouseCapture();
+            gridCanvas.ReleaseMouseCapture();
         }
         #endregion
     }
