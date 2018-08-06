@@ -32,7 +32,8 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid>
-                <Slider x:Name="slider" Style="{StaticResource SliderStyle}" Value="10" Width="400" ValueChanged="Slider_ValueChanged" Maximum="100" Minimum="1" Margin="25,0,25,0"
+                <Slider x:Name="slider" Style="{StaticResource SliderStyle}" Value="0.1" Width="400" 
+                        ValueChanged="Slider_ValueChanged" Maximum="5" Minimum="1" Margin="25,0,25,0"
                         HorizontalAlignment="Left"  VerticalAlignment="Center"/>
                 <Button HorizontalAlignment="Right" VerticalAlignment="Center"
                     Command="{Binding BtnCommand}" CommandParameter="arrow">

@@ -20,9 +20,21 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
+        <Border x:Name="OutLayer" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed"
+                PreviewMouseLeftButtonDown="OutLayer_PreviewMouseLeftButtonDown"/>
+
+
         <Grid x:Name="gridCanvas">
             <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
-            <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>
+            <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
+                <uc:DrawingView.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding DataContext.SliderValue,
+                        RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window},AncestorLevel=1}}"
+                                ScaleY="{Binding DataContext.SliderValue,
+                        RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window},AncestorLevel=1}}"/>
+                </uc:DrawingView.LayoutTransform>
+            </uc:DrawingView>
+           
             <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <uc:DrawingView MouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
@@ -39,9 +51,7 @@
             </uc:DrawingView>
         </ScrollViewer>-->
             <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
-            <Border x:Name="OutLayer"  HorizontalAlignment="Left" VerticalAlignment="Bottom"  d:IsHidden="True" Visibility="Collapsed">
-
-            </Border>
+           
             <!--<Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
             <uc:PopupInteractive  x:Name="popInteractive" HorizontalAlignment="Left" VerticalAlignment="Center" />
         </Expander>-->

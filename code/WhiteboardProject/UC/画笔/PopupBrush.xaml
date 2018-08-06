@@ -43,7 +43,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <Slider x:Name="slider" ValueChanged="slider_ValueChanged" Style="{StaticResource SliderStyle}" Value="10" Maximum="100" Minimum="1" Margin="25"
+                    <Slider x:Name="slider" ValueChanged="slider_ValueChanged" Style="{StaticResource SliderStyle}" Value="10" Maximum="100" Minimum="1" Margin="28,28,22,28"
                             HorizontalAlignment="Stretch"  VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Grid.Row="1">

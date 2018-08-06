@@ -66,6 +66,14 @@ namespace WhiteboardProject.UC
             AppMessage appMessage = new AppMessage();
             switch (arg.ToString())
             {
+                case "save":
+                case "new":
+                case "open":
+                case "saveas":
+                    appMessage.MsgType = AppMsg.FileDealWith;
+                    appMessage.Tag = arg;
+                    EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
+                    break;
                 case "exit":
                     Process.GetCurrentProcess().Kill();
                     break;

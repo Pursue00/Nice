@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WhiteboardProject.Common;
+using WhiteboardProject.Model;
 
 namespace WhiteboardProject.UC
 {
@@ -86,7 +87,7 @@ namespace WhiteboardProject.UC
         //}
         private void OnRecMsg(AppMessage appMessage)
         {
-            if (appMessage.MsgType == AppMsg.Highlighter || appMessage.MsgType == AppMsg.Seal||appMessage.MsgType==AppMsg.ShapeChanged)
+            if (appMessage.MsgType == AppMsg.Highlighter || appMessage.MsgType == AppMsg.Seal || appMessage.MsgType == AppMsg.ShapeChanged)
             {
                 isBrush = false;
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
@@ -114,31 +115,63 @@ namespace WhiteboardProject.UC
             }
             else if (appMessage.MsgType == AppMsg.ClearErase)
             {
-                this.InkCanvas.EditingMode = InkCanvasEditingMode.Select;
+                /// this.InkCanvas.EditingMode = InkCanvasEditingMode.Select;
+                this.InkCanvas.Strokes.Clear();
             }
-            
+
             else if (appMessage.MsgType == AppMsg.ColorChanged)
             {
-                if(isBrush)
-                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + appMessage.Tag + "/图层1.png");
+                if (isBrush)
+                    Messenger.Default.Send("pack://application:,,,/Image/Brush/" + appMessage.Tag + "/图层1.png");
+            }
+            else if (appMessage.MsgType == AppMsg.FileDealWith)
+            {
+                switch (appMessage.Tag.ToString())
+                {
+                    case "save":
+                        SaveStrokes();
+                        break;
+                    case "new":
+                        break;
+                    case "open":
+                        LoadStrokes();
+                        break;
+                    case "saveas":
+                        break;
+
+                }
             }
         }
 
         void SaveStrokes()
         {
-            using (FileStream fs = new FileStream("inkstrokes.isf", FileMode.Create))
+            using (FileStream fs = new FileStream(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"inkstrokes.isf"), FileMode.Create))
             {
                 this.InkCanvas.Strokes.Save(fs);
                 fs.Close();
             }
+            HandWriting();
         }
 
         void LoadStrokes()
         {
-            FileStream fs = new FileStream("", FileMode.Open, FileAccess.Read);
+            this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+          
+
+            FileStream fs = new FileStream(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inkstrokes.isf"), FileMode.Open, FileAccess.Read);
             StrokeCollection strokes = new StrokeCollection(fs);
-            this.InkCanvas.Strokes = strokes;
+            //this.InkCanvas.StrokeWidth = 22;
+            foreach (var item in strokes)
+            {
+                CustomStroke customStroke = new CustomStroke(item.StylusPoints);
+                customStroke.StrokeWidth = 23;
+                customStroke._selectedColor = "pack://application:,,,/Image/Brush/绿色/图层1.png";
+                this.InkCanvas.Strokes.Add(item);
+            }
+            //this.InkCanvas.Strokes = strokes;
+            //Messenger.Default.Send("pack://application:,,,/Image/Brush/绿色/图层1.png");
             fs.Close();
+            
         }
 
         private void HandWriting()

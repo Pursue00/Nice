@@ -9,10 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <src:CustomRenderingInkCanvas Margin="15,10,10,10" x:Name="InkCanvas">
-            <src:CustomRenderingInkCanvas.LayoutTransform>
-                <ScaleTransform ScaleX="{Binding Path=ZoomSliderValue}"
-                                ScaleY="{Binding Path=ZoomSliderValue}"/>
-            </src:CustomRenderingInkCanvas.LayoutTransform>
+            
             <src:CustomRenderingInkCanvas.Background>
                 <ImageBrush ImageSource="{Binding ImageBrushSource,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </src:CustomRenderingInkCanvas.Background>

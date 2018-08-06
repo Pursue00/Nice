@@ -13,7 +13,7 @@ namespace WhiteboardProject.Model
     public class CustomRenderingInkCanvas : InkCanvas
     {
         private CustomDynamicRenderer customRenderer = new CustomDynamicRenderer();
-        private double StrokeWidth;
+        public double StrokeWidth;
         public string _selectedColor;
         public CustomRenderingInkCanvas()
         {
@@ -23,7 +23,7 @@ namespace WhiteboardProject.Model
             Messenger.Default.Register<Color>(this, ColorNotificationFunc);
             customRenderer.StrokeWidth = StrokeWidth;
             base.DynamicRenderer = this.customRenderer;
-            SolidColorBrush sb = (SolidColorBrush)Brushes.Black;
+            SolidColorBrush sb = (SolidColorBrush)Brushes.Red;
             DrawingAttributes inkDA = new DrawingAttributes();
             inkDA.Width = 1;
             inkDA.Height = 1;
@@ -57,6 +57,7 @@ namespace WhiteboardProject.Model
         {
             this._selectedColor = color;
             customRenderer._selectedColor = this._selectedColor;
+            //this.StrokeWidth = 22;
         }
 
         protected override void OnStrokeCollected(InkCanvasStrokeCollectedEventArgs e)

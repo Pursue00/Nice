@@ -24,6 +24,7 @@ namespace WhiteboardProject.Common
         SliderValueChanged,//漫游缩放值
         BottomLeftNavigation,//左下角消息通知
         ExportFile,//导出
+        FileDealWith,//文件处理逻辑
     }
 
     public enum Shape

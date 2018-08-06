@@ -74,6 +74,7 @@ namespace WhiteboardProject
             //gridCanvas.PreviewMouseLeftButtonUp += canvas_MouseUp;
             //gridCanvas.PreviewMouseLeftButtonDown += canvas_MouseDown;
             this.DataContext = this;
+            this.SliderValue = 1;
             this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
@@ -374,8 +375,9 @@ namespace WhiteboardProject
             {
                 UcShape ucShape = new UcShape();
                 var vm = ucShape.DataContext as UcShapeViewModel;
-                vm.PathData = GlobalUIConfig.IndicatorDescription[shapeEnum];
-             
+                if (GlobalUIConfig.IndicatorDescription.Keys.Contains(shapeEnum))
+                    vm.PathData = GlobalUIConfig.IndicatorDescription[shapeEnum];
+
                 if (!String.IsNullOrEmpty(strokeColor))
                     vm.StrokeColor = strokeColor;
                 ucShape.Tag = "Shape";
@@ -472,6 +474,11 @@ namespace WhiteboardProject
 
             elip.Height = Math.Abs(minY - Math.Abs(height));
             elip.Width = Math.Abs(width);
+        }
+
+        private void OutLayer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
         private void canvas_MouseUp(object sender, MouseButtonEventArgs e)
