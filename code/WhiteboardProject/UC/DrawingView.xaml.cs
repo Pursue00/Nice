@@ -34,57 +34,10 @@ namespace WhiteboardProject.UC
             InitializeComponent();
             vm = new DrawingViewModel();
             this.DataContext = vm;
-            //this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
+            this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
         }
 
-
-        //else if (appMessage.MsgType == AppMsg.Hardpen)
-        //{
-        //    this.InkCanvas.EditingMode = InkCanvasEditingMode.None;
-        //    DrawingAttributes drawingAttributes;
-        //    //创建 DrawingAttributes 类的一个实例  
-
-        //    drawingAttributes = new DrawingAttributes();
-
-        //    //将 InkCanvas 的 DefaultDrawingAttributes 属性的值赋成创建的 DrawingAttributes 类的对象的引用  
-
-        //    //InkCanvas 通过 DefaultDrawingAttributes 属性来获取墨迹的各种设置，该属性的类型为 DrawingAttributes 型  
-
-        //    this.InkCanvas.DefaultDrawingAttributes = drawingAttributes;
-
-
-        //    //设置 DrawingAttributes 的 Color 属性设置颜色  
-
-        //    drawingAttributes.Color = Colors.Red;
-
-        //    //利用 DrawingAttributes 的 Width 和 Height 属性来设置墨迹的宽度和高度  
-
-        //    drawingAttributes.Width = 20;
-
-        //    drawingAttributes.Height = 10;
-
-        //    //利用 DrawingAttributes 的StylusTip 属性可以设置墨迹触笔的形状，默认值是 StylusTip.Ellipse  
-
-        //    //将墨迹的宽度和高度都设置为稍大一些可以清楚的看到差别，如果较小则不太容易看出差别  
-
-        //    drawingAttributes.StylusTip = StylusTip.Rectangle;
-
-
-        //    //将 FitToCurve 属性设置为 true 会在你绘制完一次墨迹后自动利用贝塞尔曲线来对你的墨迹进行平滑处理  
-
-        //    drawingAttributes.FitToCurve = true;
-
-
-        //    //设置 IsHighlighter 属性为 true ，则墨迹显示的时候看上去像是荧光笔  
-
-        //    //使 Stroke 变的透明一些
-        //    drawingAttributes.IsHighlighter = false;
-
-        //    //设置 IgnorePressure 属性为 true墨迹粗细会随压力的增大而增大  
-
-        //    drawingAttributes.IgnorePressure = true;
-        //}
         private void OnRecMsg(AppMessage appMessage)
         {
             if (appMessage.MsgType == AppMsg.Highlighter || appMessage.MsgType == AppMsg.Seal || appMessage.MsgType == AppMsg.ShapeChanged)
@@ -153,7 +106,7 @@ namespace WhiteboardProject.UC
                     case "new":
                         break;
                     case "open":
-                        LoadStrokes();
+                        //LoadStrokes();
                         break;
                     case "saveas":
                         break;
@@ -177,19 +130,18 @@ namespace WhiteboardProject.UC
             HandWriting();
         }
 
-        void LoadStrokes()
+        void LoadStrokes(int index=0)
         {
             this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
-          
 
-            FileStream fs = new FileStream(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "inkstrokes.isf"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "record", index.ToString() + "inkstrokes.isf"), FileMode.Open, FileAccess.Read);
             StrokeCollection strokes = new StrokeCollection(fs);
             //this.InkCanvas.StrokeWidth = 22;
             foreach (var item in strokes)
             {
                 CustomStroke customStroke = new CustomStroke(item.StylusPoints);
                 customStroke.StrokeWidth = 23;
-                customStroke._selectedColor = "pack://application:,,,/Image/Brush/绿色/图层1.png";
+                //customStroke._selectedColor = "pack://application:,,,/Image/Brush/绿色/图层1.png";
                 this.InkCanvas.Strokes.Add(item);
             }
             //this.InkCanvas.Strokes = strokes;

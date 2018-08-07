@@ -12,6 +12,7 @@ namespace WhiteboardProject.UC
     {
         #region Fileds
         public RelayCommand<object> BtnCommand { get; private set; }
+    
         #endregion
 
         #region Property
@@ -105,8 +106,16 @@ namespace WhiteboardProject.UC
                 case "roaming":
                     this.IsVisibilityRoaming = true;
                     break;
+                case "cancel":
+                case "redo":
+                    am.MsgType = AppMsg.BrushCancel;
+                    am.Tag = arg;
+                    EventHub.SysEvents.PubEvent(am);
+                    break;
             }
         }
+
+       
         #endregion
     }
 }

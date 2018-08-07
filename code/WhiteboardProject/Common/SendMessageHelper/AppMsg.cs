@@ -26,6 +26,7 @@ namespace WhiteboardProject.Common
         ExportFile,//导出
         FileDealWith,//文件处理逻辑
         BrushSliderValueChanged,//画笔粗细调整
+        BrushCancel,//画笔撤销重做动作
     }
 
     public enum Shape
