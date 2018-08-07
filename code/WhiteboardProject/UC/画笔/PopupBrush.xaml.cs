@@ -33,6 +33,11 @@ namespace WhiteboardProject.UC
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Messenger.Default.Send(this.slider.Value);
+            AppMessage appMessage = new AppMessage();
+            appMessage.Tag = this.slider.Value;
+            vm.currentSliderValue = this.slider.Value;
+            appMessage.MsgType = AppMsg.BrushSliderValueChanged;
+            EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
         }
 
         private void imageClose_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

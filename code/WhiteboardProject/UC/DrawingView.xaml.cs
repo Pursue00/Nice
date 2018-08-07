@@ -96,7 +96,8 @@ namespace WhiteboardProject.UC
             {
                 isBrush = true;
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
-                Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层3.png");
+                this.InkCanvas.DefaultDrawingAttributes.Width = Convert.ToDouble(appMessage.Tag);
+                this.InkCanvas.DefaultDrawingAttributes.Height = Convert.ToDouble(appMessage.Tag);
             }
             else if (appMessage.MsgType == AppMsg.WritingBrush)
             {
@@ -104,6 +105,8 @@ namespace WhiteboardProject.UC
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
                 //InkCanvas.DefaultDrawingAttributes.Color = Colors.SpringGreen;
                 Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层4.png");
+                this.InkCanvas.DefaultDrawingAttributes.Width = 1;
+                this.InkCanvas.DefaultDrawingAttributes.Height = 1;
             }
             else if (appMessage.MsgType == AppMsg.SelectErase)
             {
@@ -140,6 +143,11 @@ namespace WhiteboardProject.UC
                         break;
 
                 }
+            }
+            else if (appMessage.MsgType == AppMsg.BrushSliderValueChanged)
+            {
+                this.InkCanvas.DefaultDrawingAttributes.Width = Convert.ToDouble(appMessage.Tag);
+                this.InkCanvas.DefaultDrawingAttributes.Height = Convert.ToDouble(appMessage.Tag);
             }
         }
 

@@ -13,7 +13,7 @@ namespace WhiteboardProject.UC
     {
         #region Fileds
         public RelayCommand<object> BtnCommand { get; private set; }
-   
+        public double currentSliderValue;
         #endregion
 
         #region Property
@@ -69,6 +69,7 @@ namespace WhiteboardProject.UC
                     this.IsVisibilityColor = Visibility.Visible;
                     this.IsVisibilityShape = Visibility.Collapsed;
                     am.MsgType = AppMsg.Softpen;
+                    am.Tag = currentSliderValue;
                     EventHub.SysEvents.PubEvent(am);
                     break;
                 //印章笔

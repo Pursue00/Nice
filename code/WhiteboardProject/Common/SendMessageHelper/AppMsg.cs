@@ -25,6 +25,7 @@ namespace WhiteboardProject.Common
         BottomLeftNavigation,//左下角消息通知
         ExportFile,//导出
         FileDealWith,//文件处理逻辑
+        BrushSliderValueChanged,//画笔粗细调整
     }
 
     public enum Shape

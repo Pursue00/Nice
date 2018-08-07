@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Input.StylusPlugIns;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WhiteboardProject.Common;
 
 namespace WhiteboardProject.Model
 {
@@ -14,8 +15,10 @@ namespace WhiteboardProject.Model
         [ThreadStatic]
         public double StrokeWidth = 0.0;
         public string _selectedColor;
+        private bool isSoftBrush;
         protected override void OnDraw(DrawingContext drawingContext, StylusPointCollection stylusPoints, Geometry geometry, Brush fillBrush)
         {
+            if (isSoftBrush) return;
             if (_selectedColor == null) return;
             ImageSource imageSource = new BitmapImage(new Uri(_selectedColor));
             Point point = new Point(double.NegativeInfinity, double.NegativeInfinity);
@@ -68,8 +71,26 @@ namespace WhiteboardProject.Model
 
         protected override void OnStylusDown(RawStylusInput rawStylusInput)
         {
-            this.prevPoint = new Point(double.NegativeInfinity, double.NegativeInfinity);
+            if (!isSoftBrush)
+                this.prevPoint = new Point(double.NegativeInfinity, double.NegativeInfinity);
             base.OnStylusDown(rawStylusInput);
+        }
+
+        public CustomDynamicRenderer()
+        {
+            EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
+        }
+
+        private void OnRecMsg(AppMessage appMessage)
+        {
+            if (appMessage.MsgType == AppMsg.Softpen)
+            {
+                isSoftBrush = true;
+            }
+            else if (appMessage.MsgType == AppMsg.WritingBrush)
+            {
+                isSoftBrush = false;
+            }
         }
     }
 }

@@ -141,7 +141,7 @@ namespace WhiteboardProject.Common
         public virtual void Start()
         {
             this._timer = new DispatcherTimer();
-            this._timer.Interval = TimeSpan.FromMilliseconds(20.0);
+            this._timer.Interval = TimeSpan.FromMilliseconds(40.0);
             this._timer.Tick += new EventHandler(this.loop_timer_Tick);
             this._timer.Start();
         }

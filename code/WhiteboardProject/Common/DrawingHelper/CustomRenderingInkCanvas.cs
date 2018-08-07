@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Media;
+using WhiteboardProject.Common;
 
 namespace WhiteboardProject.Model
 {
@@ -15,6 +16,7 @@ namespace WhiteboardProject.Model
         private CustomDynamicRenderer customRenderer = new CustomDynamicRenderer();
         public double StrokeWidth;
         public string _selectedColor;
+        private bool isSoftBrush;
         public CustomRenderingInkCanvas()
         {
             StrokeWidth = 40;
@@ -29,9 +31,20 @@ namespace WhiteboardProject.Model
             inkDA.Height = 1;
             inkDA.Color = sb.Color;
             inkDA.IsHighlighter = base.DefaultDrawingAttributes.IsHighlighter;
+            EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
             base.DefaultDrawingAttributes = inkDA;
         }
-
+        private void OnRecMsg(AppMessage appMessage)
+        {
+            if (appMessage.MsgType == AppMsg.Softpen)
+            {
+                isSoftBrush = true;
+            }
+            else if (appMessage.MsgType == AppMsg.WritingBrush)
+            {
+                isSoftBrush = false;
+            }
+        }
         private void NotificationFunc(double size)
         {
             StrokeWidth = size;
@@ -62,13 +75,21 @@ namespace WhiteboardProject.Model
 
         protected override void OnStrokeCollected(InkCanvasStrokeCollectedEventArgs e)
         {
-            base.Strokes.Remove(e.Stroke);
-            CustomStroke item = new CustomStroke(e.Stroke.StylusPoints);
-            item.StrokeWidth = StrokeWidth;
-            item._selectedColor = this._selectedColor;
-            base.Strokes.Add(item);
-            InkCanvasStrokeCollectedEventArgs args = new InkCanvasStrokeCollectedEventArgs(item);
-            base.OnStrokeCollected(args);
+            //base.Strokes.Remove(e.Stroke);
+            if (isSoftBrush)
+            {
+
+            }
+            else
+            {
+                CustomStroke item = new CustomStroke(e.Stroke.StylusPoints);
+                item.StrokeWidth = StrokeWidth;
+                item._selectedColor = this._selectedColor;
+                base.Strokes.Add(item);
+                InkCanvasStrokeCollectedEventArgs args = new InkCanvasStrokeCollectedEventArgs(item);
+                base.OnStrokeCollected(args);
+            }
+          
 
         }
     }
