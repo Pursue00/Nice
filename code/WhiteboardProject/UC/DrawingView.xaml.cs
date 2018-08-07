@@ -96,8 +96,18 @@ namespace WhiteboardProject.UC
             {
                 isBrush = true;
                 this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
-                this.InkCanvas.DefaultDrawingAttributes.Width = Convert.ToDouble(appMessage.Tag);
-                this.InkCanvas.DefaultDrawingAttributes.Height = Convert.ToDouble(appMessage.Tag);
+                if (Convert.ToDouble(appMessage.Tag) == 0)
+                {
+                    this.InkCanvas.DefaultDrawingAttributes.Width = 1;
+                    this.InkCanvas.DefaultDrawingAttributes.Height = 1;
+                }
+                else
+                {
+                    this.InkCanvas.DefaultDrawingAttributes.Width = Convert.ToDouble(appMessage.Tag);
+                    this.InkCanvas.DefaultDrawingAttributes.Height = Convert.ToDouble(appMessage.Tag);
+                }
+               
+                this.InkCanvas.DefaultDrawingAttributes.Color = (Color)ColorConverter.ConvertFromString(GlobalUIConfig.ColorDescription[colorType]);
             }
             else if (appMessage.MsgType == AppMsg.WritingBrush)
             {
@@ -107,6 +117,7 @@ namespace WhiteboardProject.UC
                 Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层4.png");
                 this.InkCanvas.DefaultDrawingAttributes.Width = 1;
                 this.InkCanvas.DefaultDrawingAttributes.Height = 1;
+
             }
             else if (appMessage.MsgType == AppMsg.SelectErase)
             {
@@ -125,7 +136,12 @@ namespace WhiteboardProject.UC
             else if (appMessage.MsgType == AppMsg.ColorChanged)
             {
                 if (isBrush)
-                    Messenger.Default.Send("pack://application:,,,/Image/Brush/" + appMessage.Tag + "/图层1.png");
+                {
+                    colorType = appMessage.Tag.ToString();
+                    Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层1.png");
+                    this.InkCanvas.DefaultDrawingAttributes.Color = (Color)ColorConverter.ConvertFromString(GlobalUIConfig.ColorDescription[colorType]);
+                }
+               
             }
             else if (appMessage.MsgType == AppMsg.FileDealWith)
             {
