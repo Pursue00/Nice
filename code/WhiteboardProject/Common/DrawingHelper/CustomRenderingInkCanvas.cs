@@ -48,6 +48,7 @@ namespace WhiteboardProject.Model
             if (appMessage.MsgType == AppMsg.Softpen)
             {
                 isSoftBrush = true;
+                base.DynamicRenderer = new System.Windows.Input.StylusPlugIns.DynamicRenderer();
             }
             else if (appMessage.MsgType == AppMsg.WritingBrush)
             {

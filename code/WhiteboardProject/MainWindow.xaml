@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:WhiteboardProject.UC"
         xmlns:src="clr-namespace:WhiteboardProject.Model"
         xmlns:common="clr-namespace:WhiteboardProject.Common"
-        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
@@ -22,7 +22,10 @@
         </Grid.RowDefinitions>
         <Border x:Name="OutLayer" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed"
                 PreviewMouseLeftButtonDown="OutLayer_PreviewMouseLeftButtonDown"/>
-        <Grid x:Name="gridCanvas">
+        <Grid >
+            <Grid x:Name="gridCanvas">
+                
+            </Grid>
             <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding DataContext.SliderValue,
@@ -32,35 +35,6 @@
                 </uc:DrawingView.LayoutTransform>
             </uc:DrawingView>
             <common:ColorfulFollow Visibility="{Binding IsVisibilityColorfulFollow}"/>
-            <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <uc:DrawingView MouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
-                <uc:DrawingView.LayoutTransform>
-                    <ScaleTransform ScaleX="100" ScaleY="100"/>
-                </uc:DrawingView.LayoutTransform>
-            </uc:DrawingView>
-        </ScrollViewer>-->
-            <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
-                <uc:DrawingView.LayoutTransform>
-                    <ScaleTransform ScaleX="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" 
-                                    ScaleY="{Binding DataContext.SliderValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type UserControl},AncestorLevel=1}}" />
-                </uc:DrawingView.LayoutTransform>
-            </uc:DrawingView>
-        </ScrollViewer>-->
-            <!--<uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown"/>-->
-           
-            <!--<Expander  ExpandDirection="Right" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource ExpanderStyle1}" IsExpanded="True">
-            <uc:PopupInteractive  x:Name="popInteractive" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        </Expander>-->
-
-            <!--<Button x:Name="btnshrink" Click="btnshrink_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/收缩栏-收回.png" Stretch="Uniform"/>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>-->
-
         </Grid>
         <Grid Grid.Row="1">
             <uc:BottomLeftNavigationBar HorizontalAlignment="Left"/>
@@ -80,5 +54,4 @@
             </StackPanel>
         </Grid>
     </Grid>
-    
 </Window>
