@@ -55,6 +55,13 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+            <Button Margin="5,5,10,5" Command="{Binding BtnCommand}" CommandParameter="pptassistant">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="pack://siteoforigin:,,,/Image/菜单栏收缩/PPT助手.png" Stretch="Uniform"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             <src:FishEyePanel>
               
                 <!--<Button>

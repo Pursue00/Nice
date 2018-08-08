@@ -22,7 +22,7 @@ namespace WhiteboardProject.Model
         private int index = 0;
         private int cancelIndex = 0;
         private string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "record");
-        public CustomRenderingInkCanvas()
+        public CustomRenderingInkCanvas() : base()
         {
             if (Directory.Exists(path))
                 Directory.Delete(path, true);

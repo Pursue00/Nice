@@ -1,14 +1,19 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
+using Microsoft.Win32;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using Spire.Pdf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,7 +28,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WhiteboardProject.Common;
 using WhiteboardProject.UC;
-
+using Application = Microsoft.Office.Interop.PowerPoint.Application;
 namespace WhiteboardProject
 {
     /// <summary>
@@ -31,6 +36,12 @@ namespace WhiteboardProject
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private Application _application;
+        private string _path = Environment.CurrentDirectory;
+
+        private ObservableCollection<string> _images;
+        Loading w1;
+
         #region Property
         private Visibility _IsVisibilityColorfulFollow;
 
@@ -51,9 +62,7 @@ namespace WhiteboardProject
                 OnPropertyChanged(()=> SliderValue);
             }
         }
-
-
-
+        
         private bool isSeal;
         private bool isShape;
         private string strokeColor;
@@ -78,6 +87,9 @@ namespace WhiteboardProject
             this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
+
+            _images = new ObservableCollection<string>();
+            _application = new Application();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -158,7 +170,9 @@ namespace WhiteboardProject
                         popupSystem.HorizontalAlignment = HorizontalAlignment.Left;
                         popupSystem.VerticalAlignment = VerticalAlignment.Bottom;
                         OutLayer.Child = popupSystem;
-
+                        break;
+                    case "pptassistant":
+                        gridPPT.Visibility = Visibility.Visible;
                         break;
                 }
                 OutLayer.Margin = new Thickness(-500, 0, 0, 0);
@@ -241,9 +255,7 @@ namespace WhiteboardProject
                 }
             }
         }
-
         
-
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -279,6 +291,76 @@ namespace WhiteboardProject
             }
             base.OnKeyDown(e);
         }
+
+        #region PPT助手
+        /// <summary>
+        /// 将ppt转成图片
+        /// </summary>
+        /// <param name="fileName"></param>
+        private void SaveToImages(object fileName)
+        {
+            var presentation = _application.Presentations.Open((string)fileName, MsoTriState.msoFalse, MsoTriState.msoFalse,
+                                                               MsoTriState.msoFalse);
+            Console.WriteLine(presentation.Application.Version);
+            presentation.SaveAs(_path, PpSaveAsFileType.ppSaveAsJPG, MsoTriState.msoTrue);
+            presentation.Close();
+
+            var files = System.IO.Directory.GetFiles(_path);
+            if (files != null)
+            {
+                foreach (var f in files)
+                {
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        ImageUC uc = new ImageUC();
+                        uc.MouseLeftButtonDown += uc_MouseLeftButtonDown;
+                        uc.IMG.Source = new BitmapImage(new Uri(f, UriKind.RelativeOrAbsolute));
+
+                        list.Items.Add(uc);
+                    }));
+                }
+            }
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                w1.Close();
+            }));
+
+        }
+
+        void uc_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            img.Source = (sender as ImageUC).IMG.Source;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            gridPPT.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            this.img.Source = null;
+            if (list.Items.Count > 0)
+            {
+                this.list.Items.Clear();
+            }
+            var openFileDialog = new OpenFileDialog();
+
+            var showDialog = openFileDialog.ShowDialog(this);
+            if ((bool)showDialog)
+            {
+                w1 = new Loading();
+
+                w1.Show();
+                var fileName = openFileDialog.FileName;
+                _path = string.Format(@"{0}\{1}", _path, DateTime.Now.ToString("yyyyMMddHHmmssms"));
+                System.IO.Directory.CreateDirectory(_path);
+
+                //SaveToImages(fileName);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(SaveToImages), fileName);
+            }
+        }
+        #endregion
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged<T>(Expression<Func<T>> expression)
         {
@@ -319,9 +401,9 @@ namespace WhiteboardProject
             }
 
             this.isdrag = true;
-            Point bottom = e.MouseDevice.GetPosition(bnb);
+            System.Windows.Point bottom = e.MouseDevice.GetPosition(bnb);
             if (bottom.Y >= -20) return;
-            Point p = e.MouseDevice.GetPosition(this);  //获取鼠标相对位置
+            System.Windows.Point p = e.MouseDevice.GetPosition(this);  //获取鼠标相对位置
             if (isSeal)
             {
                 switch (shape)
@@ -420,7 +502,7 @@ namespace WhiteboardProject
             //}
         }
         private System.Windows.Shapes.Path elip = new System.Windows.Shapes.Path();
-        private Point anchorPoint;
+        private System.Windows.Point anchorPoint;
         #region 绘画集合图形
         private void canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -446,7 +528,7 @@ namespace WhiteboardProject
             if (!gridCanvas.IsMouseCaptured)
                 return;
 
-            Point location = e.MouseDevice.GetPosition(gridCanvas);
+            System.Windows.Point location = e.MouseDevice.GetPosition(gridCanvas);
 
             double minX = Math.Min(location.X, anchorPoint.X);
             double minY = Math.Min(location.Y, anchorPoint.Y);

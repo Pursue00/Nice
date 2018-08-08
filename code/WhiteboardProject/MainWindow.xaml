@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:WhiteboardProject.UC"
         xmlns:src="clr-namespace:WhiteboardProject.Model"
         xmlns:common="clr-namespace:WhiteboardProject.Common"
-        mc:Ignorable="d" WindowState="Normal"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
@@ -23,7 +23,6 @@
         <Border x:Name="OutLayer" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed"
                 PreviewMouseLeftButtonDown="OutLayer_PreviewMouseLeftButtonDown"/>
         <Grid x:Name="gridCanvas">
-            
             <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
                 <uc:DrawingView.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding DataContext.SliderValue,
@@ -68,17 +67,18 @@
             <uc:BottomNavigationBar x:Name="bnb" HorizontalAlignment="Center" Margin="0,0,0,-30"/>
             <uc:BottomRightNavigationBar HorizontalAlignment="Right"/>
         </Grid>
-        <!--<DockPanel Grid.Row="1">
-            <uc:BottomLeftNavigationBar DockPanel.Dock="Left"/>
-            <uc:BottomNavigationBar x:Name="bnb" DockPanel.Dock="Bottom" Margin="0,0,0,-30"/>
-            <uc:BottomRightNavigationBar DockPanel.Dock="Right"/>
-        </DockPanel>-->
-        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <uc:DrawingView PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">
-                <uc:DrawingView.LayoutTransform>
-                    <ScaleTransform ScaleX="{Binding SliderValue}" ScaleY="{Binding SliderValue}"/>
-                </uc:DrawingView.LayoutTransform>
-            </uc:DrawingView>
-        </ScrollViewer>-->
+        <Grid x:Name="gridPPT" Visibility="Collapsed" Grid.Row="0" Grid.RowSpan="2" Background="#AA000000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="285"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="list" Grid.Column="0" Background="Transparent"/>
+            <Image x:Name="img" Grid.Column="1" Stretch="Uniform" Margin="10"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20">
+                <Button Click="Button_Click_2" Margin="20" Width="40" Height="30" Content="导入" FontSize="15"  />
+                <Button Click="Button_Click_1" Margin="20" Width="40" Height="30" Content="关闭" FontSize="15" />
+            </StackPanel>
+        </Grid>
     </Grid>
+    
 </Window>
