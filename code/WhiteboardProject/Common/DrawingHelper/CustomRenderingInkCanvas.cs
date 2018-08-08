@@ -20,11 +20,13 @@ namespace WhiteboardProject.Model
         private bool isSoftBrush;
         private bool isCancel;
         private int index = 0;
+        private int cancelIndex = 0;
         private string path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "record");
         public CustomRenderingInkCanvas()
         {
-            Directory.Delete(path, true);
-          
+            if (Directory.Exists(path))
+                Directory.Delete(path, true);
+            Directory.CreateDirectory(path);
             StrokeWidth = 40;
             Messenger.Default.Register<double>(this, NotificationFunc);
             Messenger.Default.Register<string>(this, ColorPathNotificationFunc);
@@ -55,15 +57,19 @@ namespace WhiteboardProject.Model
             else if (appMessage.MsgType == AppMsg.BrushCancel)
             {
                 isCancel = true;
-              
-                switch (appMessage.Tag)
+                if (cancelIndex >= 0)
                 {
-                    case "cancel":
-                        
-                        break;
-                    case "redo":
-                        break;
+                    switch (appMessage.Tag)
+                    {
+                        case "cancel":
+                            LoadStrokes(cancelIndex -= 1);
+                            break;
+                        case "redo":
+                            LoadStrokes(cancelIndex += 1);
+                            break;
+                    }
                 }
+               
             }
         }
 
@@ -98,6 +104,16 @@ namespace WhiteboardProject.Model
 
         protected override void OnStrokeCollected(InkCanvasStrokeCollectedEventArgs e)
         {
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
+            if (isCancel)
+            {
+                int currentIndex = dir.GetFiles().Length;
+                for (int i = cancelIndex; i < currentIndex; i++)
+                {
+                    File.Delete(System.IO.Path.Combine(path, (i + 1).ToString() + "inkstrokes.isf"));
+                }
+                index = cancelIndex;
+            }
             index++;
             //base.Strokes.Remove(e.Stroke);
             if (isSoftBrush)
@@ -114,21 +130,26 @@ namespace WhiteboardProject.Model
                 base.OnStrokeCollected(args);
             }
 
-            using (FileStream fs = new FileStream(System.IO.Path.Combine(path,index.ToString()+ "inkstrokes.isf"), FileMode.Create))
+            using (FileStream fs = new FileStream(System.IO.Path.Combine(path, index.ToString() + "inkstrokes.isf"), FileMode.Create))
             {
                 base.Strokes.Save(fs);
                 fs.Close();
             }
-
-           
+            
+            int fileNum = dir.GetFiles().Length;
+            cancelIndex = fileNum;
         }
 
         void LoadStrokes(int index = 0)
         {
-            base.Strokes.Clear();
+           
             //base.Strokes.EditingMode = InkCanvasEditingMode.Ink;
-
-            FileStream fs = new FileStream(System.IO.Path.Combine(path, index.ToString() + "inkstrokes.isf"), FileMode.Open, FileAccess.Read);
+            if (index <= 0) return;
+            string filePath = System.IO.Path.Combine(path, index.ToString() + "inkstrokes.isf");
+            if (!File.Exists(filePath))
+                return;
+            base.Strokes.Clear();
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             StrokeCollection strokes = new StrokeCollection(fs);
             //this.InkCanvas.StrokeWidth = 22;
             foreach (var item in strokes)
@@ -141,8 +162,7 @@ namespace WhiteboardProject.Model
             //this.InkCanvas.Strokes = strokes;
             //Messenger.Default.Send("pack://application:,,,/Image/Brush/绿色/图层1.png");
             fs.Close();
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(path);
-            int fileNum = dir.GetFiles().Length;
+         
         }
 
     }
