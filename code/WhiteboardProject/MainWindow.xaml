@@ -23,7 +23,7 @@
         <Border x:Name="OutLayer" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed"
                 PreviewMouseLeftButtonDown="OutLayer_PreviewMouseLeftButtonDown"/>
         <Grid >
-            <Grid x:Name="gridCanvas">
+            <Grid x:Name="gridCanvas" Panel.ZIndex="2">
                 
             </Grid>
             <uc:DrawingView x:Name="drawingView" PreviewMouseLeftButtonDown="DrawingView_PreviewMouseLeftButtonDown">

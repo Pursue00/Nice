@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Office.Core;
-using Microsoft.Office.Interop.PowerPoint;
+//using Microsoft.Office.Core;
+//using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Win32;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
@@ -28,7 +28,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WhiteboardProject.Common;
 using WhiteboardProject.UC;
-using Application = Microsoft.Office.Interop.PowerPoint.Application;
+//using Application = Microsoft.Office.Interop.PowerPoint.Application;
 namespace WhiteboardProject
 {
     /// <summary>
@@ -89,7 +89,7 @@ namespace WhiteboardProject
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
 
             _images = new ObservableCollection<string>();
-            _application = new Application();
+            //_application = new Application();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -297,35 +297,35 @@ namespace WhiteboardProject
         /// 将ppt转成图片
         /// </summary>
         /// <param name="fileName"></param>
-        private void SaveToImages(object fileName)
-        {
-            var presentation = _application.Presentations.Open((string)fileName, MsoTriState.msoFalse, MsoTriState.msoFalse,
-                                                               MsoTriState.msoFalse);
-            Console.WriteLine(presentation.Application.Version);
-            presentation.SaveAs(_path, PpSaveAsFileType.ppSaveAsJPG, MsoTriState.msoTrue);
-            presentation.Close();
+        //private void SaveToImages(object fileName)
+        //{
+        //    var presentation = _application.Presentations.Open((string)fileName, MsoTriState.msoFalse, MsoTriState.msoFalse,
+        //                                                       MsoTriState.msoFalse);
+        //    Console.WriteLine(presentation.Application.Version);
+        //    presentation.SaveAs(_path, PpSaveAsFileType.ppSaveAsJPG, MsoTriState.msoTrue);
+        //    presentation.Close();
 
-            var files = System.IO.Directory.GetFiles(_path);
-            if (files != null)
-            {
-                foreach (var f in files)
-                {
-                    this.Dispatcher.Invoke(new Action(() =>
-                    {
-                        ImageUC uc = new ImageUC();
-                        uc.MouseLeftButtonDown += uc_MouseLeftButtonDown;
-                        uc.IMG.Source = new BitmapImage(new Uri(f, UriKind.RelativeOrAbsolute));
+        //    var files = System.IO.Directory.GetFiles(_path);
+        //    if (files != null)
+        //    {
+        //        foreach (var f in files)
+        //        {
+        //            this.Dispatcher.Invoke(new Action(() =>
+        //            {
+        //                ImageUC uc = new ImageUC();
+        //                uc.MouseLeftButtonDown += uc_MouseLeftButtonDown;
+        //                uc.IMG.Source = new BitmapImage(new Uri(f, UriKind.RelativeOrAbsolute));
 
-                        list.Items.Add(uc);
-                    }));
-                }
-            }
-            this.Dispatcher.Invoke(new Action(() =>
-            {
-                w1.Close();
-            }));
+        //                list.Items.Add(uc);
+        //            }));
+        //        }
+        //    }
+        //    this.Dispatcher.Invoke(new Action(() =>
+        //    {
+        //        w1.Close();
+        //    }));
 
-        }
+        //}
 
         void uc_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -355,9 +355,8 @@ namespace WhiteboardProject
                 var fileName = openFileDialog.FileName;
                 _path = string.Format(@"{0}\{1}", _path, DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 System.IO.Directory.CreateDirectory(_path);
-
-                //SaveToImages(fileName);
-                ThreadPool.QueueUserWorkItem(new WaitCallback(SaveToImages), fileName);
+                
+                //ThreadPool.QueueUserWorkItem(new WaitCallback(SaveToImages), fileName);
             }
         }
         #endregion
@@ -467,6 +466,7 @@ namespace WhiteboardProject
                 ucShape.VerticalAlignment = VerticalAlignment.Top;
                 ucShape.Margin = new Thickness(p.X - 40, p.Y - 40, 0, 0);
                 this.gridCanvas.Children.Add(ucShape);
+                //this.gridCanvas.
             }
             //this.uIElementCollection = this.gridCanvas;
         }
