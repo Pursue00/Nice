@@ -59,7 +59,7 @@ namespace WhiteboardProject.UC
                     this.InkCanvas.DefaultDrawingAttributes.Width = Convert.ToDouble(appMessage.Tag);
                     this.InkCanvas.DefaultDrawingAttributes.Height = Convert.ToDouble(appMessage.Tag);
                 }
-               
+
                 this.InkCanvas.DefaultDrawingAttributes.Color = (Color)ColorConverter.ConvertFromString(GlobalUIConfig.ColorDescription[colorType]);
             }
             else if (appMessage.MsgType == AppMsg.WritingBrush)
@@ -94,24 +94,33 @@ namespace WhiteboardProject.UC
                     Messenger.Default.Send("pack://application:,,,/Image/Brush/" + colorType + "/图层1.png");
                     this.InkCanvas.DefaultDrawingAttributes.Color = (Color)ColorConverter.ConvertFromString(GlobalUIConfig.ColorDescription[colorType]);
                 }
-               
+
             }
             else if (appMessage.MsgType == AppMsg.FileDealWith)
             {
                 switch (appMessage.Tag.ToString())
                 {
+                    case "open":
+                        LoadData();
+                        break;
                     case "save":
-                        SaveStrokes();
+                    case "saveas":
+                        SaveData();
                         break;
                     case "new":
-                        this.InkCanvas.Strokes.Clear();
-                        break;
-                    case "open":
-                        //LoadStrokes();
-                        break;
-                    case "saveas":
-                        break;
+                        if (this.InkCanvas.Strokes.Count > 0)
+                        {
+                            System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("当前有未保存的内容，是否保存？", "提示信息", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+                            if (dialogResult.ToString() == "OK")
+                            {
+                                SaveData();
+                            }
+                            else
+                                this.InkCanvas.Strokes.Clear();
+                        }
 
+                        break;
+                  
                 }
             }
             else if (appMessage.MsgType == AppMsg.BrushSliderValueChanged)
@@ -121,9 +130,52 @@ namespace WhiteboardProject.UC
             }
         }
 
-        void SaveStrokes()
+        private void SaveData()
         {
-            using (FileStream fs = new FileStream(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"inkstrokes.isf"), FileMode.Create))
+            string filter = ".isf";
+            System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            //设置文件类型   
+            saveFileDialog1.Filter = " " + filter + " files(*." + filter + ")|*." + filter + "|All files(*.*)|*.*";
+            //设置默认文件类型显示顺序   
+            saveFileDialog1.FilterIndex = 1;
+            //保存对话框是否记忆上次打开的目录   
+            saveFileDialog1.RestoreDirectory = true;
+            //点了保存按钮进入   
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                //获得文件路径   
+                string localFilePath = saveFileDialog1.FileName.ToString();
+                if (File.Exists(localFilePath))
+                    LoadStrokes(localFilePath);
+                else
+                    SaveStrokes(localFilePath);
+            }
+        }
+
+        private void LoadData()
+        {
+            string filter = ".isf";
+            System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            //设置文件类型   
+            openFileDialog.Filter = " " + filter + " files(*." + filter + ")|*." + filter + "|All files(*.*)|*.*";
+            //设置默认文件类型显示顺序   
+            openFileDialog.FilterIndex = 1;
+            //保存对话框是否记忆上次打开的目录   
+            openFileDialog.RestoreDirectory = true;
+            //点了保存按钮进入   
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                //获得文件路径   
+                string localFilePath = openFileDialog.FileName.ToString();
+                if (File.Exists(localFilePath))
+                    LoadStrokes(localFilePath);
+              
+            }
+        }
+
+        void SaveStrokes(string filepath)
+        {
+            using (FileStream fs = new FileStream(filepath, FileMode.Create))
             {
                 this.InkCanvas.Strokes.Save(fs);
                 fs.Close();
@@ -131,11 +183,11 @@ namespace WhiteboardProject.UC
            
         }
 
-        void LoadStrokes(int index=0)
+        void LoadStrokes(string filepath,int index=0)
         {
             this.InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
 
-            FileStream fs = new FileStream(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "record", index.ToString() + "inkstrokes.isf"), FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read);
             StrokeCollection strokes = new StrokeCollection(fs);
             //this.InkCanvas.StrokeWidth = 22;
             foreach (var item in strokes)
