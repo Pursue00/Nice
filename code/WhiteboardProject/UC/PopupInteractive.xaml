@@ -209,7 +209,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button Command="{Binding BtnCommand}" CommandParameter="word">
+                        <Button Command="{Binding BtnCommand}" CommandParameter="doc">
                             <Button.Template>
                                 <ControlTemplate>
                                     <StackPanel>

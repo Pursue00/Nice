@@ -20,9 +20,12 @@ namespace WhiteboardProject.UC
     /// </summary>
     public partial class BottomRightNavigationBar : UserControl
     {
+        BottomRightNavigationBarViewModel vm;
         public BottomRightNavigationBar()
         {
             InitializeComponent();
+            vm = new BottomRightNavigationBarViewModel();
+            this.DataContext = vm;
         }
     }
 }

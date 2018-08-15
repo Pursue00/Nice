@@ -75,7 +75,8 @@ namespace WhiteboardProject
         private bool isExpand = false;
         #endregion
         BackgroundWorker bw = new BackgroundWorker();
-        private string srcFile, destFile;
+        private string tempFilePath, localFilePath;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -174,6 +175,10 @@ namespace WhiteboardProject
                     case "pptassistant":
                         gridPPT.Visibility = Visibility.Visible;
                         break;
+                    case "change":
+                        this.WindowState = WindowState.Minimized;
+
+                        break;
                 }
                 OutLayer.Margin = new Thickness(-500, 0, 0, 0);
                 OutLayer.Visibility = Visibility.Visible;
@@ -188,7 +193,7 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.ExportFile)
             {
-                string localFilePath, fileNameExt, newFileName, FilePath, filter, picturePath;
+                string fileNameExt, newFileName, FilePath, filter, picturePath;
                 filter = appMessage.Tag.ToString();
                 System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
                 //设置文件类型   
@@ -206,8 +211,8 @@ namespace WhiteboardProject
                         picturePath = localFilePath.Replace("pdf", "png");
                     else if (localFilePath.EndsWith("pptx"))
                         picturePath = localFilePath.Replace("pptx", "png");
-                    else if (localFilePath.EndsWith("word"))
-                        picturePath = localFilePath.Replace("word", "png");
+                    else if (localFilePath.EndsWith("doc"))
+                        picturePath = localFilePath.Replace("doc", "png");
                     else
                         picturePath = localFilePath;
                     //获取文件名，不带路径   
@@ -218,8 +223,8 @@ namespace WhiteboardProject
                     newFileName = DateTime.Now.ToString("yyyyMMdd") + fileNameExt;
                     //System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();//输出文件 
 
-                    RenderTargetBitmap rtb = new RenderTargetBitmap(Convert.ToInt32(drawingView.ActualWidth), Convert.ToInt32(drawingView.ActualHeight), 96, 96, PixelFormats.Pbgra32);
-                    rtb.Render(drawingView);
+                    RenderTargetBitmap rtb = new RenderTargetBitmap(Convert.ToInt32(gd_canvas.ActualWidth), Convert.ToInt32(gd_canvas.ActualHeight), 96, 96, PixelFormats.Pbgra32);
+                    rtb.Render(gd_canvas);
                     //fs输出带文字或图片的文件，就看需求了 
                     PngBitmapEncoder png = new PngBitmapEncoder();
                     png.Frames.Add(BitmapFrame.Create(rtb));
@@ -230,12 +235,11 @@ namespace WhiteboardProject
 
                     switch (appMessage.Tag.ToString())
                     {
-                        //case "picture":
-                           
-                        //    break;
+                        case "png":
+                            MessageBox.Show("导出图片成功！");
+                            break;
                         case "pdf":
                             //image to pdf
-                          
                             bw.RunWorkerAsync(new string[2] { picturePath, localFilePath });
                             bw.DoWork += bw_DoWork;
                             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
@@ -243,13 +247,12 @@ namespace WhiteboardProject
                         case "pptx":
                             break;
                        
-                        case "word":
-                            //pdf to word
-                            Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
-                            pdf.LoadFromFile(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CefSharp.pdf"));
-                            string output = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.doc");
-                            pdf.SaveToFile(output, FileFormat.DOC);
-                            System.Diagnostics.Process.Start(output);
+                        case "doc":
+                            //png to pdf
+                            tempFilePath =  localFilePath.Replace("doc", "pdf");
+                            bw.RunWorkerAsync(new string[2] { picturePath, tempFilePath });
+                            bw.DoWork += bw_DoWork;
+                            bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
                             break;
                     }
                 }
@@ -280,7 +283,18 @@ namespace WhiteboardProject
         }
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (localFilePath.EndsWith("pdf"))
+                MessageBox.Show("导出pdf文件成功！");
+            else
+            {
+                //pdf to word
+                Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
+                pdf.LoadFromFile(tempFilePath);
+                //string output = System.IO.Path.Combine(picturePath, "output.doc");
+                pdf.SaveToFile(localFilePath, FileFormat.DOC);
+                //System.Diagnostics.Process.Start(output);
+                MessageBox.Show("导出word文件成功！");
+            }
         }
 
         protected override void OnKeyDown(KeyEventArgs e)

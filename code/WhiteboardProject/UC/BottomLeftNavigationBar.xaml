@@ -48,7 +48,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Margin="5,5,10,5">
+            <Button Margin="5,5,10,5" Command="{Binding BtnCommand}" CommandParameter="change">
                 <Button.Template>
                     <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/左边/桌面.png" Stretch="Uniform"/>

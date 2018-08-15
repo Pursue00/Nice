@@ -11,15 +11,16 @@ namespace WhiteboardProject.UC
     {
         #region Fileds
         public RelayCommand<object> BtnCommand { get; private set; }
+        int index = 0;
         #endregion
 
         #region Property
-        private bool _isVisibilityHardpen;
+        private string number;
 
-        public bool IsVisibilityHardpen
+        public string Number
         {
-            get { return _isVisibilityHardpen; }
-            set { _isVisibilityHardpen = value; OnPropertyChanged(() => IsVisibilityHardpen); }
+            get { return number; }
+            set { number = value; OnPropertyChanged(() => Number); }
         }
 
         #endregion
@@ -36,31 +37,21 @@ namespace WhiteboardProject.UC
         {
             switch (arg)
             {
-                case "arrow":
-                    this.IsVisibilityHardpen = true;
+                case "add":
+                    index += 1;
                     break;
-                case "hardpen":
-                    this.IsVisibilityHardpen = true;
+                case "previous":
+                    index -= 1;
                     break;
-                case "eraser":
-                    this.IsVisibilityHardpen = true;
+                case "next":
+                    index += 1;
                     break;
                 case "writingbrush":
-                    this.IsVisibilityHardpen = true;
+
                     break;
-                case "highlighter":
-                    this.IsVisibilityHardpen = true;
-                    break;
-                case "seal":
-                    this.IsVisibilityHardpen = true;
-                    break;
-                case "return":
-                    this.IsVisibilityHardpen = true;
-                    break;
-                case "reset":
-                    this.IsVisibilityHardpen = true;
-                    break;
+
             }
+            this.Number = index.ToString();
         }
         #endregion
     }

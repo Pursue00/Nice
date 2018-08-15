@@ -104,6 +104,7 @@ namespace WhiteboardProject.UC
                         SaveStrokes();
                         break;
                     case "new":
+                        this.InkCanvas.Strokes.Clear();
                         break;
                     case "open":
                         //LoadStrokes();
@@ -127,7 +128,7 @@ namespace WhiteboardProject.UC
                 this.InkCanvas.Strokes.Save(fs);
                 fs.Close();
             }
-            HandWriting();
+           
         }
 
         void LoadStrokes(int index=0)

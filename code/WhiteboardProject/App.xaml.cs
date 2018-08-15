@@ -24,9 +24,9 @@ namespace WhiteboardProject
         public App()
         {
             //判断是否需要注册
-           IsHaveRegist();
+           //IsHaveRegist();
             //授权限制
-           Authorization();
+          // Authorization();
         }
 
         private void IsHaveRegist()

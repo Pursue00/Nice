@@ -87,8 +87,8 @@ namespace WhiteboardProject.UC
                     break;
                 case "pdf":
                 case "pptx":
-                case "picture":
-                case "word":
+                case "png":
+                case "doc":
                     appMessage.MsgType = AppMsg.ExportFile;
                     appMessage.Tag = arg;
                     EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
