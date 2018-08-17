@@ -93,7 +93,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="setting">
                     <Button.Template>
                         <ControlTemplate>
                             <StackPanel>
@@ -118,7 +118,7 @@
                         <ControlTemplate>
                             <StackPanel>
                                 <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/书写识别.png" Style="{StaticResource imageStyle}"/>
-                                <TextBlock Text="退出" Style="{StaticResource tbStyle}"/>
+                                <TextBlock Text="书写" Style="{StaticResource tbStyle}"/>
                             </StackPanel>
                         </ControlTemplate>
                     </Button.Template>
@@ -128,7 +128,7 @@
                         <ControlTemplate>
                             <StackPanel>
                                 <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/PPT助手.png" Style="{StaticResource imageStyle}"/>
-                                <TextBlock Text="退出" Style="{StaticResource tbStyle}"/>
+                                <TextBlock Text="PPT助手" Style="{StaticResource tbStyle}"/>
                             </StackPanel>
                         </ControlTemplate>
                     </Button.Template>

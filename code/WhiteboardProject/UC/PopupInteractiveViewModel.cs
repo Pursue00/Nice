@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WhiteboardProject.Common;
 using WhiteboardProject.Model;
+using WhiteboardProject.Views;
 
 namespace WhiteboardProject.UC
 {
@@ -92,6 +93,11 @@ namespace WhiteboardProject.UC
                     appMessage.MsgType = AppMsg.ExportFile;
                     appMessage.Tag = arg;
                     EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
+                    break;
+                case "setting":
+                    Setting setting = new Setting();
+                    setting.Owner = Application.Current.MainWindow;
+                    setting.ShowDialog();
                     break;
             }
         }

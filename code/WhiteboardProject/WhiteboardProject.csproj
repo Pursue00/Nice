@@ -953,5 +953,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InkCanvas\InkCanvas.csproj">
+      <Project>{6709cb39-cb8a-4e6e-aa1b-0133b75f0e85}</Project>
+      <Name>InkCanvas</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

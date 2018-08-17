@@ -177,7 +177,9 @@ namespace WhiteboardProject
                         break;
                     case "change":
                         this.WindowState = WindowState.Minimized;
-
+                        BitsOfStuff.InkPadWindow INK = new BitsOfStuff.InkPadWindow(@"D:\", "1");
+                        INK.Show();
+                       
                         break;
                 }
                 OutLayer.Margin = new Thickness(-500, 0, 0, 0);
