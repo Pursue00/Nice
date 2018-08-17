@@ -103,7 +103,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="mode">
                     <Button.Template>
                         <ControlTemplate>
                             <StackPanel>
@@ -230,9 +230,50 @@
                             </Button.Template>
                         </Button>
                     </StackPanel>
+                    <StackPanel Visibility="{Binding IsVisibilityMode}" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                        <Button Command="{Binding BtnCommand}" CommandParameter="prepar">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/模式/备课.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="备课模式" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="teaching">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/模式/授课.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="授课模式" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="desktop">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/模式/桌面.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="桌面模式" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Command="{Binding BtnCommand}" CommandParameter="picture">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <Image Source="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/导出/图片.png" Style="{StaticResource imageStyle}"/>
+                                        <TextBlock Text="图片" Style="{StaticResource tbStyle}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Border>
-           
         </Grid>
     </Grid>
 </UserControl>

@@ -31,6 +31,7 @@
                       Offset="1" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="us-BorderDefault" Color="#23272c"/>
+    <SolidColorBrush x:Key="us-BorderWeight"  Color="#405471"/>
     <!--文本前景色-->
     <Color x:Key="us-TextForegroundColor">#c9d0d7</Color>
     <!---按钮brush定义，可以先定义一组颜色值-->

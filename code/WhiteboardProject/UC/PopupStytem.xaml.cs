@@ -20,9 +20,12 @@ namespace WhiteboardProject.UC
     /// </summary>
     public partial class PopopStytem : UserControl
     {
+        PopupStytemViewModel vm;
         public PopopStytem()
         {
             InitializeComponent();
+            vm = new PopupStytemViewModel();
+            this.DataContext = this;
         }
     }
 }

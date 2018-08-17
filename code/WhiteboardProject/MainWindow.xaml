@@ -15,7 +15,12 @@
             <Setter Property="Margin" Value="0"/>
         </Style>
     </Window.Resources>
-    <Grid x:Name="gridTop" Background="#006c40" MouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
+    <Grid x:Name="gridTop" MouseLeftButtonDown="gridTop_PreviewMouseLeftButtonDown">
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding DataContext.ThemeBackground,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window},AncestorLevel=1}}" 
+                        Stretch="Uniform"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>

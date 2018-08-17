@@ -50,6 +50,21 @@ namespace WhiteboardProject.UC
             }
         }
 
+        /// <summary>
+        /// 是否显示模式
+        /// </summary>
+        private Visibility isVisibilityMode;
+
+        public Visibility IsVisibilityMode
+        {
+            get { return isVisibilityMode; }
+            set
+            {
+                isVisibilityMode = value;
+                OnPropertyChanged(() => IsVisibilityMode);
+            }
+        }
+
         #endregion
 
         #region Constructure
@@ -58,6 +73,7 @@ namespace WhiteboardProject.UC
             this.BtnCommand = new RelayCommand<object>(BtnCommandExcute);
             this.IsVisibilityFile = Visibility.Collapsed;
             this.IsVisibilityExport = Visibility.Collapsed;
+            this.IsVisibilityMode = Visibility.Collapsed;
         }
         #endregion
 
@@ -86,6 +102,11 @@ namespace WhiteboardProject.UC
                     this.IsVisibilityExport = Visibility.Visible;
                     this.IsVisibilityFile = Visibility.Collapsed;
                     break;
+                case "mode":
+                    this.IsVisibilityExport = Visibility.Collapsed;
+                    this.IsVisibilityFile = Visibility.Collapsed;
+                    this.IsVisibilityMode = Visibility.Visible;
+                    break;
                 case "pdf":
                 case "pptx":
                 case "png":
@@ -98,6 +119,21 @@ namespace WhiteboardProject.UC
                     Setting setting = new Setting();
                     setting.Owner = Application.Current.MainWindow;
                     setting.ShowDialog();
+                    break;
+                case "prepar":
+                    Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                    Application.Current.MainWindow.WindowStyle = WindowStyle.SingleBorderWindow;
+                    Application.Current.MainWindow.ShowInTaskbar = true;
+                    break;
+                case "teaching":
+                    Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                    Application.Current.MainWindow.WindowStyle = WindowStyle.None;
+                    Application.Current.MainWindow.ShowInTaskbar = false;
+                    break;
+                case "desktop":
+                    Application.Current.MainWindow.WindowState = WindowState.Minimized;
+                    BitsOfStuff.InkPadWindow INK = new BitsOfStuff.InkPadWindow(@"D:\", "1");
+                    INK.Show();
                     break;
             }
         }

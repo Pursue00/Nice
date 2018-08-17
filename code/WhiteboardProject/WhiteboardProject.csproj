@@ -165,6 +165,7 @@
       <DependentUpon>PopupInteractive.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC\PopupInteractiveViewModel.cs" />
+    <Compile Include="UC\PopupStytemViewModel.cs" />
     <Compile Include="UC\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
@@ -753,7 +754,7 @@
     <None Include="Image\主界面切图\主界面切图\矩形1拷贝.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Image\主界面切图\主界面切图\色值：006c40.png">
+    <None Include="Image\主界面切图\主界面切图\背景.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Image\系统图标展开切图\系统图标展开切图\主题.png">
@@ -958,6 +959,11 @@
       <Project>{6709cb39-cb8a-4e6e-aa1b-0133b75f0e85}</Project>
       <Name>InkCanvas</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\主界面切图\主界面切图\06.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

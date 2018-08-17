@@ -77,6 +77,33 @@
                     </Button.Template>
                 </Button>
             </StackPanel>
+
+            <StackPanel Grid.Row="1" Visibility="{Binding IsVisibilityTheme}" Orientation="Vertical"  VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                <Button Command="{Binding BtnCommand}" CommandParameter="fullcolor" Width="260">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/系统图标展开切图/系统图标展开切图/分类底色.png" Stretch="Uniform"/>
+                                </Grid.Background>
+                                <TextBlock Text="纯色背景" Style="{StaticResource tbStyle}" Foreground="White"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding BtnCommand}" CommandParameter="picture" Width="260">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/系统图标展开切图/系统图标展开切图/分类底色.png" Stretch="Uniform"/>
+                                </Grid.Background>
+                                <TextBlock Text="图片背景" Style="{StaticResource tbStyle}" Foreground="White"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

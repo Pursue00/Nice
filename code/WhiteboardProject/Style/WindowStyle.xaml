@@ -6,7 +6,7 @@
         <Setter Property="FontFamily" Value="Microsoft Yahei" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="#c9d0d7" />
-        <Setter Property="BorderBrush" Value="{DynamicResource us-BorderDefault}" />
+        <Setter Property="BorderBrush" Value="#dddddd" />
         <Setter Property="Background" Value="#404852" />
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Width" Value="630" />
@@ -72,7 +72,7 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource WindowBorderActive}" />
+                            <Setter Property="BorderBrush" Value="#dddddd" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

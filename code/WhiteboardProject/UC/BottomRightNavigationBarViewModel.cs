@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WhiteboardProject.Common;
 using WhiteboardProject.Model;
 
 namespace WhiteboardProject.UC
@@ -35,6 +36,7 @@ namespace WhiteboardProject.UC
         #region Public Method
         public void BtnCommandExcute(object arg)
         {
+            AppMessage appMessage = new AppMessage();
             switch (arg)
             {
                 case "add":
@@ -52,6 +54,10 @@ namespace WhiteboardProject.UC
 
             }
             this.Number = index.ToString();
+            appMessage.MsgType = AppMsg.BottomRightNavigation;
+            appMessage.Tag = arg;
+            appMessage.Tell = index.ToString();
+            EventHub.SysEvents.PubEvent(appMessage);
         }
         #endregion
     }

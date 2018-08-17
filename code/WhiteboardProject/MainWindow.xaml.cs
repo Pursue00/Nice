@@ -62,7 +62,18 @@ namespace WhiteboardProject
                 OnPropertyChanged(()=> SliderValue);
             }
         }
-        
+
+        /// <summary>
+        /// 主题背景色
+        /// </summary>
+        private string themeBackground;
+
+        public string ThemeBackground
+        {
+            get { return themeBackground; }
+            set { themeBackground = value; OnPropertyChanged(()=> ThemeBackground); }
+        }
+
         private bool isSeal;
         private bool isShape;
         private string strokeColor;
@@ -84,6 +95,7 @@ namespace WhiteboardProject
             //gridCanvas.PreviewMouseLeftButtonUp += canvas_MouseUp;
             //gridCanvas.PreviewMouseLeftButtonDown += canvas_MouseDown;
             this.DataContext = this;
+            this.ThemeBackground = "pack://siteoforigin:,,,/Image/主界面切图/主界面切图/背景.png";
             this.SliderValue = 1;
             this.Loaded += MainWindow_Loaded;
             IsVisibilityColorfulFollow = Visibility.Collapsed;
@@ -179,7 +191,7 @@ namespace WhiteboardProject
                         this.WindowState = WindowState.Minimized;
                         BitsOfStuff.InkPadWindow INK = new BitsOfStuff.InkPadWindow(@"D:\", "1");
                         INK.Show();
-                       
+
                         break;
                 }
                 OutLayer.Margin = new Thickness(-500, 0, 0, 0);
@@ -193,9 +205,30 @@ namespace WhiteboardProject
 
                 OutLayer.BeginAnimation(Border.MarginProperty, moveLeft);
             }
+            else if (appMessage.MsgType == AppMsg.BottomRightNavigation)
+            {
+                switch (appMessage.Tag.ToString())
+                {
+                    case "add":
+                        string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SaveFile/Picture");
+                        if (!Directory.Exists(filePath))
+                            Directory.CreateDirectory(filePath);
+                        RenderTargetBitmap rtb = new RenderTargetBitmap(Convert.ToInt32(gd_canvas.ActualWidth), Convert.ToInt32(gd_canvas.ActualHeight), 96, 96, PixelFormats.Pbgra32);
+                        rtb.Render(gd_canvas);
+                        //fs输出带文字或图片的文件，就看需求了 
+                        PngBitmapEncoder png = new PngBitmapEncoder();
+                        png.Frames.Add(BitmapFrame.Create(rtb));
+                        using (Stream fs = File.Create(System.IO.Path.Combine(filePath, DateTime.Now.ToString("yyyyMMdd") + "_" + appMessage.Tell + ".png")))
+                        {
+                            png.Save(fs);
+                        }
+                        break;
+                }
+
+            }
             else if (appMessage.MsgType == AppMsg.ExportFile)
             {
-                string fileNameExt, newFileName, FilePath, filter, picturePath;
+                string fileNameExt, newFileName, filter, picturePath;
                 filter = appMessage.Tag.ToString();
                 System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
                 //设置文件类型   
@@ -248,15 +281,33 @@ namespace WhiteboardProject
                             break;
                         case "pptx":
                             break;
-                       
+
                         case "doc":
                             //png to pdf
-                            tempFilePath =  localFilePath.Replace("doc", "pdf");
+                            tempFilePath = localFilePath.Replace("doc", "pdf");
                             bw.RunWorkerAsync(new string[2] { picturePath, tempFilePath });
                             bw.DoWork += bw_DoWork;
                             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
                             break;
                     }
+                }
+            }
+            else if (appMessage.MsgType == AppMsg.BaiBaoXiang)
+            {
+                switch (appMessage.Tag.ToString())
+                {
+                    case "picture":
+                        string folder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "background"); //设立查询目录
+                        DirectoryInfo TheFolder = new DirectoryInfo(folder); //建立搜索
+                        FileInfo[] s = TheFolder.GetFiles(); //返回搜索文件名称数组
+                        Random rand = new Random(); //建立随机数变量
+                        int i = rand.Next(s.Length); //返回作为文件数量索引随机数
+                        string fileName = s[i].Name;//显示文件名
+                        this.ThemeBackground = "pack://siteoforigin:,,,/Image/主界面切图/主界面切图/06.png";
+                        break;
+                    case "fullcolor":
+                        this.ThemeBackground = "pack://siteoforigin:,,,/Image/主界面切图/主界面切图/背景.png";
+                        break;
                 }
             }
         }
