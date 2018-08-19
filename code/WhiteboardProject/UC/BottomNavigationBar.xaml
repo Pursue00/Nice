@@ -75,23 +75,23 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            
-        </StackPanel>
-        <Popup Placement="Top"  PlacementTarget="{Binding ElementName=btnhardPen}" AllowsTransparency="True"
+            <Popup Placement="Top"  PlacementTarget="{Binding ElementName=btnhardPen}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityHardpen}" StaysOpen="False">
-            <local:PopupBrush/>
-        </Popup>
-        <Popup Placement="Top" PlacementTarget="{Binding ElementName=btneraser}" AllowsTransparency="True"
+                <local:PopupBrush/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btneraser}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityEraser}" StaysOpen="False">
-            <local:PopupEraser/>
-        </Popup>
-        <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnshape}" AllowsTransparency="True"
+                <local:PopupEraser/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnshape}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityShape}" StaysOpen="False">
-            <local:PopupShape/>
-        </Popup>
-        <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnroaming}" AllowsTransparency="True"
+                <local:PopupShape/>
+            </Popup>
+            <Popup Placement="Top" PlacementTarget="{Binding ElementName=btnroaming}" AllowsTransparency="True"
                    PopupAnimation="Fade" IsOpen="{Binding IsVisibilityRoaming}" StaysOpen="False">
-            <local:PopupRoaming/>
-        </Popup>
+                <local:PopupRoaming/>
+            </Popup>
+        </StackPanel>
+      
     </Grid>
 </UserControl>

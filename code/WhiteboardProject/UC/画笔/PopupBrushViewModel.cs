@@ -50,6 +50,7 @@ namespace WhiteboardProject.UC
             this.IsVisibilityShape = Visibility.Collapsed;
             this.BtnCommand = new RelayCommand<object>(BtnCommandExcute);
             this.BrushName = "画笔";
+            this.currentSliderValue = 10;
         }
         #endregion
 
