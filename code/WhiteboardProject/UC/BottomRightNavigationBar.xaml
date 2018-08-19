@@ -20,21 +20,21 @@
         <StackPanel Orientation="Horizontal">
             <Button HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,5,5,5"
                     Command="{Binding BtnCommand}" CommandParameter="add">
-                    <Button.Template>
-                        <ControlTemplate>
+                <Button.Template>
+                    <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/右边/添加.png" Stretch="Uniform"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button x:Name="HardPen" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="HardPen" HorizontalAlignment="Right" VerticalAlignment="Center"
                         Command="{Binding BtnCommand}" CommandParameter="previous">
-                    <Button.Template>
-                        <ControlTemplate>
+                <Button.Template>
+                    <ControlTemplate>
                         <Image Source="pack://siteoforigin:,,,/Image/主界面切图/主界面切图/图标/右边/翻页左.png" Stretch="Uniform"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            <TextBlock Text="{Binding Number}" FontSize="12" TextAlignment="Center"
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBlock Text="{Binding Number}" MinWidth="40" FontSize="12" TextAlignment="Center"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Button HorizontalAlignment="Right" VerticalAlignment="Center"
                     Command="{Binding BtnCommand}" CommandParameter="next">

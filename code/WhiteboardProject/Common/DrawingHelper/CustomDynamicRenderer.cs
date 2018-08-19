@@ -22,7 +22,8 @@ namespace WhiteboardProject.Model
             if (_selectedColor == null) return;
             ImageSource imageSource = new BitmapImage(new Uri(_selectedColor));
             Point point = new Point(double.NegativeInfinity, double.NegativeInfinity);
-            double num = this.StrokeWidth + 20.0;
+            //double num = this.StrokeWidth + 20.0;
+            double num = this.StrokeWidth;
             Point point2 = new Point(0.0, 0.0);
             Vector vector = new Vector();
             double num2 = 0.0;

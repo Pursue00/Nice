@@ -25,7 +25,7 @@
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形521拷贝.png" 
                             Stretch="Fill"/>
             </Grid.Background>
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Text="橡皮擦" Foreground="White" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Text="{Binding EraserName}"  Foreground="White" FontSize="18"/>
             <Image x:Name="imageClose" HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="Uniform" Width="20" Height="20" Margin="0,0,5,0"
                    Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/叉.png" PreviewMouseLeftButtonDown="imageClose_PreviewMouseLeftButtonDown"/>
         </Grid>

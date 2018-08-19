@@ -27,7 +27,8 @@ namespace WhiteboardProject.Model
             if (Directory.Exists(path))
                 Directory.Delete(path, true);
             Directory.CreateDirectory(path);
-            StrokeWidth = 40;
+            //StrokeWidth = 40;
+            StrokeWidth = 10;
             Messenger.Default.Register<double>(this, NotificationFunc);
             Messenger.Default.Register<string>(this, ColorPathNotificationFunc);
             Messenger.Default.Register<Color>(this, ColorNotificationFunc);
@@ -37,7 +38,7 @@ namespace WhiteboardProject.Model
             DrawingAttributes inkDA = new DrawingAttributes();
             inkDA.Width = 1;
             inkDA.Height = 1;
-            inkDA.Color = sb.Color;
+            //inkDA.Color = sb.Color;
             inkDA.IsHighlighter = base.DefaultDrawingAttributes.IsHighlighter;
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
             base.DefaultDrawingAttributes = inkDA;
