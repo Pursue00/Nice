@@ -87,6 +87,7 @@ namespace WhiteboardProject.UC
                 case "new":
                 case "open":
                 case "saveas":
+                case "pptassistant":
                     appMessage.MsgType = AppMsg.FileDealWith;
                     appMessage.Tag = arg;
                     EventHub.SysEvents.PubEvent<AppMessage>(appMessage);
@@ -94,6 +95,7 @@ namespace WhiteboardProject.UC
                 case "exit":
                     Process.GetCurrentProcess().Kill();
                     break;
+               
                 case "file":
                     this.IsVisibilityExport = Visibility.Collapsed;
                     this.IsVisibilityFile = Visibility.Visible;
@@ -126,9 +128,10 @@ namespace WhiteboardProject.UC
                     Application.Current.MainWindow.ShowInTaskbar = true;
                     break;
                 case "teaching":
+                    Application.Current.MainWindow.ShowInTaskbar = false;
                     Application.Current.MainWindow.WindowState = WindowState.Maximized;
                     Application.Current.MainWindow.WindowStyle = WindowStyle.None;
-                    Application.Current.MainWindow.ShowInTaskbar = false;
+                    
                     break;
                 case "desktop":
                     Application.Current.MainWindow.WindowState = WindowState.Minimized;

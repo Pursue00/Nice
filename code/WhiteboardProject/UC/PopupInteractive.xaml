@@ -123,7 +123,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Command="{Binding BtnCommand}" CommandParameter="Exit">
+                <Button Command="{Binding BtnCommand}" CommandParameter="pptassistant">
                     <Button.Template>
                         <ControlTemplate>
                             <StackPanel>

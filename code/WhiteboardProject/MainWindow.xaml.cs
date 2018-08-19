@@ -103,8 +103,20 @@ namespace WhiteboardProject
 
             _images = new ObservableCollection<string>();
             //_application = new Application();
+            bw.WorkerReportsProgress = true;
+            bw.WorkerSupportsCancellation = true;
+            Messenger.Default.Register<string>(this, m => OpenRssFrame(m));
         }
 
+        private void OpenRssFrame(string str)
+        {
+            if (str.Contains("Max"))
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+        }
+
+       
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             c_daListAnimation = new DoubleAnimation();
@@ -165,6 +177,15 @@ namespace WhiteboardProject
             {
                 this.SliderValue = Convert.ToDouble(appMessage.Tag);
             }
+            else if (appMessage.MsgType == AppMsg.FileDealWith)
+            {
+                switch (appMessage.Tag.ToString())
+                {
+                    case "pptassistant":
+                        gridPPT.Visibility = Visibility.Visible;
+                        break;
+                }
+            }
             else if (appMessage.MsgType == AppMsg.BottomLeftNavigation)
             {
                 isExpand = true;
@@ -176,12 +197,12 @@ namespace WhiteboardProject
                         popupInteractive.VerticalAlignment = VerticalAlignment.Bottom;
                         popupInteractive.Margin = new Thickness(0, 0, 0, 15);
                         OutLayer.Child = popupInteractive;
-
                         break;
                     case "system":
                         var popupSystem = new PopopStytem();
                         popupSystem.HorizontalAlignment = HorizontalAlignment.Left;
                         popupSystem.VerticalAlignment = VerticalAlignment.Bottom;
+                        popupSystem.Margin = new Thickness(0, 0, 0, 15);
                         OutLayer.Child = popupSystem;
                         break;
                     case "pptassistant":
@@ -228,6 +249,8 @@ namespace WhiteboardProject
             }
             else if (appMessage.MsgType == AppMsg.ExportFile)
             {
+                this.loadingWait.Visibility = Visibility.Visible;
+                /*
                 string fileNameExt, newFileName, filter, picturePath;
                 filter = appMessage.Tag.ToString();
                 System.Windows.Forms.SaveFileDialog saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -280,8 +303,31 @@ namespace WhiteboardProject
                             bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
                             break;
                         case "pptx":
-                            break;
+                            //bool isSaveSuess = false;
+                            //int pptPageIndex = 1;
+                            //MyPres = PPT.Presentations.Open(string.Format(@"{0}\template.pptx", Environment.CurrentDirectory), MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);//此处将一个PPT实例给了MyPres
 
+                            //List<String> temp = ExpPng();
+                            //if (temp != null && temp.Count != 0)
+                            //{
+                            //    foreach (string filepath in temp)
+                            //    {
+                            //        MySlide = MyPres.Slides.Add(pptPageIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//像PPT实例中，添加一个空白页，位置是“第一页”
+
+                            //        MySlide.Shapes.AddPicture(filepath, MsoTriState.msoFalse, MsoTriState.msoTrue, 0, 0, 1920, 1080);
+                            //        isSaveSuess = true;
+                            //        pptPageIndex++;
+                            //    }
+                            //}
+
+                            //if (isSaveSuess == true)
+                            //{
+                            //    MyPres.SaveAs(string.Format(@"d:\{0}.pptx", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                            //}
+
+                            //MyPres.Close();
+                            break;
+                           
                         case "doc":
                             //png to pdf
                             tempFilePath = localFilePath.Replace("doc", "pdf");
@@ -291,18 +337,91 @@ namespace WhiteboardProject
                             break;
                     }
                 }
+                */
+                string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SaveFile");
+                if (!Directory.Exists(filePath))
+                    Directory.CreateDirectory(filePath);
+                string folder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SaveFile/Picture"); //设立查询目录
+                DirectoryInfo TheFolder = new DirectoryInfo(folder); //建立搜索
+                FileInfo[] s = TheFolder.GetFiles(); //返回搜索文件名称数组
+                switch (appMessage.Tag.ToString())
+                {
+                    case "png":
+                        MessageBox.Show("导出图片成功！");
+                        break;
+                    case "pdf":
+                    case "doc":
+                        if (!Directory.Exists(System.IO.Path.Combine(filePath, "PDF")))
+                            Directory.CreateDirectory(System.IO.Path.Combine(filePath, "PDF"));
+                        if (!Directory.Exists(System.IO.Path.Combine(filePath, "Word")))
+                            Directory.CreateDirectory(System.IO.Path.Combine(filePath, "Word"));
+                        ThreadPool.QueueUserWorkItem(so =>
+                        {
+                            for (int i = 0; i < s.Length; i++)
+                            {
+                                PdfSharp.Pdf.PdfDocument doc = new PdfSharp.Pdf.PdfDocument();
+                                doc.Pages.Add(new PdfPage());
+                                XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]);
+                                XImage img = XImage.FromFile(s[i].FullName);
+                                xgr.DrawImage(img, 0, 0);
+                                doc.Save(System.IO.Path.Combine(filePath, "PDF", i + ".pdf"));
+                                doc.Close();
+                                if (appMessage.Tag.ToString() == "doc")
+                                {
+                                    Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
+                                    pdf.LoadFromFile(System.IO.Path.Combine(filePath, "PDF", i + ".pdf"));
+                                    pdf.SaveToFile(System.IO.Path.Combine(filePath, "Word", i + ".doc"), FileFormat.DOC);
+                                }
+                            }
+                            if (appMessage.Tag.ToString() == "doc")
+                                MessageBox.Show("导出word文件成功！");
+                            else if (appMessage.Tag.ToString() == "pdf")
+                                MessageBox.Show("导出pdf文件成功！");
+                            this.Dispatcher.BeginInvoke((Action)delegate
+                            {
+                                this.loadingWait.Visibility = Visibility.Collapsed;
+                            }, null);
+
+                        }, null);
+                        break;
+                    case "pptx":
+                        //bool isSaveSuess = false;
+                        //int pptPageIndex = 1;
+                        //MyPres = PPT.Presentations.Open(string.Format(@"{0}\template.pptx", Environment.CurrentDirectory), MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);//此处将一个PPT实例给了MyPres
+
+                        //List<String> temp = ExpPng();
+                        //if (temp != null && temp.Count != 0)
+                        //{
+                        //    foreach (string filepath in temp)
+                        //    {
+                        //        MySlide = MyPres.Slides.Add(pptPageIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//像PPT实例中，添加一个空白页，位置是“第一页”
+
+                        //        MySlide.Shapes.AddPicture(filepath, MsoTriState.msoFalse, MsoTriState.msoTrue, 0, 0, 1920, 1080);
+                        //        isSaveSuess = true;
+                        //        pptPageIndex++;
+                        //    }
+                        //}
+
+                        //if (isSaveSuess == true)
+                        //{
+                        //    MyPres.SaveAs(string.Format(@"d:\{0}.pptx", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                        //}
+
+                        //MyPres.Close();
+                        break;
+                }
             }
             else if (appMessage.MsgType == AppMsg.BaiBaoXiang)
             {
                 switch (appMessage.Tag.ToString())
                 {
                     case "picture":
-                        string folder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "background"); //设立查询目录
-                        DirectoryInfo TheFolder = new DirectoryInfo(folder); //建立搜索
-                        FileInfo[] s = TheFolder.GetFiles(); //返回搜索文件名称数组
-                        Random rand = new Random(); //建立随机数变量
-                        int i = rand.Next(s.Length); //返回作为文件数量索引随机数
-                        string fileName = s[i].Name;//显示文件名
+                        //string folder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "background"); //设立查询目录
+                        //DirectoryInfo TheFolder = new DirectoryInfo(folder); //建立搜索
+                        //FileInfo[] s = TheFolder.GetFiles(); //返回搜索文件名称数组
+                        //Random rand = new Random(); //建立随机数变量
+                        //int i = rand.Next(s.Length); //返回作为文件数量索引随机数
+                        //string fileName = s[i].Name;//显示文件名
                         this.ThemeBackground = "pack://siteoforigin:,,,/Image/主界面切图/主界面切图/06.png";
                         break;
                     case "fullcolor":
@@ -336,18 +455,19 @@ namespace WhiteboardProject
         }
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (localFilePath.EndsWith("pdf"))
-                MessageBox.Show("导出pdf文件成功！");
-            else
-            {
-                //pdf to word
-                Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
-                pdf.LoadFromFile(tempFilePath);
-                //string output = System.IO.Path.Combine(picturePath, "output.doc");
-                pdf.SaveToFile(localFilePath, FileFormat.DOC);
-                //System.Diagnostics.Process.Start(output);
-                MessageBox.Show("导出word文件成功！");
-            }
+            //if (localFilePath.EndsWith("pdf"))
+            //    MessageBox.Show("导出pdf文件成功！");
+            //else
+            //{
+            //    //pdf to word
+            //    Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
+            //    pdf.LoadFromFile(tempFilePath);
+            //    //string output = System.IO.Path.Combine(picturePath, "output.doc");
+            //    pdf.SaveToFile(localFilePath, FileFormat.DOC);
+            //    //System.Diagnostics.Process.Start(output);
+            //    MessageBox.Show("导出word文件成功！");
+            //}
+          
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -422,8 +542,6 @@ namespace WhiteboardProject
                 var fileName = openFileDialog.FileName;
                 _path = string.Format(@"{0}\{1}", _path, DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 System.IO.Directory.CreateDirectory(_path);
-                
-                //ThreadPool.QueueUserWorkItem(new WaitCallback(SaveToImages), fileName);
             }
         }
         #endregion

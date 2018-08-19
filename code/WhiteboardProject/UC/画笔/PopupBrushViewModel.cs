@@ -17,6 +17,14 @@ namespace WhiteboardProject.UC
         #endregion
 
         #region Property
+        private string brushName;
+
+        public string BrushName
+        {
+            get { return brushName; }
+            set { brushName = value; OnPropertyChanged(()=> BrushName); }
+        }
+
         private Visibility isVisibilityColor;
 
         public Visibility IsVisibilityColor    
@@ -41,6 +49,7 @@ namespace WhiteboardProject.UC
             this.IsVisibilityColor = Visibility.Visible;
             this.IsVisibilityShape = Visibility.Collapsed;
             this.BtnCommand = new RelayCommand<object>(BtnCommandExcute);
+            this.BrushName = "画笔";
         }
         #endregion
 
@@ -59,6 +68,7 @@ namespace WhiteboardProject.UC
                     break;
                 //毛笔
                 case "writingbrush":
+                    this.BrushName = "毛笔";
                     this.IsVisibilityColor = Visibility.Visible;
                     this.IsVisibilityShape = Visibility.Collapsed;
                     am.MsgType = AppMsg.WritingBrush;
@@ -66,6 +76,7 @@ namespace WhiteboardProject.UC
                     break;
                 //软笔
                 case "softpen":
+                    this.BrushName = "软笔";
                     this.IsVisibilityColor = Visibility.Visible;
                     this.IsVisibilityShape = Visibility.Collapsed;
                     am.MsgType = AppMsg.Softpen;
@@ -74,11 +85,13 @@ namespace WhiteboardProject.UC
                     break;
                 //印章笔
                 case "sealpen":
+                    this.BrushName = "印章笔";
                     this.IsVisibilityColor = Visibility.Collapsed;
                     this.IsVisibilityShape = Visibility.Visible;
                     break;
                 //荧光笔
                 case "highlighter":
+                    this.BrushName = "荧光笔";
                     am.MsgType = AppMsg.Highlighter;
                     EventHub.SysEvents.PubEvent(am);
                     break;

@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="Button">
+        <Style TargetType="RadioButton">
             <Setter Property="Width" Value="62"/>
             <Setter Property="Height" Value="62"/>
             <Setter Property="Margin" Value="10"/>
@@ -34,38 +34,90 @@
                 <StackPanel.Background>
                     <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/圆角矩形523.png" Stretch="Uniform"/>
                 </StackPanel.Background>
-                <Button
+                <RadioButton 
                     Command="{Binding BtnCommand}" CommandParameter="point">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/组20.png" Stretch="Fill"/>
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                            <Border x:Name="border" CornerRadius="4">
+                                <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/组20.png" 
+                                   Stretch="Fill"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="Blue"  TargetName="border"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="false">
+                                    <Setter Property="BorderThickness" Value="0" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="{x:Null}"  TargetName="border"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button
+                    </RadioButton.Template>
+                </RadioButton>
+                <RadioButton
                     Command="{Binding BtnCommand}" CommandParameter="select">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/选择擦除.png" Stretch="Fill"/>
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border x:Name="border" CornerRadius="4">
+                                <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/选择擦除.png"
+                                   Stretch="Fill"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="Blue"  TargetName="border"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="false">
+                                    <Setter Property="BorderThickness" Value="0" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="{x:Null}"  TargetName="border"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button
+                    </RadioButton.Template>
+                </RadioButton>
+                <RadioButton
                     Command="{Binding BtnCommand}" CommandParameter="clear">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/清空.png" Stretch="Fill"/>
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border x:Name="border" CornerRadius="4">
+                                <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/清空.png" 
+                                   Stretch="Fill"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="Blue"  TargetName="border"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="false">
+                                    <Setter Property="BorderThickness" Value="0" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="{x:Null}"  TargetName="border"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button
+                    </RadioButton.Template>
+                </RadioButton>
+                <RadioButton
                     Command="{Binding BtnCommand}" CommandParameter="gesture">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/手势擦除.png" Stretch="Fill"/>
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border x:Name="border" CornerRadius="4">
+                                <Image Source="pack://siteoforigin:,,,/Image/橡皮擦界面切图/橡皮擦界面切图/手势擦除.png" 
+                                   Stretch="Fill"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="BorderThickness" Value="1" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="Blue"  TargetName="border"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="false">
+                                    <Setter Property="BorderThickness" Value="0" TargetName="border"/>
+                                    <Setter Property="BorderBrush" Value="{x:Null}"  TargetName="border"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                    </RadioButton.Template>
+                </RadioButton>
             </StackPanel>
         </Grid>
     </Grid>

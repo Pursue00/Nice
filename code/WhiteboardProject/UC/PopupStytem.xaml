@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WhiteboardProject.UC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" >
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="Auto"/>
@@ -25,7 +25,7 @@
             <Setter Property="Height" Value="48"/>
         </Style>
     </UserControl.Resources>
-    <Grid Height="450" Width="280">
+    <Grid Height="450" Width="280" >
         <Grid.Background>
             <ImageBrush ImageSource="pack://siteoforigin:,,,/Image/菜单展开页面切图/菜单展开页面切图/多边形1.png" Stretch="Fill"/>
         </Grid.Background>

@@ -9,30 +9,22 @@
 	x:Name="Window"
 	Title="InkPadWindow"
 	Width="800" Height="658"  Visibility="Visible" 
-    WindowStyle="None" 
+    WindowStyle="None" Topmost="True"
     WindowState="Maximized"
     AllowsTransparency="True" WindowStartupLocation="CenterScreen"
     
 	>
-
-
-
     <Window.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Brushes.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        </Window.Resources>
-
-
+    </Window.Resources>
     <Window.Background>
-       
-            <SolidColorBrush Color="White" Opacity="0.01" />
+
+        <SolidColorBrush Color="White" Opacity="0.01" />
     </Window.Background>
-
-
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>
             <RowDefinition Height="85*"/>
@@ -43,7 +35,7 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
-           <InkCanvas Margin="10,10,10,10" 
+        <InkCanvas Margin="10,10,10,10" 
                       Grid.Column="0" Grid.ColumnSpan="3"
                       Grid.Row="0" Grid.RowSpan="2"
                       Width="Auto" 
@@ -55,11 +47,6 @@
             </InkCanvas.Background>
 
         </InkCanvas>
-
-
-        <!-- BUTTON STRIP -->
-        
-
         <Border Visibility="Hidden" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"  CornerRadius="10,10,10,10" Background="#993B3737" >
             <StackPanel Orientation="Horizontal" >
                 <GroupBox  Header="当前模式"   Height="auto">
@@ -67,30 +54,11 @@
                         <RadioButton Margin="4,2,0,0" x:Name="radInk" Content="画笔" Foreground="#FFFFFFFF" Click="rad_Click" Tag="{x:Static InkCanvasEditingMode.Ink}" FontFamily="Arial"/>
                         <RadioButton Margin="4,2,0,0" x:Name="radErasePoint" Content="橡皮擦" Foreground="#FFFFFFFF" Click="rad_Click" Tag="{x:Static InkCanvasEditingMode.EraseByPoint}" FontFamily="Arial"/>
                         <RadioButton Margin="4,2,0,0" x:Name="radEraseByStroke" Content="轨迹橡皮擦" Foreground="#FFFFFFFF" Click="rad_Click"  Tag="{x:Static InkCanvasEditingMode.EraseByStroke}" FontFamily="Arial"/>
-                        
                     </StackPanel>
                 </GroupBox>
-                
             </StackPanel>
         </Border>
-
-
-        <!--<StackPanel  x:Name="cc" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="40" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <Image x:Name="bt4"  Margin="5" Cursor="Hand" Source="resources/img/hb.png" Width="40" Height="40" Tag="{x:Static InkCanvasEditingMode.Ink}"  PreviewTouchDown="bt4_PreviewTouchDown" OpacityMask="Black" />
-
-            <Image x:Name="bt3"  Margin="5" Cursor="Hand" Width="40" Source="resources/img/hong.png" Height="40"  PreviewTouchDown="bt3_PreviewTouchDown"  Tag="Blk"/>
-
-            <Image x:Name="bt2"  Margin="5" Cursor="Hand" Width="40" Source="resources/img/Bj3.png" Height="40"  PreviewTouchDown="bt2_PreviewTouchDown"  Tag="6"/>
-
-            <Image Width="40"  Margin="5"  Cursor="Hand" Height="40"  Source="resources/img/xp.png"  PreviewTouchDown="Image_PreviewTouchDown"  Tag="{x:Static InkCanvasEditingMode.EraseByPoint}"/>
-
-            <Image Width="40"  Margin="5" Cursor="Hand"  Height="40" Source="resources/img/save.jpg"   PreviewTouchDown="Image_PreviewTouchDown_1"/>
-
-            <Image Width="40"  Margin="5" Cursor="Hand"  Height="40" Source="resources/img/end.jpg"  PreviewTouchDown="Image_PreviewTouchDown_2" />
-
-        </StackPanel>-->
-
-        <StackPanel  x:Name="cc" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="40" VerticalAlignment="Top" HorizontalAlignment="Right">
+        <StackPanel  x:Name="cc" Panel.ZIndex="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="40" VerticalAlignment="Top" HorizontalAlignment="Right">
             <Image x:Name="bt4"  Margin="5" Cursor="Hand" Source="resources/img/hb.png" Width="40" Height="40" Tag="{x:Static InkCanvasEditingMode.Ink}" PreviewMouseDown="bt4_Click_1" OpacityMask="Black" />
 
             <Image x:Name="bt3"  Margin="5" Cursor="Hand" Width="40" Source="resources/img/hong.png" Height="40" PreviewMouseDown="Button_Click_3"   Tag="Red"/>
@@ -101,9 +69,25 @@
 
             <Image Width="40"  Margin="5" Cursor="Hand"  Height="40" Source="resources/img/save.jpg"  PreviewMouseDown ="btnSave_Click"/>
 
-            <Image Width="40"  Margin="5" Cursor="Hand"  Height="40" Source="resources/img/end.jpg" PreviewMouseDown="btnExit_Click" />
-                
-            </StackPanel>
+            <Image Width="40"  Margin="5" Cursor="Hand"  Height="40" Source="resources/img/PPT助手.png"  PreviewMouseDown ="Image_PreviewMouseDown"/>
 
+            <Image Width="40"  Margin="5" Cursor="Hand"  Height="40" Source="resources/img/end.jpg" PreviewMouseDown="btnExit_Click" />
+
+        </StackPanel>
+        <Grid x:Name="gridPPT" Visibility="Collapsed"  Grid.RowSpan="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch" Background="#AA000000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="285"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="list" Grid.Column="0" Background="Transparent"/>
+            <Image x:Name="img" Grid.Column="1" Stretch="Uniform" Margin="10"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20">
+                <Button x:Name="btnImport" Margin="20" Width="40" Height="30" Content="导入"
+                        FontSize="15" Click="btnImport_Click" />
+                <Button x:Name="btnClose" Margin="20" Width="40" Height="30" Content="关闭" 
+                        FontSize="15" Click="btnClose_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

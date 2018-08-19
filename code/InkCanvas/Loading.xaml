@@ -1,0 +1,34 @@
+﻿<Window x:Class="BitsOfStuff.Loading"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BitsOfStuff"
+        mc:Ignorable="d"
+        Title="Loading" WindowState="Maximized" WindowStyle="None" Background="#55000000" 
+        AllowsTransparency="True" ResizeMode="NoResize">
+    <Grid>
+        <Ellipse x:Name="e1" StrokeDashArray="8,2" StrokeThickness="5"  Stroke="White" Fill="Transparent"
+                  Width="110" Height="110" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform x:Name="tra1" Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse x:Name="e2"  StrokeDashArray="8,2" StrokeThickness="2"  Stroke="#FF04DCF1" Fill="Transparent"
+                 Width="90" Height="90" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform x:Name="tra2" Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+    </Grid>
+</Window>

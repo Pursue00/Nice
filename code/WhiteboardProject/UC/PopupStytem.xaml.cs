@@ -25,7 +25,7 @@ namespace WhiteboardProject.UC
         {
             InitializeComponent();
             vm = new PopupStytemViewModel();
-            this.DataContext = this;
+            this.DataContext = vm;
         }
     }
 }

@@ -43,9 +43,16 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popwindow.xaml.cs">
       <DependentUpon>Popwindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Popwindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -54,6 +61,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\WhiteboardProject\DLL\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Classic" />
@@ -107,5 +117,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\img\PPT助手.png" />
   </ItemGroup>
 </Project>

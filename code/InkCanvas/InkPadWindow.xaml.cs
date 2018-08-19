@@ -20,6 +20,7 @@ using System.Windows.Interop;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Threading;   //For : DrawingAttributes
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BitsOfStuff
 {
@@ -127,6 +128,7 @@ namespace BitsOfStuff
         {
             this.Close();
             GC.Collect();
+            Messenger.Default.Send("Max");
         }
 
 
@@ -361,5 +363,36 @@ namespace BitsOfStuff
             GC.Collect();
         }
 
+        private void Image_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            gridPPT.Visibility = Visibility.Visible;
+        }
+
+        Loading w1;
+        private string _path = Environment.CurrentDirectory;
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+            this.img.Source = null;
+            if (list.Items.Count > 0)
+            {
+                this.list.Items.Clear();
+            }
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+
+            var showDialog = openFileDialog.ShowDialog(this);
+            if ((bool)showDialog)
+            {
+                w1 = new Loading();
+                w1.Show();
+                var fileName = openFileDialog.FileName;
+                _path = string.Format(@"{0}\{1}", _path, DateTime.Now.ToString("yyyyMMddHHmmssms"));
+                System.IO.Directory.CreateDirectory(_path);
+            }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            gridPPT.Visibility = Visibility.Collapsed;
+        }
     }
 }

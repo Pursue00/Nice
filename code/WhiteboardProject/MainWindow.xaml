@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:WhiteboardProject.UC"
         xmlns:src="clr-namespace:WhiteboardProject.Model"
         xmlns:common="clr-namespace:WhiteboardProject.Common"
-        mc:Ignorable="d" WindowState="Normal"  WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowState="Maximized"  WindowStartupLocation="CenterScreen" WindowStyle="None"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
@@ -19,13 +19,13 @@
         <Grid.Background>
             <ImageBrush ImageSource="{Binding DataContext.ThemeBackground,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,
                 RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window},AncestorLevel=1}}" 
-                        Stretch="Uniform"/>
+                        Stretch="Fill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Border x:Name="OutLayer" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed"
+        <Border x:Name="OutLayer" Panel.ZIndex="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed"
                 PreviewMouseLeftButtonDown="OutLayer_PreviewMouseLeftButtonDown"/>
         <Grid x:Name="gd_canvas">
             <Grid x:Name="gridCanvas" Panel.ZIndex="2">
@@ -58,5 +58,6 @@
                 <Button Click="Button_Click_1" Margin="20" Width="40" Height="30" Content="关闭" FontSize="15" />
             </StackPanel>
         </Grid>
+        <common:LoadingWait x:Name="loadingWait" Visibility="Collapsed" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

@@ -18,11 +18,16 @@ namespace WhiteboardProject.Views
     /// <summary>
     /// Setting.xaml 的交互逻辑
     /// </summary>
-    public partial class Setting : BlankWindow
+    public partial class Setting : Window
     {
         public Setting()
         {
             InitializeComponent();
+        }
+
+        private void imageClose_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }
