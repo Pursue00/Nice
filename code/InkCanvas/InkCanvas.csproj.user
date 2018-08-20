@@ -13,4 +13,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <StartArguments>Jasonlifeng%4020131224-92aed0ae-1e96-4de6-9ab0-38c85f81ed2f</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <StartArguments>Jasonlifeng%4020131224-92aed0ae-1e96-4de6-9ab0-38c85f81ed2f</StartArguments>
+  </PropertyGroup>
 </Project>

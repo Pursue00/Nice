@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
 //using Microsoft.Office.Core;
 //using Microsoft.Office.Interop.PowerPoint;
 using Microsoft.Win32;
@@ -28,7 +30,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WhiteboardProject.Common;
 using WhiteboardProject.UC;
-//using Application = Microsoft.Office.Interop.PowerPoint.Application;
+using Application = Microsoft.Office.Interop.PowerPoint.Application;
 namespace WhiteboardProject
 {
     /// <summary>
@@ -87,7 +89,9 @@ namespace WhiteboardProject
         #endregion
         BackgroundWorker bw = new BackgroundWorker();
         private string tempFilePath, localFilePath;
-
+        Microsoft.Office.Interop.PowerPoint.Application PPT = new Microsoft.Office.Interop.PowerPoint.Application();//创建PPT应用
+        Microsoft.Office.Interop.PowerPoint.Presentation MyPres = null;//PPT应用的实例
+        Microsoft.Office.Interop.PowerPoint.Slide MySlide = null;//PPT中的幻灯片
         public MainWindow()
         {
             InitializeComponent();
@@ -102,7 +106,7 @@ namespace WhiteboardProject
             EventHub.SysEvents.SubEvent<AppMessage>(OnRecMsg, Prism.Events.ThreadOption.UIThread);
 
             _images = new ObservableCollection<string>();
-            //_application = new Application();
+            _application = new Application();
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;
             Messenger.Default.Register<string>(this, m => OpenRssFrame(m));
@@ -385,29 +389,47 @@ namespace WhiteboardProject
                         }, null);
                         break;
                     case "pptx":
-                        //bool isSaveSuess = false;
-                        //int pptPageIndex = 1;
-                        //MyPres = PPT.Presentations.Open(string.Format(@"{0}\template.pptx", Environment.CurrentDirectory), MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);//此处将一个PPT实例给了MyPres
+                        ThreadPool.QueueUserWorkItem(so =>
+                        {
+                            bool isSaveSuess = false;
+                            int pptPageIndex = 1;
+                            MyPres = PPT.Presentations.Open(string.Format(@"{0}\template.pptx", Environment.CurrentDirectory), MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoFalse);//此处将一个PPT实例给了MyPres
 
-                        //List<String> temp = ExpPng();
-                        //if (temp != null && temp.Count != 0)
-                        //{
-                        //    foreach (string filepath in temp)
-                        //    {
-                        //        MySlide = MyPres.Slides.Add(pptPageIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//像PPT实例中，添加一个空白页，位置是“第一页”
+                            for (int i = 0; i < s.Length; i++)
+                            {
+                                MySlide = MyPres.Slides.Add(pptPageIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//像PPT实例中，添加一个空白页，位置是“第一页”
 
-                        //        MySlide.Shapes.AddPicture(filepath, MsoTriState.msoFalse, MsoTriState.msoTrue, 0, 0, 1920, 1080);
-                        //        isSaveSuess = true;
-                        //        pptPageIndex++;
-                        //    }
-                        //}
+                                MySlide.Shapes.AddPicture(s[i].FullName, MsoTriState.msoFalse, MsoTriState.msoTrue, 0, 0, 1920, 1080);
+                                isSaveSuess = true;
+                                pptPageIndex++;
+                            }
+                            //List<String> temp = ExpPng();
+                            //if (temp != null && temp.Count != 0)
+                            //{
+                            //    foreach (string filepath in temp)
+                            //    {
+                            //        MySlide = MyPres.Slides.Add(pptPageIndex, Microsoft.Office.Interop.PowerPoint.PpSlideLayout.ppLayoutBlank);//像PPT实例中，添加一个空白页，位置是“第一页”
 
-                        //if (isSaveSuess == true)
-                        //{
-                        //    MyPres.SaveAs(string.Format(@"d:\{0}.pptx", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
-                        //}
+                            //        MySlide.Shapes.AddPicture(filepath, MsoTriState.msoFalse, MsoTriState.msoTrue, 0, 0, 1920, 1080);
+                            //        isSaveSuess = true;
+                            //        pptPageIndex++;
+                            //    }
+                            //}
 
-                        //MyPres.Close();
+                            if (isSaveSuess == true)
+                            {
+                                //MyPres.SaveAs(string.Format(@""+System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SaveFile/PPT") +"\{0}.pptx", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                                MyPres.SaveAs(string.Format(@"d:\{0}.pptx", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                            }
+
+                            MyPres.Close();
+                            MessageBox.Show("导出ppt文件成功！");
+                            this.Dispatcher.BeginInvoke((Action)delegate
+                            {
+                                this.loadingWait.Visibility = Visibility.Collapsed;
+                            }, null);
+                        }, null);
+
                         break;
                 }
             }
@@ -484,35 +506,35 @@ namespace WhiteboardProject
         /// 将ppt转成图片
         /// </summary>
         /// <param name="fileName"></param>
-        //private void SaveToImages(object fileName)
-        //{
-        //    var presentation = _application.Presentations.Open((string)fileName, MsoTriState.msoFalse, MsoTriState.msoFalse,
-        //                                                       MsoTriState.msoFalse);
-        //    Console.WriteLine(presentation.Application.Version);
-        //    presentation.SaveAs(_path, PpSaveAsFileType.ppSaveAsJPG, MsoTriState.msoTrue);
-        //    presentation.Close();
+        private void SaveToImages(object fileName)
+        {
+            var presentation = _application.Presentations.Open((string)fileName, MsoTriState.msoFalse, MsoTriState.msoFalse,
+                                                               MsoTriState.msoFalse);
+            Console.WriteLine(presentation.Application.Version);
+            presentation.SaveAs(_path, PpSaveAsFileType.ppSaveAsJPG, MsoTriState.msoTrue);
+            presentation.Close();
 
-        //    var files = System.IO.Directory.GetFiles(_path);
-        //    if (files != null)
-        //    {
-        //        foreach (var f in files)
-        //        {
-        //            this.Dispatcher.Invoke(new Action(() =>
-        //            {
-        //                ImageUC uc = new ImageUC();
-        //                uc.MouseLeftButtonDown += uc_MouseLeftButtonDown;
-        //                uc.IMG.Source = new BitmapImage(new Uri(f, UriKind.RelativeOrAbsolute));
+            var files = System.IO.Directory.GetFiles(_path);
+            if (files != null)
+            {
+                foreach (var f in files)
+                {
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        ImageUC uc = new ImageUC();
+                        uc.MouseLeftButtonDown += uc_MouseLeftButtonDown;
+                        uc.IMG.Source = new BitmapImage(new Uri(f, UriKind.RelativeOrAbsolute));
 
-        //                list.Items.Add(uc);
-        //            }));
-        //        }
-        //    }
-        //    this.Dispatcher.Invoke(new Action(() =>
-        //    {
-        //        w1.Close();
-        //    }));
+                        list.Items.Add(uc);
+                    }));
+                }
+            }
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                w1.Close();
+            }));
 
-        //}
+        }
 
         void uc_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -542,6 +564,7 @@ namespace WhiteboardProject
                 var fileName = openFileDialog.FileName;
                 _path = string.Format(@"{0}\{1}", _path, DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 System.IO.Directory.CreateDirectory(_path);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(SaveToImages), fileName);
             }
         }
         #endregion

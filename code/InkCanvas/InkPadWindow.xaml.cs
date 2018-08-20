@@ -21,6 +21,9 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Threading;   //For : DrawingAttributes
 using GalaSoft.MvvmLight.Messaging;
+using Application = Microsoft.Office.Interop.PowerPoint.Application;
+using Microsoft.Office.Interop.PowerPoint;
+using Microsoft.Office.Core;
 
 namespace BitsOfStuff
 {
@@ -32,6 +35,7 @@ namespace BitsOfStuff
         public static readonly double widthCanvas=8*96;
         public static readonly double heightCanvas=5*96;
         string file_pre;
+        private Application _application;
         public InkPadWindow(string sPath,string filestr)
 		{
             file_pre = filestr;
@@ -60,6 +64,47 @@ namespace BitsOfStuff
             this.inkCanv.DefaultDrawingAttributes.Color = Colors.Red;
             //IntPtr hwnd = new WindowInteropHelper(this).Handle;
             //Commons.SetForegroundWindow(hwnd);
+            _application = new Application();
+        }
+
+
+        /// <summary>
+        /// 将ppt转成图片
+        /// </summary>
+        /// <param name="fileName"></param>
+        private void SaveToImages(object fileName)
+        {
+            var presentation = _application.Presentations.Open((string)fileName, MsoTriState.msoFalse, MsoTriState.msoFalse,
+                                                               MsoTriState.msoFalse);
+            Console.WriteLine(presentation.Application.Version);
+            presentation.SaveAs(_path, PpSaveAsFileType.ppSaveAsJPG, MsoTriState.msoTrue);
+            presentation.Close();
+
+            var files = System.IO.Directory.GetFiles(_path);
+            if (files != null)
+            {
+                foreach (var f in files)
+                {
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        ImageUC uc = new ImageUC();
+                        uc.MouseLeftButtonDown += uc_MouseLeftButtonDown;
+                        uc.IMG.Source = new BitmapImage(new Uri(f, UriKind.RelativeOrAbsolute));
+
+                        list.Items.Add(uc);
+                    }));
+                }
+            }
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                w1.Close();
+            }));
+
+        }
+
+        void uc_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            img.Source = (sender as ImageUC).IMG.Source;
         }
 
         // File Save : display SaveFileDialog.
@@ -387,6 +432,7 @@ namespace BitsOfStuff
                 var fileName = openFileDialog.FileName;
                 _path = string.Format(@"{0}\{1}", _path, DateTime.Now.ToString("yyyyMMddHHmmssms"));
                 System.IO.Directory.CreateDirectory(_path);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(SaveToImages), fileName);
             }
         }
 
